@@ -59,6 +59,7 @@ class Monster(db.Model):
     proficiency = db.relationship('Proficiency', backref='monster', lazy=True)
     item_weak = db.relationship('Item_weak', backref='monster', lazy=True)
     ailments = db.relationship('Ailments', backref='monster', lazy=True)
+    games = db.relationship('Games', backref='monster', lazy=True)
 
     relative = db.relationship(
         'Monster',
@@ -67,6 +68,19 @@ class Monster(db.Model):
         secondaryjoin=(related.c.subspecies_id == id),
         backref=db.backref('related', lazy='dynamic'),
         lazy='dynamic')
+
+
+    def __init__(self, name: str, generation: int, phylum: str, variation: int):
+        self.name = name
+        self.generation = generation
+        self.phylum = phylum
+        self.variation = variation
+
+    @staticmethod
+    def create(name, generation, phylum, variation):  # create Phylum
+        new = Monster(name, generation, phylum, variation)
+        db.session.add(new)
+        db.session.commit()
 
     def __repr__(self):
         return '<Monster {}>'.format(self.name)
@@ -89,7 +103,20 @@ class Item_weak(db.Model):
     sonic_bomb = db.Column(db.Boolean)
 
     def __repr__(self):
-        return '<Item_weak {}>'.format(self.mon_id)
+        return '<Item_weak {}>'.format(self.shock_trap)
+
+    def __init__(self, mon_id: int, shock_trap: bool, pitfall_trap: bool, flash_bomb: bool, sonic_bomb: bool):
+        self.mon_id = mon_id
+        self.shock_trap = shock_trap
+        self.pitfall_trap = pitfall_trap
+        self.flash_bomb = flash_bomb
+        self.sonic_bomb = sonic_bomb
+
+    @staticmethod    
+    def applyItemWeakness(mon_id: int, shock_trap: bool, pitfall_trap: bool, flash_bomb: bool, sonic_bomb: bool):
+        new = Item_weak(mon_id, shock_trap, pitfall_trap, flash_bomb, sonic_bomb)
+        db.session.add(new)
+        db.session.commit()
 
 
 class Weakness(db.Model):
@@ -105,8 +132,27 @@ class Weakness(db.Model):
     para = db.Column(db.Boolean)
     blast = db.Column(db.Boolean)
 
+    
     def __repr__(self):
-        return '<Weakness {}>'.format(self.mon_id)
+        return '<Weakness {}>'.format(self.fire)
+
+    def __init__(self, mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool, poison: bool, sleep: bool, para: bool, blast: bool):
+        self.mon_id = mon_id
+        self.fire = fire
+        self.water = water
+        self.thunder = thunder
+        self.ice = ice
+        self.dragon = dragon
+        self.poison = poison
+        self.sleep = sleep
+        self.para = para
+        self.blast = blast
+
+    @staticmethod    
+    def applyWeakness(mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool, poison: bool, sleep: bool, para: bool, blast: bool):
+        new = Weakness(mon_id,fire, water, thunder, ice, dragon, poison, sleep, para, blast)
+        db.session.add(new)
+        db.session.commit()
 
 
 class Proficiency(db.Model):
@@ -119,7 +165,21 @@ class Proficiency(db.Model):
     dragon = db.Column(db.Boolean)
 
     def __repr__(self):
-        return '<Proficiency {}>'.format(self.mon_id)
+        return '<Proficiency {}>'.format(self.water)
+
+    def __init__(self, mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool):
+        self.mon_id = mon_id
+        self.fire = fire
+        self.water = water
+        self.thunder = thunder
+        self.ice = ice
+        self.dragon = dragon
+
+    @staticmethod    
+    def applyStrenghts(mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool):
+        new = Proficiency(mon_id, fire, water, thunder, ice, dragon)
+        db.session.add(new)
+        db.session.commit()
 
 
 class Weakpoints(db.Model):
@@ -131,6 +191,19 @@ class Weakpoints(db.Model):
 
     def __repr__(self):
         return '<Weakpoints {}>'.format(self.cut)
+
+    def __init__(self, mon_id: int, cut: str, impact: str, projectile: str):
+        self.mon_id = mon_id
+        self.cut = cut
+        self.impact = impact
+        self.projectile = projectile
+
+    @staticmethod    
+    def createWeakPoints(mon_id: int, cut: str, impact: str, projectile: str):
+        new = Weakpoints(mon_id, cut, impact, projectile)
+        db.session.add(new)
+        db.session.commit()
+
 
 
 class Ailments(db.Model):
@@ -146,4 +219,53 @@ class Ailments(db.Model):
     wind = db.Column(db.Boolean)
 
     def __repr__(self):
-        return '<Ailments {}>'.format(self.mon_id)
+        return '<Ailments {}>'.format(self.wind)
+
+    def __init__(self, mon_id: int, poison: bool, sleep: bool, para: bool, blast: bool, stun: bool, tremor: bool, roar: bool, wind: bool):
+        self.mon_id = mon_id
+        self.poison = poison
+        self.sleep = sleep
+        self.para = para
+        self.blast = blast
+        self.stun = stun
+        self.tremor = tremor
+        self.roar = roar
+        self.wind = wind
+
+    @staticmethod    
+    def createStatus( mon_id: int, poison: bool, sleep: bool, para: bool, blast: bool, stun: bool, tremor: bool, roar: bool, wind: bool):
+        new = Ailments(mon_id, poison, sleep, para, blast, stun, tremor, roar, wind)
+        db.session.add(new)
+        db.session.commit()
+
+
+
+class Games(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    mon_id = db.Column(db.Integer, db.ForeignKey('monster.id'), nullable=False)
+    MHF = db.Column(db.Boolean)
+    MHF2 = db.Column(db.Boolean)
+    MH3rd = db.Column(db.Boolean)
+    MH3U = db.Column(db.Boolean)
+    MH4U = db.Column(db.Boolean)
+    MHGU = db.Column(db.Boolean)
+    MHWI = db.Column(db.Boolean)
+    MHRS = db.Column(db.Boolean)
+
+    def __init__(self, mon_id: int, MHF: bool, MHF2: bool, MH3rd: bool, MH3U: bool, MH4U: bool, MHGU: bool, MHWI: bool, MHRS: bool):
+        self.mon_id = mon_id
+        self.MHF = MHF
+        self.MHF2 = MHF2
+        self.MH3rd = MH3rd
+        self.MH3U = MH3U
+        self.MH4U = MH4U
+        self.MHGU = MHGU
+        self.MHWI = MHWI
+        self.MHRS = MHRS
+
+    @staticmethod    
+    def create(mon_id: int, MHF: bool, MHF2: bool, MH3rd: bool, MH3U: bool, MH4U: bool, MHGU: bool, MHWI: bool, MHRS: bool):
+        new = Games(mon_id, MHF, MHF2, MH3rd, MH3U, MH4U, MHGU, MHWI, MHRS)
+        db.session.add(new)
+        db.session.commit()
+
