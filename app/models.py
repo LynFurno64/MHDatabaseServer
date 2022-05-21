@@ -1,6 +1,6 @@
 from app import app, db
 
-related = db.Table(
+familia = db.Table(
     'related',
     db.Column('main_id', db.Integer, db.ForeignKey('monster.id')),
     db.Column('subspecies_id', db.Integer, db.ForeignKey('monster.id'))
@@ -62,12 +62,10 @@ class Monster(db.Model):
     games = db.relationship('Games', backref='monster', lazy=True)
 
     relative = db.relationship(
-        'Monster',
-        secondary=related,
-        primaryjoin=(related.c.main_id == id),
-        secondaryjoin=(related.c.subspecies_id == id),
-        backref=db.backref('related', lazy='dynamic'),
-        lazy='dynamic')
+        'Monster', secondary=familia,
+        primaryjoin=(familia.c.main_id == id),
+        secondaryjoin=(familia.c.subspecies_id == id),
+        backref=db.backref('familia', lazy='dynamic'), lazy='dynamic')
 
 
     def __init__(self, name: str, generation: int, phylum: str, variation: int):
@@ -77,21 +75,21 @@ class Monster(db.Model):
         self.variation = variation
 
     @staticmethod
-    def create(name, generation, phylum, variation):  # create Phylum
-        new = Monster(name, generation, phylum, variation)
-        db.session.add(new)
+    def create(self): 
+        
+        db.session.add(self)
         db.session.commit()
 
     def __repr__(self):
         return '<Monster {}>'.format(self.name)
 
-    def is_relative(self, monster):
-        return self.relative.filter(
-            related.c.subspecies_id == monster.id).count() > 0
-
-    def related(self, monster):
-        if not self.is_relative(monster):
+    def family(self, monster):
+        if not self.is_family(monster):
             self.relative.append(monster)
+
+    def is_family(self, monster):
+        return self.relative.filter(
+            familia.c.subspecies_id == monster.id).count() > 0
 
 
 class Item_weak(db.Model):
@@ -118,6 +116,12 @@ class Item_weak(db.Model):
         db.session.add(new)
         db.session.commit()
 
+    @staticmethod    
+    def elderBlock(mon_id: int):
+        new = Item_weak(mon_id, False, False, False, False)
+        db.session.add(new)
+        db.session.commit()
+
 
 class Weakness(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -134,25 +138,42 @@ class Weakness(db.Model):
 
     
     def __repr__(self):
-        return '<Weakness {}>'.format(self.fire)
-
-    def __init__(self, mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool, poison: bool, sleep: bool, para: bool, blast: bool):
-        self.mon_id = mon_id
-        self.fire = fire
-        self.water = water
-        self.thunder = thunder
-        self.ice = ice
-        self.dragon = dragon
-        self.poison = poison
-        self.sleep = sleep
-        self.para = para
-        self.blast = blast
+        return '<Weakness {}>'.format(self.mon_id)
 
     @staticmethod    
     def applyWeakness(mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool, poison: bool, sleep: bool, para: bool, blast: bool):
         new = Weakness(mon_id,fire, water, thunder, ice, dragon, poison, sleep, para, blast)
         db.session.add(new)
         db.session.commit()
+
+    def applyWeaknessElement(self, mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool):
+        self.mon_id = mon_id
+        self.fire = fire
+        self.water = water
+        self.thunder = thunder
+        self.ice = ice
+        self.dragon = dragon
+        db.session.add(self)
+        db.session.commit()
+
+    def applyWeaknessStatus(self, mon_id: int, poison: bool, sleep: bool, para: bool, blast: bool):
+        self.mon_id = mon_id
+        self.poison = poison
+        self.sleep = sleep
+        self.para = para
+        self.blast = blast
+        db.session.add(self)
+        db.session.commit()
+
+    def noWeaknessStatus(self, mon_id: int):
+        self.mon_id = mon_id
+        self.poison = False
+        self.sleep = False
+        self.para = False
+        self.blast = False
+        db.session.add(self)
+        db.session.commit()
+
 
 
 class Proficiency(db.Model):
@@ -178,6 +199,13 @@ class Proficiency(db.Model):
     @staticmethod    
     def applyStrenghts(mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool):
         new = Proficiency(mon_id, fire, water, thunder, ice, dragon)
+        db.session.add(new)
+        db.session.commit()
+
+
+    @staticmethod    
+    def noElement(mon_id: int):
+        new = Proficiency(mon_id, False, False, False, False, False)
         db.session.add(new)
         db.session.commit()
 
@@ -213,6 +241,7 @@ class Ailments(db.Model):
     sleep = db.Column(db.Boolean)
     para = db.Column(db.Boolean)
     blast = db.Column(db.Boolean)
+
     stun = db.Column(db.Boolean)
     tremor = db.Column(db.Boolean)
     roar = db.Column(db.Boolean)
@@ -238,6 +267,12 @@ class Ailments(db.Model):
         db.session.add(new)
         db.session.commit()
 
+    @staticmethod    
+    def noStatus(mon_id: int):
+        new = Ailments(mon_id, False, False, False, False, False, False, False, False)
+        db.session.add(new)
+        db.session.commit()
+
 
 
 class Games(db.Model):
@@ -252,20 +287,45 @@ class Games(db.Model):
     MHWI = db.Column(db.Boolean)
     MHRS = db.Column(db.Boolean)
 
-    def __init__(self, mon_id: int, MHF: bool, MHF2: bool, MH3rd: bool, MH3U: bool, MH4U: bool, MHGU: bool, MHWI: bool, MHRS: bool):
-        self.mon_id = mon_id
-        self.MHF = MHF
-        self.MHF2 = MHF2
-        self.MH3rd = MH3rd
-        self.MH3U = MH3U
-        self.MH4U = MH4U
-        self.MHGU = MHGU
-        self.MHWI = MHWI
-        self.MHRS = MHRS
+    def __repr__(self):
+        return '<Games {}>'.format(self.MHF)
 
+    # Add Monsters that were in Every game
     @staticmethod    
-    def create(mon_id: int, MHF: bool, MHF2: bool, MH3rd: bool, MH3U: bool, MH4U: bool, MHGU: bool, MHWI: bool, MHRS: bool):
-        new = Games(mon_id, MHF, MHF2, MH3rd, MH3U, MH4U, MHGU, MHWI, MHRS)
+    def addToAll(mon_id: int):
+        new = Games(mon_id, True, True, True, True, True, True, True, True)
         db.session.add(new)
         db.session.commit()
 
+
+    # Add Monsters that were in MH 1 OR MH 2
+    def inMHOld(self, mon_id: int, MHF: bool, MHF2: bool):
+        self.mon_id = mon_id
+        self.MHF = MHF
+        self.MHF2 = MHF2
+        db.session.add(self)
+        db.session.commit()
+
+    # Add Monsters that were in Gen 3 Games
+    def inMHGen3(self, mon_id: int, MH3rd: bool, MH3U: bool):
+        self.mon_id = mon_id
+        self.MH3rd = MH3rd
+        self.MH3U = MH3U
+        db.session.add(self)
+        db.session.commit()
+
+    # Add Monsters that were in Gen 4 Games
+    def inMHGen4(self, mon_id: int, MH4U: bool, MHGU: bool):
+        self.mon_id = mon_id
+        self.MH4U = MH4U
+        self.MHGU = MHGU
+        db.session.add(self)
+        db.session.commit()
+
+    # Add Monsters that were in Gen 5 Games
+    def inMHGen5(self, mon_id: int,  MHWI: bool, MHRS: bool):
+        self.mon_id = mon_id
+        self.MHWI = MHWI
+        self.MHRS = MHRS
+        db.session.add(self)
+        db.session.commit()

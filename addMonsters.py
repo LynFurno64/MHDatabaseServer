@@ -1,40 +1,84 @@
-from sqlalchemy import false, true
 from app import app, db
 from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
 
-rathalos = Monster("Rathalos", 1, "flying", 1)
-print(rathalos.id)
-db.session.add(rathalos)
-db.session.commit()
+addWeakness = Weakness()
 
 
-Item_weak.applyItemWeakness(rathalos.id, True, True, True, False)
+################## ADD Neopteron ##################
+from app.createMonsters import neopteron
 
-rathian = Monster("Rathian", 1, "flying", 1)
-rathalos.related(rathian)
+################## ADD Temnoceran ##################
+from app.createMonsters import temnoceran
 
+################## ADD Bird Wyvern ##################
+from app.createMonsters import birdWyvern
 
-rathalos_azure = Monster("Azure Rathalos", 1, "flying", 2)
-rathian_pink = Monster("Pink Rathian", 1, "flying", 2)
-rathalos.related(rathalos_azure)
-rathian.related(rathian_pink)
+################## ADD Flying Wyvern ##################
+#from app.createMonsters import flyingWyvern
 
+################## ADD Piscine Wyvern ##################
+################## ADD Carapaceon     ##################
+################## ADD Amphibian      ##################
+################## ADD Fanged Beast   ##################
+################## ADD Leviathan      ##################
+################## ADD Snake Wyvern   ##################
+from app.createMonsters import snakeWyern
 
-rathalos_silver = Monster("Silver Rathalos", 1, "flying", 3)
-rathian_gold = Monster("Gold Rathian", 1, "flying", 3)
-rathalos.related(rathalos_silver)
-rathian.related(rathian_gold)
+################## ADD Brute Wyvern   ##################
+################## ADD Fanged Wyvern   ##################
 
+################## ADD Elder Dragon   ##################
+from app.createMonsters import elderDragon
 
-rathalos_dreadking = Monster("Dreadking Rathalos", 4, "flying", 5)
-rathian_dreadqueen = Monster("Dreadqueen Rathian", 4, "flying", 5)
-rathalos.related(rathalos_dreadking)
-rathian.related(rathian_dreadqueen)
+games = Games()
+################## ADD ???   ##################
+            ### Gore Magala   ###
+addWeakness = Weakness()
+games = Games()
+gore_magala = Monster(name='Gore Magala', generation=4, phylum='???', variation=1)
+gore_magala.create(gore_magala)
 
+Item_weak.applyItemWeakness(mon_id= gore_magala.id, shock_trap=True, pitfall_trap=True, flash_bomb=False, sonic_bomb=False)
+addWeakness.applyWeaknessElement(mon_id= gore_magala.id, fire=True, water=False, thunder=False, ice=False, dragon=True)
+addWeakness.applyWeaknessStatus(mon_id= gore_magala.id, poison=True, sleep=False, para=False, blast=False)
+Weakpoints.createWeakPoints(mon_id= gore_magala.id, cut='Head, Neck, Front Legs, Tail', impact='Head,  Neck, Front Legs, Tail', projectile='Head, Neck, Back Legs')
 
-ibushi = Monster("Ibushi", 5, "elder", 1)
-narwa = Monster("Narwa", 5, "flying", 1)
-narwa_allmother = Monster("Narwa Allmother", 5, "flying", 4)
+Proficiency.noElement(mon_id= gore_magala.id)
+Ailments.createStatus(mon_id= gore_magala.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=True, roar=True, wind=True)
+games.inMHGen4(mon_id= gore_magala.id, MH4U=True, MHGU=True)
 
-narwa.related(ibushi)
-narwa.related(narwa_allmother)
+            ### Shagaru Magala   ###
+addWeakness = Weakness()
+games = Games()
+shagaru_magala = Monster(name='Shagaru Magala', generation=4, phylum='elder', variation=1)
+shagaru_magala.create(shagaru_magala)
+
+Item_weak.elderBlock(mon_id= shagaru_magala.id)
+addWeakness.applyWeaknessElement(mon_id= shagaru_magala.id, fire=True, water=False, thunder=False, ice=False, dragon=True)
+addWeakness.applyWeaknessStatus(mon_id= shagaru_magala.id, poison=True, sleep=False, para=False, blast=False)
+Weakpoints.createWeakPoints(mon_id= shagaru_magala.id, cut='Head, Neck', impact='Head', projectile='Head, Neck, Back Legs')
+
+Proficiency.noElement(mon_id= shagaru_magala.id)
+Ailments.createStatus(mon_id= shagaru_magala.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=True, roar=True, wind=False)
+games.inMHGen4(mon_id= shagaru_magala.id, MH4U=True, MHGU=True)
+
+            ### Chaotic Gore Magala   ###
+addWeakness = Weakness()
+games = Games()
+gore_magala_chaotic = Monster(name='Chaotic Gore Magala', generation=4, phylum='???', variation=4)
+gore_magala_chaotic.create(gore_magala_chaotic)
+
+Item_weak.applyItemWeakness(mon_id= gore_magala_chaotic.id, shock_trap=True, pitfall_trap=True, flash_bomb=False, sonic_bomb=False)
+addWeakness.applyWeaknessElement(mon_id= gore_magala_chaotic.id, fire=True, water=False, thunder=False, ice=False, dragon=True)
+addWeakness.applyWeaknessStatus(mon_id= gore_magala_chaotic.id, poison=True, sleep=False, para=False, blast=False)
+Weakpoints.createWeakPoints(mon_id= gore_magala_chaotic.id, cut='Head, Neck, Front Legs, Tail', impact='Head,  Neck, Front Legs, Tail', projectile='Head, Neck, Back Legs')
+
+Proficiency.noElement(mon_id= gore_magala_chaotic.id)
+Ailments.createStatus(mon_id= gore_magala_chaotic.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=True, roar=True, wind=True)
+games.inMHGen4(mon_id= gore_magala_chaotic.id, MH4U=True, MHGU=True)
+
+gore_magala.family(gore_magala_chaotic)
+shagaru_magala.family(gore_magala)
+shagaru_magala.family(gore_magala_chaotic)
+
+print('COMPLETED!!')

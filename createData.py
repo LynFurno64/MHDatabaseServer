@@ -68,4 +68,7 @@ with app.app_context():
             if user[1] is None:
                 fillPhylums()
 
-    print("Finished")
+    print("Finished\n Now Starting addMonster.py...")
+
+import addMonsters
+#from app.dummyInfo import addNeopteron
