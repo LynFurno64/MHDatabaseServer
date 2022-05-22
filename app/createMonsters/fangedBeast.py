@@ -1,24 +1,24 @@
-# Create Monsters from the Bird Wyvern Phylum
+# Create Monsters from the Fanged Beast Phylum
 from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
 
 
-##################  Velocidrome ##################
+##################  Arzuros ##################
 addWeakness = Weakness()
 games = Games()
 
-################## Izuchi ##################
+##################  Redhelm Arzuro ##################
 addWeakness = Weakness()
 games = Games()
 
-################## Malfestio ##################
+##################  Gammoth ##################
 addWeakness = Weakness()
 games = Games()
 
-################## Nightcloak Malfestio ##################
+##################  Elderfrost Gammoth ##################
 addWeakness = Weakness()
 games = Games()
 
 
-################## Aknosom ##################
+##################  Goss Harag ##################
 addWeakness = Weakness()
 games = Games()

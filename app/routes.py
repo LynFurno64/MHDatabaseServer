@@ -30,7 +30,7 @@ def get_phylum(phylum_id):
     phylum = [phylum for phylum in phylums['phylums'] if phylum['id'] == phylum_id]
     if len(phylum) == 0:
         abort(404)
-    return jsonify({'phylums': phylum[0]})
+    return phylum[0]
 
 
 @app.route('/phylums', methods=['GET'])

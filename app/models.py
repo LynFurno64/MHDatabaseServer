@@ -140,12 +140,6 @@ class Weakness(db.Model):
     def __repr__(self):
         return '<Weakness {}>'.format(self.mon_id)
 
-    @staticmethod    
-    def applyWeakness(mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool, poison: bool, sleep: bool, para: bool, blast: bool):
-        new = Weakness(mon_id,fire, water, thunder, ice, dragon, poison, sleep, para, blast)
-        db.session.add(new)
-        db.session.commit()
-
     def applyWeaknessElement(self, mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool):
         self.mon_id = mon_id
         self.fire = fire
@@ -156,12 +150,54 @@ class Weakness(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def onlyWeakElement(self, mon_id: int, element: str):
+        self.mon_id = mon_id
+        self.fire = False
+        self.water = False
+        self.thunder = False
+        self.ice = False
+        self.dragon = False
+
+        if  element == 'fire':
+            self.fire = True
+        elif  element == 'water':
+            self.water = True
+        elif  element == 'thunder':
+            self.thunder = True
+        elif  element == 'ice':
+            self.ice = True
+        elif  element == 'dragon':
+            self.dragon = True
+        
+        db.session.add(self)
+        db.session.commit()
+        
+
     def applyWeaknessStatus(self, mon_id: int, poison: bool, sleep: bool, para: bool, blast: bool):
         self.mon_id = mon_id
         self.poison = poison
         self.sleep = sleep
         self.para = para
         self.blast = blast
+        db.session.add(self)
+        db.session.commit()
+
+    def onlyWeakStatus(self, mon_id: int, status: str):
+        self.mon_id = mon_id
+        self.poison = False
+        self.sleep = False
+        self.para = False
+        self.blast = False
+
+        if  status == 'poison':
+            self.poison = True
+        elif  status == 'sleep':
+            self.sleep = True
+        elif  status == 'para':
+            self.para = True
+        elif  status == 'blast':
+            self.blast = True
+
         db.session.add(self)
         db.session.commit()
 
@@ -173,6 +209,7 @@ class Weakness(db.Model):
         self.blast = False
         db.session.add(self)
         db.session.commit()
+
 
 
 
@@ -206,6 +243,25 @@ class Proficiency(db.Model):
     @staticmethod    
     def noElement(mon_id: int):
         new = Proficiency(mon_id, False, False, False, False, False)
+        db.session.add(new)
+        db.session.commit()
+
+    def onlyGoodAt(mon_id: int, element: str):
+        if  element == 'fire':
+            new = Proficiency(mon_id, fire=True, water=False, thunder=False, ice=False, dragon=False)
+            
+        elif  element == 'water':
+            new = Proficiency(mon_id, fire=False, water=True, thunder=False, ice=False, dragon=False)
+
+        elif  element == 'thunder':
+            new = Proficiency(mon_id, fire=False, water=False, thunder=True, ice=False, dragon=False)
+
+        elif  element == 'ice':
+            new = Proficiency(mon_id, fire=False, water=False, thunder=False, ice=True, dragon=False)
+
+        elif  element == 'dragon':
+            new = Proficiency(mon_id, fire=False, water=False, thunder=False, ice=False, dragon=True)
+
         db.session.add(new)
         db.session.commit()
 
