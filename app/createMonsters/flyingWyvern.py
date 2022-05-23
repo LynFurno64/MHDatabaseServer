@@ -25,16 +25,16 @@ games = Games()
 rathalos_azure = Monster("Azure Rathalos", 1, "flying", 2)
 
 rathalos_azure.create()
-Item_weak.applyItemWeakness(mon_id=.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
-Weakness.applyWeakness(mon_id=.id, fire=, water=, thunder=, ice=, dragon=, poison=, sleep=, para=, blast=)
+Item_weak.applyItemWeakness(mon_id=rathalos_azure.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
+Weakness.applyWeakness(mon_id=rathalos_azure.id, fire=, water=, thunder=, ice=, dragon=, poison=, sleep=, para=, blast=)
 
-Weakness.applyWeaknessElement(mon_id= .id, fire=, water=False, thunder=True, ice=False, dragon=True)
+Weakness.applyWeaknessElement(mon_id= rathalos_azure.id, fire=, water=False, thunder=True, ice=False, dragon=True)
 Weakness.applyWeaknessStatus(mon_id= .id, poison=, sleep=True, para=False, blast=False)
 
-Weakpoints.createWeakPoints(mon_id=.id, cut='Head, Tail', impact='Head, Belly', projectile='Head, Legs')
-Proficiency.applyStrenghts(mon_id=.id, fire=, water=, thunder=, ice=, dragon=)
-Ailments.createStatus(mon_id=.id, poison=, sleep=, para=, blast=, stun=, tremor=, roar=, wind=)
-Games.addToGame(mon_id=.id, MHF=True, MHF2=True, MH3rd=True, MH3U=True, MH4U=True, MHGU=True, MHWI=True, MHRS=True)
+Weakpoints.createWeakPoints(mon_id=rathalos_azure.id, cut='Head, Tail', impact='Head, Belly', projectile='Head, Legs')
+Proficiency.applyStrenghts(mon_id=rathalos_azure.id, fire=, water=, thunder=, ice=, dragon=)
+Ailments.createStatus(mon_id=rathalos_azure.id, poison=, sleep=, para=, blast=, stun=, tremor=, roar=, wind=)
+Games.addToGame(mon_id=rathalos_azure.id, MHF=True, MHF2=True, MH3rd=True, MH3U=True, MH4U=True, MHGU=True, MHWI=True, MHRS=True)
 
 
 #################  Silver Rathalos ##################
@@ -42,17 +42,17 @@ addWeakness = Weakness()
 games = Games() 
 
 rathalos_silver = Monster("Silver Rathalos", 1, "flying", 3)
-.create()
-Item_weak.applyItemWeakness(mon_id=.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
-Weakness.applyWeakness(mon_id=.id, fire=, water=, thunder=, ice=, dragon=, poison=, sleep=, para=, blast=)
+rathalos_silver.create(rathalos_silver)
+Item_weak.applyItemWeakness(mon_id=rathalos_silver.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
+Weakness.applyWeakness(mon_id=rathalos_silver.id, fire=, water=, thunder=, ice=, dragon=, poison=, sleep=, para=, blast=)
 
-Weakness.applyWeaknessElement(mon_id= .id, fire=, water=False, thunder=True, ice=False, dragon=True)
-Weakness.applyWeaknessStatus(mon_id= .id, poison=, sleep=True, para=False, blast=False)
+Weakness.applyWeaknessElement(mon_id= rathalos_silver.id, fire=, water=False, thunder=True, ice=False, dragon=True)
+Weakness.applyWeaknessStatus(mon_id= rathalos_silver.id, poison=, sleep=True, para=False, blast=False)
 
-Weakpoints.createWeakPoints(mon_id=.id, cut='Head, Tail', impact='Head, Belly', projectile='Head, Legs')
-Proficiency.applyStrenghts(mon_id=.id, fire=, water=, thunder=, ice=, dragon=)
-Ailments.createStatus(mon_id=.id, poison=, sleep=, para=, blast=, stun=, tremor=, roar=, wind=)
-Games.addToGame(mon_id=.id, MHF=True, MHF2=True, MH3rd=True, MH3U=True, MH4U=True, MHGU=True, MHWI=True, MHRS=True)
+Weakpoints.createWeakPoints(mon_id=rathalos_silver.id, cut='Head, Tail', impact='Head, Belly', projectile='Head, Legs')
+Proficiency.applyStrenghts(mon_id=rathalos_silver.id, fire=, water=, thunder=, ice=, dragon=)
+Ailments.createStatus(mon_id=rathalos_silver.id, poison=, sleep=, para=, blast=, stun=, tremor=, roar=, wind=)
+Games.addToGame(mon_id=rathalos_silver.id, MHF=True, MHF2=True, MH3rd=True, MH3U=True, MH4U=True, MHGU=True, MHWI=True, MHRS=True)
 
 
 
@@ -61,17 +61,17 @@ addWeakness = Weakness()
 games = Games() 
 
 rathalos_dreadking = Monster("Dreadking Rathalos", 4, "flying", 5)
-.create()
-Item_weak.applyItemWeakness(mon_id=.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
-Weakness.applyWeakness(mon_id=.id, fire=, water=, thunder=, ice=, dragon=, poison=, sleep=, para=, blast=)
+rathalos_dreadking.create(rathalos_dreadking)
+Item_weak.applyItemWeakness(mon_id=rathalos_dreadking.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
+Weakness.applyWeakness(mon_id=rathalos_dreadking.id, fire=, water=, thunder=, ice=, dragon=, poison=, sleep=, para=, blast=)
 
-Weakness.applyWeaknessElement(mon_id= .id, fire=, water=False, thunder=True, ice=False, dragon=True)
-Weakness.applyWeaknessStatus(mon_id= .id, poison=, sleep=True, para=False, blast=False)
+Weakness.applyWeaknessElement(mon_id=rathalos_dreadking .id, fire=, water=False, thunder=True, ice=False, dragon=True)
+Weakness.applyWeaknessStatus(mon_id= rathalos_dreadking.id, poison=, sleep=True, para=False, blast=False)
 
-Weakpoints.createWeakPoints(mon_id=.id, cut='Head, Tail', impact='Head, Belly', projectile='Head, Legs')
-Proficiency.applyStrenghts(mon_id=.id, fire=, water=, thunder=, ice=, dragon=)
-Ailments.createStatus(mon_id=.id, poison=, sleep=, para=, blast=, stun=, tremor=, roar=, wind=)
-Games.addToGame(mon_id=.id, MHF=True, MHF2=True, MH3rd=True, MH3U=True, MH4U=True, MHGU=True, MHWI=True, MHRS=True)
+Weakpoints.createWeakPoints(mon_id=rathalos_dreadking.id, cut='Head, Tail', impact='Head, Belly', projectile='Head, Legs')
+Proficiency.applyStrenghts(mon_id=rathalos_dreadking.id, fire=, water=, thunder=, ice=, dragon=)
+Ailments.createStatus(mon_id=rathalos_dreadking.id, poison=, sleep=, para=, blast=, stun=, tremor=, roar=, wind=)
+Games.addToGame(mon_id=rathalos_dreadking.id, MHF=True, MHF2=True, MH3rd=True, MH3U=True, MH4U=True, MHGU=True, MHWI=True, MHRS=True)
 
 
 #################  Tigrex ##################
