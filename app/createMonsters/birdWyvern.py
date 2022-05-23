@@ -17,6 +17,8 @@ Weakpoints.createWeakPoints(mon_id=Velocidrome.id,cut='Head, Body',impact='Head,
 Proficiency.noElement(mon_id=Velocidrome.id)
 Ailments.createStatus(mon_id=Velocidrome.id,poison=False,sleep=False,para=False,blast=False,stun=False,tremor=False,roar=False,wind=False)
 games.inMHOld(mon_id=Velocidrome.id,MHF=True,MHF2=True)
+games.inMHGen4(mon_id=Velocidrome.id,MH4U=True,MHGU=True)
+
 
 ################## Izuchi ##################
 addWeakness = Weakness()

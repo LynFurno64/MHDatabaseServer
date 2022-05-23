@@ -17,6 +17,8 @@ Weakpoints.createWeakPoints(mon_id=Arzuros.id,cut='Head, Upper Half, Forelegs, H
 Proficiency.noElement(mon_id=Arzuros.id)
 Ailments.createStatus(mon_id=Arzuros.id,poison=False,sleep=False,para=False,blast=False,stun=False,tremor=False,roar=False,wind=False)
 games.inMHGen3(mon_id=Arzuros.id,MH3rd=True,MH3U=True)
+games.inMHGen4(mon_id=Arzuros.id,MH4U=False,MHGU=True)
+games.inMHGen5(mon_id=Arzuros.id,MHWI=False,MHRS=True)
 
 
 ##################  Redhelm Arzuro ##################
@@ -34,7 +36,6 @@ Weakpoints.createWeakPoints(mon_id=Arzuros_Redhelm.id,cut='Head, Upper Half, For
 Proficiency.noElement(mon_id=Arzuros_Redhelm.id)
 Ailments.createStatus(mon_id=Arzuros_Redhelm.id,poison=False,sleep=False,para=False,blast=False,stun=True,tremor=False,roar=False,wind=False)
 games.inMHGen4(mon_id=Arzuros_Redhelm.id,MH4U=False,MHGU=True)
-
 
 ##################  Gammoth ##################
 addWeakness = Weakness()
