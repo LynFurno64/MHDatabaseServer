@@ -23,7 +23,7 @@ games.inMHGen3(mon_id=Arzuros.id,MH3rd=True,MH3U=True)
 addWeakness = Weakness()
 games = Games()
 
-Arzuros_Redhelm = Monster(name='Arzuros Redhelm',generation=4,phylum='beast',variation=2)
+Arzuros_Redhelm = Monster(name='Redhelm Arzuros',generation=4,phylum='beast',variation=5)
 Arzuros_Redhelm.create(Arzuros_Redhelm)
 
 Item_weak.applyItemWeakness(mon_id=Arzuros_Redhelm.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=True)
@@ -56,7 +56,7 @@ games.inMHGen4(mon_id=Gammoth.id,MH4U=False,MHGU=True)
 addWeakness = Weakness()
 games = Games()
 
-Gammoth_Elderfrost = Monster(name='Gammoth Elderfrost',generation=4,phylum='beast',variation=2)
+Gammoth_Elderfrost = Monster(name='Elderfrost Gammoth',generation=4,phylum='beast',variation=5)
 Gammoth_Elderfrost.create(Gammoth_Elderfrost)
 
 Item_weak.applyItemWeakness(mon_id=Gammoth_Elderfrost.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)

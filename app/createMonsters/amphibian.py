@@ -21,7 +21,7 @@ games.inMHGen4(mon_id=Tetsucabra.id,MH4U=True,MHGU=True)
 addWeakness = Weakness()
 games = Games()
 
-Tetsucabra_Drilltusk = Monster(name= 'Tetsucabra_Drilltusk',generation=4,phylum='frog',variation=2)
+Tetsucabra_Drilltusk = Monster(name= 'Drilltusk Tetsucabra',generation=4,phylum='frog',variation=5)
 Tetsucabra_Drilltusk.create(Tetsucabra_Drilltusk)
 
 Item_weak.applyItemWeakness(mon_id=Tetsucabra_Drilltusk.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)
@@ -46,7 +46,7 @@ addWeakness.applyWeaknessElement(mon_id=Zamtrios.id,fire=True,water=False,thunde
 addWeakness.noWeaknessStatus(mon_id=Zamtrios.id)
 Weakpoints.createWeakPoints(mon_id=Zamtrios.id,cut='Head, Fin, Tail, Belly',impact='Head, Fin, Tail, Belly',projectile='Head, Fin, Tail, Belly')
 
-Proficiency.noElement(mon_id=Zamtrios.id)
+Proficiency.onlyGoodAt(mon_id=Zamtrios,element='ice,water')
 Ailments.createStatus(mon_id=Zamtrios.id,poison=False,sleep=False,para=False,blast=False,stun=False,tremor=False,roar=False,wind=False)
 games.inMHGen4(mon_id=Zamtrios.id,MH4U=True,MHGU=True)
 
