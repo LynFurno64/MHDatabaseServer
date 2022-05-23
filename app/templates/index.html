@@ -17,6 +17,13 @@
                 <div>
                     <p>{{ mon.name}}</p>
                     <p>{{ mon.phylum}}</p>
+                    <p>{{ mon.familia.count() }} Familia (flowers), 
+                        {{ mon.relative.count() }} Relative (following).</p>
+
+                    <p>Related Monsters are: </p>
+                    {% for x in mon.familia.all() %}
+                    <p>{{ x.name }}</p>
+                    {% endfor %}
                 </div>
             </td>
         </tr>
