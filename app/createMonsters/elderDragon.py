@@ -1,4 +1,4 @@
-# Create Monsters from the Elder Dragon Phylum
+# Create Monsters from the Elder Dragon group
 from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
 
 ################## Lunastra ##################
@@ -45,7 +45,7 @@ games = Games()
 addWeakness = Weakness()
 games = Games()
 
-ibushi = Monster(name='Ibushi', generation=5, phylum='elder', variation=1)
+ibushi = Monster(name='Ibushi', generation=5, group='elder', variation=1)
 ibushi.create(ibushi)
 
 Item_weak.elderBlock(mon_id= ibushi.id)

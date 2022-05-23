@@ -11,7 +11,7 @@ class Subgroup(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     division = db.Column(db.String(140), index=True, unique=True, nullable=False)
 
-    monster = db.relationship('Monster', backref='division', lazy=True)
+    monster = db.relationship('Monster', backref='subgroup', lazy=True)
 
     #def __repr__(self):
         #return '<Subgroup {}>'.format(self.type)
@@ -31,7 +31,7 @@ class Phylum(db.Model):
     category = db.Column(db.String(140), unique=True, nullable=False)
     codename = db.Column(db.String(100), index=True, unique=True, nullable=False)
 
-    monster = db.relationship('Monster', backref='category', lazy=True)
+    monster = db.relationship('Monster', backref='phylum', lazy=True)
 
     #def __repr__(self):
         #return '<Phylum {}>'.format(self.name)
@@ -51,7 +51,7 @@ class Monster(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
     generation = db.Column(db.Integer, index=True, nullable=False)
-    phylum = db.Column(db.String(100), db.ForeignKey('phylum.codename'), nullable=False)
+    group = db.Column(db.String(100), db.ForeignKey('phylum.codename'), nullable=False)
     variation = db.Column(db.Integer, db.ForeignKey('subgroup.id'), nullable=False)
 
     weakpoints = db.relationship('Weakpoints', backref='monster', lazy=True)
@@ -71,10 +71,10 @@ class Monster(db.Model):
     def __repr__(self):
             return '<Monster {}>'.format(self.name)
 
-    def __init__(self, name: str, generation: int, phylum: str, variation: int):
+    def __init__(self, name: str, generation: int, group: str, variation: int):
         self.name = name
         self.generation = generation
-        self.phylum = phylum
+        self.group = group
         self.variation = variation
 
     @staticmethod

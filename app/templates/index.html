@@ -5,9 +5,6 @@
     <h1>Monster List</h1>
 
     {% for mon in monsters %}
-
-
-
     <table class="table table-hover">
         <tr>
             <td width="256px">
@@ -16,7 +13,8 @@
             <td>
                 <div>
                     <p>{{ mon.name}}</p>
-                    <p>{{ mon.phylum}}</p>
+                    <p>{{ mon.phylum.category}}</p>
+
                     <p>{{ mon.familia.count() }} Familia (flowers), 
                         {{ mon.relative.count() }} Relative (following).</p>
 

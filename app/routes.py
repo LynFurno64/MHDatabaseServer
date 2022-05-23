@@ -34,10 +34,12 @@ def index():
 
 @app.route('/app/monsterList', methods=['GET', 'POST'])
 def get_monsters():
-    # Loop along json
-    #monsters = Monster.query.order_by(Monster.name.desc())
     monsters = Monster.query.all()
-    print(monsters)
+
+    for mon in monsters:
+        name = mon.name
+        group = mon.phylum.category
+        print("Name: ", name, "\nGroup: ", group)
 
     monster_schema = MonsterSchema(many=True)
     output = monster_schema.dump(monsters)

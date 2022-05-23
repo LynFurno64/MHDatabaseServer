@@ -1,11 +1,11 @@
-# Create Monsters from the Brute Wyvern Phylum
+# Create Monsters from the Brute Wyvern group
 from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
 
 ################## Brachydios ##################
 addWeakness = Weakness()
 games = Games()
 
-Brachydios = Monster(name='Brachydios', generation=3, phylum='brute', variation=1)
+Brachydios = Monster(name='Brachydios', generation=3, group='brute', variation=1)
 Brachydios.create(Brachydios)
 
 Item_weak.applyItemWeakness(mon_id= Brachydios.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
@@ -23,7 +23,7 @@ games.inMHGen5(mon_id= Brachydios.id, MHWI=True, MHRS=False)
 addWeakness = Weakness()
 games = Games()
 
-Brachydios_Raging = Monster(name='Raging Brachydios', generation=4, phylum='brute', variation=4)
+Brachydios_Raging = Monster(name='Raging Brachydios', generation=4, group='brute', variation=4)
 Brachydios_Raging.create(Brachydios_Raging)
 
 Item_weak.applyItemWeakness(mon_id= Brachydios_Raging.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
@@ -42,7 +42,7 @@ games.inMHGen5(mon_id= Brachydios_Raging.id, MHWI=True, MHRS=False)
 addWeakness = Weakness()
 games = Games()
 
-Glavenus= Monster(name='Glavenus', generation=4, phylum='brute', variation=1)
+Glavenus= Monster(name='Glavenus', generation=4, group='brute', variation=1)
 Glavenus.create(Glavenus)
 
 Item_weak.applyItemWeakness(mon_id= Glavenus.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
@@ -61,7 +61,7 @@ games.inMHGen5(Glavenus.id, True, False)
 addWeakness = Weakness()
 games = Games()
 
-Glavenus_Acidic= Monster(name='Acidic Glavenus', generation=5, phylum='brute', variation=2)
+Glavenus_Acidic= Monster(name='Acidic Glavenus', generation=5, group='brute', variation=2)
 Glavenus_Acidic.create(Glavenus_Acidic)
 
 Item_weak.applyItemWeakness(mon_id= Glavenus_Acidic.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
@@ -78,7 +78,7 @@ games.inMHGen5(mon_id= Glavenus_Acidic.id, MHWI=True, MHRS=False)
 addWeakness = Weakness()
 games = Games()
 
-Glavenus_Hellblade= Monster(name='Hellblade Glavenus', generation=4, phylum='brute', variation=5)
+Glavenus_Hellblade= Monster(name='Hellblade Glavenus', generation=4, group='brute', variation=5)
 Glavenus_Hellblade.create(Glavenus_Hellblade)
 
 Item_weak.applyItemWeakness(mon_id= Glavenus_Hellblade.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
@@ -97,7 +97,7 @@ games.inMHGen4(mon_id= Glavenus_Hellblade.id, MH4U=False, MHGU=True)
 addWeakness = Weakness()
 games = Games()
 
-Anjanath= Monster(name='Anjanath', generation=5, phylum='brute', variation=1)
+Anjanath= Monster(name='Anjanath', generation=5, group='brute', variation=1)
 Anjanath.create(Anjanath)
 
 Item_weak.applyItemWeakness(mon_id= Anjanath.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
@@ -114,7 +114,7 @@ games.inMHGen5(Anjanath.id, True, True)
 addWeakness = Weakness()
 games = Games()
 
-Anjanath_Fulgur= Monster(name='Fulgur Anjanath', generation=5, phylum='brute', variation=2)
+Anjanath_Fulgur= Monster(name='Fulgur Anjanath', generation=5, group='brute', variation=2)
 Anjanath_Fulgur.create(Anjanath_Fulgur)
 
 Item_weak.applyItemWeakness(mon_id= Anjanath_Fulgur.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)

@@ -1,4 +1,4 @@
-# Create Monsters from the Snake Wyvern Phylum
+# Create Monsters from the Snake Wyvern group
 from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
 
 
@@ -6,7 +6,7 @@ from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ai
 addWeakness = Weakness()
 games = Games()
 
-najarala= Monster(name='Najarala', generation=4, phylum='snake', variation=1)
+najarala= Monster(name='Najarala', generation=4, group='snake', variation=1)
 najarala.create(najarala)
 
 Item_weak.applyItemWeakness(mon_id= najarala.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
@@ -25,7 +25,7 @@ games.inMHGen4(mon_id= najarala.id, MH4U=True, MHGU=True)
 addWeakness = Weakness()
 games = Games()
 
-najarala_tidal= Monster(name='Tidal Najarala', generation=4, phylum='snake', variation=2)
+najarala_tidal= Monster(name='Tidal Najarala', generation=4, group='snake', variation=2)
 najarala_tidal.create(najarala_tidal)
 
 Item_weak.applyItemWeakness(mon_id= najarala_tidal.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)

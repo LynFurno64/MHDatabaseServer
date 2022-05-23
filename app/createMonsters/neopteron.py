@@ -1,4 +1,4 @@
-# Create Monsters from the Neopteron Phylum
+# Create Monsters from the Neopteron group
 from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
 
 
@@ -6,7 +6,7 @@ from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ai
 addWeakness = Weakness()
 games = Games()
 
-seltas = Monster(name='Seltas', generation=4, phylum='bug', variation=1)
+seltas = Monster(name='Seltas', generation=4, group='bug', variation=1)
 seltas.create(seltas)
 Item_weak.applyItemWeakness(mon_id= seltas.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
 
@@ -23,7 +23,7 @@ games.inMHGen4(mon_id= seltas.id, MH4U=True, MHGU=True)
 addWeakness = Weakness()
 games = Games()
 
-seltas_Desert = Monster(name='Desert Seltas', generation=4, phylum='bug', variation=2)
+seltas_Desert = Monster(name='Desert Seltas', generation=4, group='bug', variation=2)
 seltas_Desert.create(seltas_Desert)
 Item_weak.applyItemWeakness(mon_id= seltas_Desert.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
 
@@ -40,7 +40,7 @@ games.inMHGen4(mon_id= seltas_Desert.id, MH4U=True, MHGU=False)
 addWeakness = Weakness()
 games = Games()
 
-seltas_queen = Monster(name='Seltas Queen', generation=4, phylum='bug', variation=1)
+seltas_queen = Monster(name='Seltas Queen', generation=4, group='bug', variation=1)
 seltas_queen.create(seltas_queen)
 
 Item_weak.applyItemWeakness(mon_id= seltas_queen.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
@@ -57,7 +57,7 @@ games.inMHGen4(mon_id= seltas_queen.id, MH4U=True, MHGU=True)
 addWeakness = Weakness()
 games = Games()
 
-seltas_queen_Desert = Monster(name='Desert Seltas Queen', generation=4, phylum='bug', variation=2)
+seltas_queen_Desert = Monster(name='Desert Seltas Queen', generation=4, group='bug', variation=2)
 seltas_queen_Desert.create(seltas_queen_Desert)
 
 Item_weak.applyItemWeakness(mon_id= seltas_queen_Desert.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
@@ -74,7 +74,7 @@ games.inMHGen4(mon_id= seltas_queen_Desert.id, MH4U=True, MHGU=False)
 addWeakness = Weakness()
 games = Games()
 
-ahtal_ka = Monster(name='Ahtal-Ka', generation=4, phylum='bug', variation=1)
+ahtal_ka = Monster(name='Ahtal-Ka', generation=4, group='bug', variation=1)
 ahtal_ka.create(ahtal_ka)
 
 Item_weak.elderBlock(mon_id= ahtal_ka.id)

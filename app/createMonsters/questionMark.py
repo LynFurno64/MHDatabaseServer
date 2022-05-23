@@ -4,7 +4,7 @@ from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ai
             ### Gore Magala   ###
 addWeakness = Weakness()
 games = Games()
-gore_magala = Monster(name='Gore Magala', generation=4, phylum='???', variation=1)
+gore_magala = Monster(name='Gore Magala', generation=4, group='???', variation=1)
 gore_magala.create(gore_magala)
 
 Item_weak.applyItemWeakness(mon_id= gore_magala.id, shock_trap=True, pitfall_trap=True, flash_bomb=False, sonic_bomb=False)
@@ -19,7 +19,7 @@ games.inMHGen4(mon_id= gore_magala.id, MH4U=True, MHGU=True)
             ### Shagaru Magala   ###
 addWeakness = Weakness()
 games = Games()
-shagaru_magala = Monster(name='Shagaru Magala', generation=4, phylum='elder', variation=1)
+shagaru_magala = Monster(name='Shagaru Magala', generation=4, group='elder', variation=1)
 shagaru_magala.create(shagaru_magala)
 
 Item_weak.elderBlock(shagaru_magala.id)
@@ -35,7 +35,7 @@ games.inMHGen4(mon_id= shagaru_magala.id, MH4U=True, MHGU=True)
             ### Chaotic Gore Magala   ###
 addWeakness = Weakness()
 games = Games()
-gore_magala_chaotic = Monster(name='Chaotic Gore Magala', generation=4, phylum='???', variation=4)
+gore_magala_chaotic = Monster(name='Chaotic Gore Magala', generation=4, group='???', variation=4)
 gore_magala_chaotic.create(gore_magala_chaotic)
 
 Item_weak.applyItemWeakness(mon_id= gore_magala_chaotic.id, shock_trap=True, pitfall_trap=True, flash_bomb=False, sonic_bomb=False)
@@ -57,7 +57,7 @@ shagaru_magala.family(gore_magala_chaotic)
 addWeakness = Weakness()
 games = Games()
 
-Fatalis= Monster(name='Fatalis', generation=1, phylum='elder', variation=1)
+Fatalis= Monster(name='Fatalis', generation=1, group='elder', variation=1)
 Fatalis.create(Fatalis)
 
 Item_weak.elderBlock(Fatalis.id)
@@ -76,7 +76,7 @@ games.inMHGen5(Fatalis.id, True, False)
 addWeakness = Weakness()
 games = Games()
 
-Gogmazios = Monster(name='Gogmazios', generation=4, phylum='elder', variation=1)
+Gogmazios = Monster(name='Gogmazios', generation=4, group='elder', variation=1)
 Gogmazios.create(Gogmazios)
 
 Item_weak.elderBlock(Gogmazios.id)

@@ -1,4 +1,4 @@
-# Create Monsters from the Bird Wyvern Phylum
+# Create Monsters from the Bird Wyvern group
 from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
 
 
@@ -6,7 +6,7 @@ from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ai
 addWeakness = Weakness()
 games = Games()
 
-Velocidrome = Monster(name='Velocidrome',generation=1,phylum='bird',variation=1)
+Velocidrome = Monster(name='Velocidrome',generation=1,group='bird',variation=1)
 Velocidrome.create(Velocidrome)
 
 Item_weak.applyItemWeakness(mon_id=Velocidrome.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)
@@ -24,7 +24,7 @@ games.inMHGen4(mon_id=Velocidrome.id,MH4U=True,MHGU=True)
 addWeakness = Weakness()
 games = Games()
 
-Izuchi = Monster(name='Izuchi',generation=5,phylum='bird',variation=1)
+Izuchi = Monster(name='Izuchi',generation=5,group='bird',variation=1)
 Izuchi.create(Izuchi)
 
 Item_weak.applyItemWeakness(mon_id=Izuchi.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)
@@ -40,7 +40,7 @@ games.inMHGen5(mon_id=Izuchi.id,MHWI=False,MHRS=True)
 addWeakness = Weakness()
 games = Games()
 
-Malfestio = Monster(name='Malfestio',generation=4,phylum='bird',variation=1)
+Malfestio = Monster(name='Malfestio',generation=4,group='bird',variation=1)
 Malfestio.create(Malfestio)
 
 Item_weak.applyItemWeakness(mon_id=Malfestio.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)
@@ -57,7 +57,7 @@ games.inMHGen4(mon_id=Malfestio.id,MH4U=False,MHGU=True)
 addWeakness = Weakness()
 games = Games()
 
-Malfestio_Nightcloak = Monster(name='Nightcloak Malfestio',generation=4,phylum='bird',variation=5)
+Malfestio_Nightcloak = Monster(name='Nightcloak Malfestio',generation=4,group='bird',variation=5)
 Malfestio_Nightcloak.create(Malfestio_Nightcloak)
 
 Item_weak.applyItemWeakness(mon_id=Malfestio_Nightcloak.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)
@@ -75,7 +75,7 @@ games.inMHGen4(mon_id=Malfestio_Nightcloak.id,MH4U=False,MHGU=True)
 addWeakness = Weakness()
 games = Games()
 
-Aknosom = Monster(name='Aknosom',generation=5,phylum='bird',variation=1)
+Aknosom = Monster(name='Aknosom',generation=5,group='bird',variation=1)
 Aknosom.create(Aknosom)
 
 Item_weak.applyItemWeakness(mon_id=Aknosom.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)
