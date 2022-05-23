@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 340cd03d1435
+Revision ID: 9e477fb2233b
 Revises: 
-Create Date: 2022-05-20 16:35:39.844282
+Create Date: 2022-05-23 15:59:39.688901
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '340cd03d1435'
+revision = '9e477fb2233b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -47,14 +47,9 @@ def upgrade():
     op.create_table('ailments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('mon_id', sa.Integer(), nullable=False),
-    sa.Column('poison', sa.Boolean(), nullable=True),
-    sa.Column('sleep', sa.Boolean(), nullable=True),
-    sa.Column('para', sa.Boolean(), nullable=True),
-    sa.Column('blast', sa.Boolean(), nullable=True),
-    sa.Column('stun', sa.Boolean(), nullable=True),
-    sa.Column('tremor', sa.Boolean(), nullable=True),
-    sa.Column('roar', sa.Boolean(), nullable=True),
-    sa.Column('wind', sa.Boolean(), nullable=True),
+    sa.Column('status', sa.String(length=250), nullable=True),
+    sa.Column('blight', sa.String(length=140), nullable=True),
+    sa.Column('natural', sa.String(length=140), nullable=True),
     sa.ForeignKeyConstraint(['mon_id'], ['monster.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

@@ -7,5 +7,5 @@ addWeakness.applyWeaknessStatus(mon_id= .id, poison=, sleep=True, para=False, bl
 Weakpoints.createWeakPoints(mon_id= .id, cut='Head, Tail', impact='Head, Belly', projectile='Head, Legs')
 
 Proficiency.applyStrenghts(mon_id= .id, fire=, water=, thunder=, ice=, dragon=)
-Ailments.createStatus(mon_id= .id, poison=, sleep=, para=, blast=, stun=, tremor=, roar=, wind=)
+Ailments.createStatus(mon_id= .id, status="", blight="", natural="")
 games.

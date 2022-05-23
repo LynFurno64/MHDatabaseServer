@@ -15,7 +15,8 @@ addWeakness.noWeaknessStatus(mon_id= najarala.id)
 Weakpoints.createWeakPoints(mon_id= najarala.id, cut='Head, Tail, Back Legs, R.Organs', impact='Head, Tail, Back Legs, R.Organs', projectile='Head, Tail, Back Legs')
 
 Proficiency.noElement(mon_id= najarala.id)
-Ailments.createStatus(mon_id= najarala.id, poison=False, sleep=False, para=True, blast=False, stun=True, tremor=False, roar=True, wind=False)
+Ailments.createStatus(mon_id= najarala.id, status="Para", blight="", natural="Roar (Large), Stun")
+
 games.inMHGen4(mon_id= najarala.id, MH4U=True, MHGU=True)
 
 
@@ -33,7 +34,8 @@ addWeakness.noWeaknessStatus(mon_id= najarala_tidal.id)
 Weakpoints.createWeakPoints(mon_id= najarala_tidal.id, cut='Head, Tail, Back Legs, R.Organs', impact='Head, Tail, Back Legs, R.Organs', projectile='Head, Tail, Back Legs')
 
 Proficiency.applyStrenghts(mon_id= najarala_tidal.id, fire=False, water=True, thunder=False, ice=False, dragon=False)
-Ailments.createStatus(mon_id= najarala_tidal.id, poison=False, sleep=False, para=True, blast=False, stun=False, tremor=False, roar=True, wind=False)
+Ailments.createStatus(mon_id= najarala_tidal.id, status="Para", blight="", natural="Roar (Large), Stun")
+
 games.inMHGen4(mon_id= najarala_tidal.id, MH4U=True, MHGU=False)
 
 najarala.family(najarala_tidal) # T.Najarala is subspecies of Najarala

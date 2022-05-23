@@ -13,7 +13,7 @@ addWeakness.applyWeaknessStatus(mon_id= gore_magala.id, poison=True, sleep=False
 Weakpoints.createWeakPoints(mon_id= gore_magala.id, cut='Head, Neck, Front Legs, Tail', impact='Head,  Neck, Front Legs, Tail', projectile='Head, Neck, Back Legs')
 
 Proficiency.noElement(gore_magala.id)
-Ailments.createStatus(mon_id= gore_magala.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=True, roar=True, wind=True)
+Ailments.createStatus(mon_id= gore_magala.id, status="", blight="Frenzy virus", natural="Roar, Wind Pressure")
 games.inMHGen4(mon_id= gore_magala.id, MH4U=True, MHGU=True)
 
             ### Shagaru Magala   ###
@@ -28,7 +28,8 @@ addWeakness.applyWeaknessStatus(mon_id= shagaru_magala.id, poison=True, sleep=Fa
 Weakpoints.createWeakPoints(mon_id= shagaru_magala.id, cut='Head, Neck', impact='Head', projectile='Head, Neck, Back Legs')
 
 Proficiency.noElement(shagaru_magala.id)
-Ailments.createStatus(mon_id= shagaru_magala.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=True, roar=True, wind=False)
+Ailments.createStatus(mon_id= shagaru_magala.id, status="", blight="Frenzy virus", natural="Roar(L), Wind Pressure")
+
 games.inMHGen4(mon_id= shagaru_magala.id, MH4U=True, MHGU=True)
 
             ### Chaotic Gore Magala   ###
@@ -43,7 +44,8 @@ addWeakness.applyWeaknessStatus(mon_id= gore_magala_chaotic.id, poison=True, sle
 Weakpoints.createWeakPoints(mon_id= gore_magala_chaotic.id, cut='Head, Neck, Front Legs, Tail', impact='Head,  Neck, Front Legs, Tail', projectile='Head, Neck, Back Legs')
 
 Proficiency.noElement(gore_magala_chaotic.id)
-Ailments.createStatus(mon_id= gore_magala_chaotic.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=True, roar=True, wind=True)
+Ailments.createStatus(mon_id= gore_magala_chaotic.id, status="", blight="Frenzy virus", natural="Wind Pressure, Roar")
+
 games.inMHGen4(mon_id= gore_magala_chaotic.id, MH4U=True, MHGU=True)
 
 gore_magala.family(gore_magala_chaotic)
@@ -64,7 +66,8 @@ addWeakness.noWeaknessStatus(Fatalis.id)
 Weakpoints.createWeakPoints(mon_id= Fatalis.id, cut='Head, Chest, Forelegs', impact='Head, Chest, Forelegs', projectile='Chest, Forelegs')
 
 Proficiency.applyStrenghts(mon_id= Fatalis.id, fire=True, water=False, thunder=False, ice=False, dragon=True)
-Ailments.createStatus(mon_id= Fatalis.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=True, roar=True, wind=True)
+Ailments.createStatus(mon_id= Fatalis.id, status="", blight="Dragon Blight, Fire Blight", natural="Roar(L), Wind Pressure (L)")
+
 games.inMHOld(Fatalis.id, True, True)
 games.inMHGen4(Fatalis.id, True, True)
 games.inMHGen5(Fatalis.id, True, False)
@@ -82,5 +85,6 @@ addWeakness.noWeaknessStatus(Gogmazios.id)
 Weakpoints.createWeakPoints(mon_id= Gogmazios.id, cut='Front Leg', impact='Back Leg', projectile='Front Leg, Back Leg')
 
 Proficiency.onlyGoodAt(Gogmazios.id, 'fire')
-Ailments.createStatus(mon_id= Gogmazios.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=False, roar=True, wind=False)
+Ailments.createStatus(mon_id= Gogmazios.id, status="Tar", blight="Fireblight", natural="Roar (L)")
+
 games.inMHGen4(Gogmazios.id, True, False)

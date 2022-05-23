@@ -15,7 +15,7 @@ addWeakness.noWeaknessStatus(mon_id=Velocidrome.id)
 Weakpoints.createWeakPoints(mon_id=Velocidrome.id,cut='Head, Body',impact='Head, Body',projectile='Head, Body')
 
 Proficiency.noElement(mon_id=Velocidrome.id)
-Ailments.createStatus(mon_id=Velocidrome.id,poison=False,sleep=False,para=False,blast=False,stun=False,tremor=False,roar=False,wind=False)
+Ailments.createStatus(mon_id=Velocidrome.id, status='none', blight='none', natural='none')
 games.inMHOld(mon_id=Velocidrome.id,MHF=True,MHF2=True)
 games.inMHGen4(mon_id=Velocidrome.id,MH4U=True,MHGU=True)
 
@@ -33,7 +33,7 @@ addWeakness.noWeaknessStatus(mon_id=Izuchi.id)
 Weakpoints.createWeakPoints(mon_id=Izuchi.id,cut='Head, Body',impact='Head, Body',projectile='Head, Body')
 
 Proficiency.noElement(mon_id=Izuchi.id)
-Ailments.createStatus(mon_id=Izuchi.id,poison=False,sleep=False,para=False,blast=False,stun=False,tremor=False,roar=False,wind=False)
+Ailments.createStatus(mon_id=Izuchi.id, status='', blight='', natural='')
 games.inMHGen5(mon_id=Izuchi.id,MHWI=False,MHRS=True)
 
 ################## Malfestio ##################
@@ -49,7 +49,8 @@ addWeakness.noWeaknessStatus(mon_id=Malfestio.id)
 Weakpoints.createWeakPoints(mon_id=Malfestio.id,cut='Head, Right Wing, Left Wing, Tail',impact='Head, Right Wing, Left Wing, Tail',projectile='Head, Right Wing, Left Wing, Tail')
 
 Proficiency.noElement(mon_id=Malfestio.id)
-Ailments.createStatus(mon_id=Malfestio.id,poison=False,sleep=True,para=False,blast=False,stun=False,tremor=False,roar=True,wind=True)
+Ailments.createStatus(mon_id= Malfestio.id, status="Sleep, Confuse", blight="", natural="Wind pressure (small), Roar (small)")
+
 games.inMHGen4(mon_id=Malfestio.id,MH4U=False,MHGU=True)
 
 ################## Nightcloak Malfestio ##################
@@ -65,7 +66,8 @@ addWeakness.noWeaknessStatus(mon_id=Malfestio_Nightcloak.id)
 Weakpoints.createWeakPoints(mon_id=Malfestio_Nightcloak.id,cut='Head, Right Wing, Left Wing, Tail',impact='Head, Right Wing, Left Wing, Tail',projectile='Head, Right Wing, Left Wing, Tail')
 
 Proficiency.noElement(mon_id=Malfestio_Nightcloak.id)
-Ailments.createStatus(mon_id=Malfestio_Nightcloak.id,poison=False,sleep=True,para=False,blast=False,stun=False,tremor=False,roar=True,wind=True)
+Ailments.createStatus(mon_id= Malfestio_Nightcloak.id, status="Sleep, Confuse", blight="", natural="Wind pressure (small), Roar (small)")
+
 games.inMHGen4(mon_id=Malfestio_Nightcloak.id,MH4U=False,MHGU=True)
 
 
@@ -82,5 +84,9 @@ addWeakness.noWeaknessStatus(mon_id=Aknosom.id)
 Weakpoints.createWeakPoints(mon_id=Aknosom.id,cut='Head, Crest, Neck, Torso, Wing, Legs, Tail, Tail Tip',impact='Head, Crest, Neck, Torso, Wing, Legs, Tail, Tail Tip',projectile='Head, Crest, Neck, Torso, Wing, Legs, Tail, Tail Tip')
 
 Proficiency.onlyGoodAt(mon_id=Aknosom.id,element='fire')
-Ailments.createStatus(mon_id=Aknosom.id,poison=False,sleep=False,para=False,blast=False,stun=False,tremor=False,roar=False,wind=False)
+Ailments.createStatus(mon_id= Aknosom.id, status="", blight="Fire blight", natural="Wind pressure (small)")
+
 games.inMHGen5(mon_id=Aknosom.id,MHWI=False,MHRS=True)
+
+
+Malfestio.family(Malfestio_Nightcloak)

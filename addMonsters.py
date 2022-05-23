@@ -14,7 +14,7 @@ from app.createMonsters import temnoceran
 from app.createMonsters import birdWyvern
 
 ################## ADD Flying Wyvern ##################
-#from app.createMonsters import flyingWyvern
+from app.createMonsters import flyingWyvern
 
 ################## ADD Piscine Wyvern ##################
 from app.createMonsters import piscineWyvern

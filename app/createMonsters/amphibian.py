@@ -1,4 +1,5 @@
 # Create Monsters from the Amphibian Phylum
+from re import T
 from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
 
 ##################  Tetsucabra ##################
@@ -14,7 +15,7 @@ addWeakness.noWeaknessStatus(mon_id=Tetsucabra.id)
 Weakpoints.createWeakPoints(mon_id=Tetsucabra.id,cut='Head, Front Legs, Hind legs,Tail',impact='Head,Front Legs,Hind Legs,Tail',projectile='Head, Front Legs,Hind Legs, Tail')
 
 Proficiency.noElement(mon_id=Tetsucabra.id)
-Ailments.createStatus(mon_id=Tetsucabra.id,poison=False,sleep=False,para=False,blast=False,stun=False,tremor=False,roar=False,wind=False)
+Ailments.createStatus(mon_id=Tetsucabra.id, status="", blight="", natural="Small Roars, Tremors")
 games.inMHGen4(mon_id=Tetsucabra.id,MH4U=True,MHGU=True)
 
 ##################  Drilltusk Tetsucabra ##################
@@ -27,10 +28,11 @@ Tetsucabra_Drilltusk.create(Tetsucabra_Drilltusk)
 Item_weak.applyItemWeakness(mon_id=Tetsucabra_Drilltusk.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)
 addWeakness.applyWeaknessElement(mon_id=Tetsucabra_Drilltusk.id,fire=False,water=True,thunder=True,ice=False,dragon=False)
 addWeakness.noWeaknessStatus(mon_id=Tetsucabra_Drilltusk.id)
-Weakpoints.createWeakPoints(mon_id=Tetsucabra_Drilltusk.id,cut='Head, Front Legs, Hind legs,Tail',impact='Head,Front Legs,Hind Legs,Tail',projectile='Head, Front Legs,Hind Legs, Tail')
+Weakpoints.createWeakPoints(mon_id=Tetsucabra_Drilltusk.id,cut='Head, Front Legs, Hind legs,Tail',impact='Head, Front Legs, Hind Legs, Tail',projectile='Head, Front Legs, Hind Legs, Tail')
 
 Proficiency.noElement(mon_id=Tetsucabra_Drilltusk.id)
-Ailments.createStatus(mon_id=Tetsucabra_Drilltusk.id,poison=False,sleep=False,para=False,blast=False,stun=True,tremor=False,roar=False,wind=False)
+Ailments.createStatus(mon_id= Tetsucabra_Drilltusk.id, status="", blight="", natural="Small Roars, Tremors")
+
 games.inMHGen4(mon_id=Tetsucabra_Drilltusk.id,MH4U=False,MHGU=True)
 
 
@@ -46,8 +48,9 @@ addWeakness.applyWeaknessElement(mon_id=Zamtrios.id,fire=True,water=False,thunde
 addWeakness.noWeaknessStatus(mon_id=Zamtrios.id)
 Weakpoints.createWeakPoints(mon_id=Zamtrios.id,cut='Head, Fin, Tail, Belly',impact='Head, Fin, Tail, Belly',projectile='Head, Fin, Tail, Belly')
 
-Proficiency.onlyGoodAt(mon_id=Zamtrios,element='ice,water')
-Ailments.createStatus(mon_id=Zamtrios.id,poison=False,sleep=False,para=False,blast=False,stun=False,tremor=False,roar=False,wind=False)
+Proficiency.applyStrenghts(mon_id=Zamtrios.id, fire=False, water=True, thunder=False, ice=True, dragon=False)
+Ailments.createStatus(mon_id= Zamtrios.id, status="", blight="Ice and Water Blights", natural="Tremors, Large Roars, Snowman")
+
 games.inMHGen4(mon_id=Zamtrios.id,MH4U=True,MHGU=True)
 
 
@@ -65,5 +68,9 @@ addWeakness.noWeaknessStatus(mon_id=Tetranadon.id)
 Weakpoints.createWeakPoints(mon_id=Tetranadon.id,cut='Head, Neck, Torso, Foreleg, Back, Hind Leg, Tail', impact='Head, Neck, Torso, Foreleg, Back, Hind Leg, Tail',projectile='Head, Neck, Torso, Foreleg, Back, Hind Leg, Tail')
 
 Proficiency.onlyGoodAt(mon_id=Tetranadon.id,element='water')
-Ailments.createStatus(mon_id=Tetranadon.id,poison=False,sleep=False,para=False,blast=False,stun=True,tremor=False,roar=False,wind=False)
+Ailments.createStatus(mon_id= Tetranadon.id, status="", blight="Water Blight", natural="Tremors")
+
 games.inMHGen5(mon_id=Tetranadon.id,MHWI=False,MHRS=True)
+
+
+Tetsucabra.family(Tetsucabra_Drilltusk)

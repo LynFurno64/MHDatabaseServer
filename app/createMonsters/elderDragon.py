@@ -54,7 +54,8 @@ addWeakness.noWeaknessStatus(mon_id= ibushi.id)
 Weakpoints.createWeakPoints(mon_id= ibushi.id, cut='Head, Chest, Wingarm, Back, Tail Tip', impact='Head, Chest, Wingarm, Back, Tail Tip', projectile='Head, Chest, Wingarm, Back, Tail Tip')
 
 Proficiency.onlyGoodAt(mon_id= ibushi.id, element='dragon')
-Ailments.createStatus(mon_id= ibushi.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=False, roar=True, wind=True)
+Ailments.createStatus(mon_id= ibushi.id, status="", blight="Dragon blight", natural="Wind pressure (Large), Roar (Large)")
+
 games.inMHGen5(mon_id= ibushi.id, MHWI=False, MHRS=True)
 
 ################## Narwa ##################
@@ -71,7 +72,8 @@ Weakpoints.createWeakPoints(mon_id= narwa.id, cut='Head, Chest(Charged), Wingarm
 impact='Head, Chest(Charged), Wingarm(Charged), Abdomen, Back, Tail Tip(Charged)', projectile='Head, Chest(Charged), Wingarm(Charged), Abdomen')
 
 Proficiency.onlyGoodAt(mon_id= narwa.id, element='thunder')
-Ailments.createStatus(mon_id= narwa.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=False, roar=True, wind=False)
+Ailments.createStatus(mon_id= narwa.id, status="", blight="Thunder blight", natural="Roar (Large)")
+
 games.inMHGen5(mon_id= narwa.id, MHWI=False, MHRS=True)
 
 ################## Narwa Allmother ##################
@@ -88,7 +90,8 @@ Weakpoints.createWeakPoints(mon_id= narwa_allmother.id, cut='Head, Chest(Charged
 impact='Head, Chest(Charged), Wingarm(Charged), Abdomen, Back, Tail Tip(Charged)', projectile='Head, Wingarm(Charged), Abdomen, Tail Tip(Charged)')
 
 Proficiency.onlyGoodAt(mon_id= narwa_allmother.id, element='thunder')
-Ailments.createStatus(mon_id= narwa_allmother.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=False, roar=True, wind=True)
+Ailments.createStatus(mon_id= narwa_allmother.id, status="", blight="Thunder blight", natural="Wind pressure (Large), Roar (Large)")
+
 games.inMHGen5(mon_id= narwa_allmother.id, MHWI=False, MHRS=True)
 
 narwa.family(ibushi)

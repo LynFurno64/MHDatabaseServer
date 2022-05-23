@@ -68,6 +68,9 @@ class Monster(db.Model):
         backref=db.backref('familia', lazy='dynamic'), lazy='dynamic')
 
 
+    def __repr__(self):
+            return '<Monster {}>'.format(self.name)
+
     def __init__(self, name: str, generation: int, phylum: str, variation: int):
         self.name = name
         self.generation = generation
@@ -76,7 +79,6 @@ class Monster(db.Model):
 
     @staticmethod
     def create(self): 
-        
         db.session.add(self)
         db.session.commit()
 
@@ -91,7 +93,7 @@ class Monster(db.Model):
         return self.relative.filter(
             familia.c.subspecies_id == monster.id).count() > 0
 
-
+# Items Monsters are weak to
 class Item_weak(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mon_id = db.Column(db.Integer, db.ForeignKey('monster.id'), nullable=False)
@@ -110,19 +112,21 @@ class Item_weak(db.Model):
         self.flash_bomb = flash_bomb
         self.sonic_bomb = sonic_bomb
 
+    # Add item weakness to the database
     @staticmethod    
     def applyItemWeakness(mon_id: int, shock_trap: bool, pitfall_trap: bool, flash_bomb: bool, sonic_bomb: bool):
         new = Item_weak(mon_id, shock_trap, pitfall_trap, flash_bomb, sonic_bomb)
         db.session.add(new)
         db.session.commit()
 
+    # All boss monsters are immuned to items
     @staticmethod    
     def elderBlock(mon_id: int):
         new = Item_weak(mon_id, False, False, False, False)
         db.session.add(new)
         db.session.commit()
 
-
+# Defines the monster's elemental and status weaknesses
 class Weakness(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mon_id = db.Column(db.Integer, db.ForeignKey('monster.id'), nullable=False)
@@ -140,6 +144,7 @@ class Weakness(db.Model):
     def __repr__(self):
         return '<Weakness {}>'.format(self.mon_id)
 
+    # Add the elemental weaknesses to the database if the monsters have more than 1 weakness
     def applyWeaknessElement(self, mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool):
         self.mon_id = mon_id
         self.fire = fire
@@ -150,6 +155,7 @@ class Weakness(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    # Add a elemental weakness to the database if the monsters ONLY HAVE 1 weakness
     def onlyWeakElement(self, mon_id: int, element: str):
         self.mon_id = mon_id
         self.fire = False
@@ -172,7 +178,8 @@ class Weakness(db.Model):
         db.session.add(self)
         db.session.commit()
         
-
+    
+    # Add the status weaknesses to the database if the monsters have more than 1 weakness
     def applyWeaknessStatus(self, mon_id: int, poison: bool, sleep: bool, para: bool, blast: bool):
         self.mon_id = mon_id
         self.poison = poison
@@ -182,6 +189,7 @@ class Weakness(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    # Add a staus weakness to the database if the monsters ONLY HAVE 1 weakness
     def onlyWeakStatus(self, mon_id: int, status: str):
         self.mon_id = mon_id
         self.poison = False
@@ -201,6 +209,7 @@ class Weakness(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    # Add a no weakness to the database if the monsters doesn't have any weakness
     def noWeaknessStatus(self, mon_id: int):
         self.mon_id = mon_id
         self.poison = False
@@ -212,7 +221,7 @@ class Weakness(db.Model):
 
 
 
-
+# Defines the monster's elemental attacks
 class Proficiency(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mon_id = db.Column(db.Integer, db.ForeignKey('monster.id'), nullable=False)
@@ -233,6 +242,8 @@ class Proficiency(db.Model):
         self.ice = ice
         self.dragon = dragon
 
+
+    # Adds elemental attacks for monsters that have more than on element 
     @staticmethod    
     def applyStrenghts(mon_id: int, fire: bool, water: bool, thunder: bool, ice: bool, dragon: bool):
         new = Proficiency(mon_id, fire, water, thunder, ice, dragon)
@@ -240,12 +251,14 @@ class Proficiency(db.Model):
         db.session.commit()
 
 
+    # Does not Add any elemental attack for monsters that don't have
     @staticmethod    
     def noElement(mon_id: int):
         new = Proficiency(mon_id, False, False, False, False, False)
         db.session.add(new)
         db.session.commit()
 
+    # Adds 1 elemental attack for monsters that only have one 
     def onlyGoodAt(mon_id: int, element: str):
         if  element == 'fire':
             new = Proficiency(mon_id, fire=True, water=False, thunder=False, ice=False, dragon=False)
@@ -289,46 +302,30 @@ class Weakpoints(db.Model):
         db.session.commit()
 
 
-
+#Defines the ailments induced by the monster
 class Ailments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mon_id = db.Column(db.Integer, db.ForeignKey('monster.id'), nullable=False)
-    poison = db.Column(db.Boolean)
-    sleep = db.Column(db.Boolean)
-    para = db.Column(db.Boolean)
-    blast = db.Column(db.Boolean)
-
-    stun = db.Column(db.Boolean)
-    tremor = db.Column(db.Boolean)
-    roar = db.Column(db.Boolean)
-    wind = db.Column(db.Boolean)
+    status = db.Column(db.String(250)) # Status Effects
+    blight = db.Column(db.String(140)) # Blight Effects
+    # For Tremors, Roars, Wind, Stun
+    natural = db.Column(db.String(140))
 
     def __repr__(self):
-        return '<Ailments {}>'.format(self.wind)
+        return '<Ailments {}>'.format(self.status)
 
-    def __init__(self, mon_id: int, poison: bool, sleep: bool, para: bool, blast: bool, stun: bool, tremor: bool, roar: bool, wind: bool):
+    def __init__(self, mon_id: int, status: str, blight: str, natural: str):
         self.mon_id = mon_id
-        self.poison = poison
-        self.sleep = sleep
-        self.para = para
-        self.blast = blast
-        self.stun = stun
-        self.tremor = tremor
-        self.roar = roar
-        self.wind = wind
+        self.status = status
+        self.blight = blight
+        self.natural = natural
 
+    # Add Ailments
     @staticmethod    
-    def createStatus( mon_id: int, poison: bool, sleep: bool, para: bool, blast: bool, stun: bool, tremor: bool, roar: bool, wind: bool):
-        new = Ailments(mon_id, poison, sleep, para, blast, stun, tremor, roar, wind)
+    def createStatus( mon_id: int, status: str, blight: str, natural: str):
+        new = Ailments(mon_id, status, blight, natural)
         db.session.add(new)
         db.session.commit()
-
-    @staticmethod    
-    def noStatus(mon_id: int):
-        new = Ailments(mon_id, False, False, False, False, False, False, False, False)
-        db.session.add(new)
-        db.session.commit()
-
 
 
 class Games(db.Model):
@@ -346,8 +343,8 @@ class Games(db.Model):
     def __repr__(self):
         return '<Games {}>'.format(self.MHF)
 
+   
     # Add Monsters that were in Every game
-    @staticmethod    
     def addToAll(mon_id: int):
         new = Games(mon_id, True, True, True, True, True, True, True, True)
         db.session.add(new)

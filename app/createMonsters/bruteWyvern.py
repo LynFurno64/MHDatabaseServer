@@ -14,7 +14,7 @@ addWeakness.onlyWeakStatus(mon_id= Brachydios.id, status='poison')
 Weakpoints.createWeakPoints(mon_id= Brachydios.id, cut='Head, Front Legs', impact='Head, Front Legs', projectile='Head, Tail')
 
 Proficiency.noElement(Brachydios.id)
-Ailments.createStatus(mon_id= Brachydios.id, poison=False, sleep=False, para=False, blast=True, stun=False, tremor=True, roar=True, wind=False)
+Ailments.createStatus(mon_id= Brachydios.id, status="", blight="Blast Blight", natural="Tremors, Large Roars")
 games.inMHGen3(mon_id= Brachydios.id, MH3rd=False, MH3U=True)
 games.inMHGen4(mon_id= Brachydios.id, MH4U=True, MHGU=True)
 games.inMHGen5(mon_id= Brachydios.id, MHWI=True, MHRS=False)
@@ -33,7 +33,7 @@ Weakpoints.createWeakPoints(mon_id= Brachydios_Raging.id, cut='Head, Head(Red), 
 impact='Head, Head(Red), Forearms, Forearms(Red), Tail, Tail(Red)', projectile='Head, Forearms, Tail')
 
 Proficiency.noElement(Brachydios_Raging.id)
-Ailments.createStatus(mon_id= Brachydios_Raging.id, poison=False, sleep=False, para=False, blast=True, stun=False, tremor=True, roar=True, wind=False)
+Ailments.createStatus(mon_id= Brachydios_Raging.id, status="", blight="Blast Blight", natural="Tremors, Roars (Large)")
 games.inMHGen4(mon_id= Brachydios_Raging.id, MH4U=True, MHGU=True)
 games.inMHGen5(mon_id= Brachydios_Raging.id, MHWI=True, MHRS=False)
 
@@ -52,15 +52,12 @@ Weakpoints.createWeakPoints(mon_id= Glavenus.id, cut='Head, Throat, Tail(Heated)
 projectile='Head, Horns, Tail(Heated)')
 
 Proficiency.onlyGoodAt(mon_id= Glavenus.id, element='fire')
-Ailments.createStatus(mon_id= Glavenus.id, poison=False, sleep=False, para=False, blast=True, stun=False, tremor=False, roar=True, wind=False)
+Ailments.createStatus(mon_id= Glavenus.id, status="", blight="Fire blight", natural="Roar (Large)")
 games.inMHGen4(mon_id= Glavenus.id, MH4U=False, MHGU=True)
 games.inMHGen5(Glavenus.id, True, False)
 
 
 ################## Acidic Glavenus ##################
-addWeakness = Weakness()
-games = Games()
-
 addWeakness = Weakness()
 games = Games()
 
@@ -74,7 +71,7 @@ Weakpoints.createWeakPoints(mon_id= Glavenus_Acidic.id, cut='Throat, Back, Tail(
 projectile='Head, Throat, Tail(Sharpened)')
 
 Proficiency.noElement(Glavenus_Acidic.id)
-Ailments.createStatus(mon_id= Glavenus_Acidic.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=False, roar=True, wind=False)
+Ailments.createStatus(mon_id= Glavenus_Acidic.id, status="Defence Down", blight="", natural="Roar (Large)")
 games.inMHGen5(mon_id= Glavenus_Acidic.id, MHWI=True, MHRS=False)
 
 ################## Hellblade Glavenus ##################
@@ -91,7 +88,8 @@ Weakpoints.createWeakPoints(mon_id= Glavenus_Hellblade.id, cut='Head, Throat, Ta
 projectile='Throat, Horns(Normal/Heated)')
 
 Proficiency.onlyGoodAt(mon_id= Glavenus_Hellblade.id, element='fire')
-Ailments.createStatus(mon_id= Glavenus_Hellblade.id, poison=False, sleep=False, para=False, blast=True, stun=False, tremor=False, roar=True, wind=True)
+Ailments.createStatus(mon_id= Glavenus_Hellblade.id, status="", blight="Blast blight", natural="Stun, Wind Pressure (low), Roar (Large)")
+
 games.inMHGen4(mon_id= Glavenus_Hellblade.id, MH4U=False, MHGU=True)
 
 
@@ -108,7 +106,8 @@ addWeakness.noWeaknessStatus(Anjanath.id)
 Weakpoints.createWeakPoints(mon_id= Anjanath.id, cut='Nose, Head, Wings, Legs, Tail', impact='Nose, Head, Wings, Legs, Tail', projectile='Nose, Head, Body, Wings, Legs, Tail')
 
 Proficiency.onlyGoodAt(Anjanath.id, 'fire')
-Ailments.createStatus(mon_id= Anjanath.id, poison=False, sleep=False, para=False, blast=False, stun=False, tremor=True, roar=True, wind=True)
+Ailments.createStatus(mon_id= Anjanath.id, status="", blight="Fire blight", natural="Roars (Small), Wind Pressure (Small), Tremors")
+
 games.inMHGen5(Anjanath.id, True, True)
 
 ################## Fulgur Anjanath ##################
@@ -124,7 +123,8 @@ addWeakness.noWeaknessStatus(Anjanath_Fulgur.id)
 Weakpoints.createWeakPoints(mon_id= Anjanath_Fulgur.id, cut='Nose, Head, Wings, Legs, Tail', impact='Nose, Head, Wings, Legs, Tail', projectile='Nose, Head, Body, Wings, Legs, Tail')
 
 Proficiency.onlyGoodAt(Anjanath_Fulgur.id, 'thunder')
-Ailments.createStatus(mon_id= Anjanath_Fulgur.id, poison=False, sleep=False, para=True, blast=False, stun=False, tremor=False, roar=True, wind=False)
+Ailments.createStatus(mon_id= Anjanath_Fulgur.id, status="", blight="Thunder blight", natural="Roar (Small), Tremors")
+
 games.inMHGen5(Anjanath_Fulgur.id, True, False)
 
 
