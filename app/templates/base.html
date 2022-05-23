@@ -1,8 +1,8 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-    {% if title %} {{ title }} - Microblog
-    {% else %}Welcome to Microblog{% endif %}
+    {% if title %} {{ title }} - Monster Catalog
+    {% else %}Welcome to the Creature Catalog{% endif %}
 {% endblock %}
 
 
@@ -28,29 +28,17 @@
     </nav>
 {% endblock %}
 
-<html>
-    <head>
-        {% if title %}
-        <title>{{ title }} - Monster Hunter</title>
-        {% else %}
-        <title>Welcome to the Monster Hunter Creature Catalog</title>
-        {% endif %}
-    </head>
-    <body>
-        <div>
-            Links:
-            <a href="{{ url_for('index') }}">Home</a>
-        </div>
-        <hr>
+{% block content %}
+    <div class="container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-        <ul>
             {% for message in messages %}
-            <li>{{ message }}</li>
+            <div class="alert alert-info" role="alert">{{ message }}</div>
             {% endfor %}
-        </ul>
         {% endif %}
         {% endwith %}
-        {% block content %}{% endblock %}
-    </body>
-</html>
+
+        {# application content needs to be provided in the app_content block #}
+        {% block app_content %}{% endblock %}
+    </div>
+{% endblock %}

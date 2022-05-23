@@ -19,10 +19,18 @@ phylums = json.load(b)
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-    # Loop along json
-    for subBranch in branch['branch']:
-        division = subBranch['division']
-    return jsonify({'branch': branch})
+    page = request.args.get('page', 1, type=int)
+    monsters = Monster.query.order_by(Monster.name.asc()).paginate(
+        page, app.config['MONS_PER_PAGE'], False
+    )
+
+    next_url = url_for('monsterList', page= monsters.next_num) \
+        if monsters.has_next else None
+    prev_url = url_for('monsterList', page= monsters.prev_num) \
+        if monsters.has_prev else None
+
+    return render_template('index.html', title='Monster List', monsters=monsters.items, next_url=next_url, prev_url=prev_url)
+
 
 @app.route('/app/monsterList', methods=['GET', 'POST'])
 def get_monsters():
@@ -67,15 +75,13 @@ def get_branch(sub_id):
 @app.route('/monsterList')
 def monsterList():
     page = request.args.get('page', 1, type=int)
-    monsters = Monster.query.order_by(Monster.name.desc()).paginate(
+    monsters = Monster.query.order_by(Monster.name.asc()).paginate(
         page, app.config['MONS_PER_PAGE'], False
     )
-    monster = Monster.query.order_by(Monster.name.desc())
-    print(monster)
 
     next_url = url_for('monsterList', page= monsters.next_num) \
         if monsters.has_next else None
     prev_url = url_for('monsterList', page= monsters.prev_num) \
         if monsters.has_prev else None
 
-    return render_template('index.html', title='Monster List', monsters= monsters.items, next_url=next_url, prev_url=prev_url)
+    return render_template('index.html', title='Monster List', monsters=monsters.items, next_url=next_url, prev_url=prev_url)
