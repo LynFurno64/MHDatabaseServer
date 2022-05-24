@@ -39,3 +39,4 @@ Ailments.createStatus(mon_id= najarala_tidal.id, status="Para", blight="", natur
 games.inMHGen4(mon_id= najarala_tidal.id, MH4U=True, MHGU=False)
 
 najarala.family(najarala_tidal) # T.Najarala is subspecies of Najarala
+najarala_tidal.family(najarala)

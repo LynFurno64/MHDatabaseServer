@@ -110,7 +110,7 @@ def picture(name, num):
             i = images.replace('.png','')
             substring = i.replace('_',' ')
 
-            if fullstring.__eq__(substring):
+            if fullstring.casefold().__eq__(substring.casefold()):
                 print('name', fullstring, ' and s2(', substring, ') are equal.')
 
             

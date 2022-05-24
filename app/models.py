@@ -89,6 +89,7 @@ class Monster(db.Model):
     def family(self, monster):
         if not self.is_family(monster):
             self.relative.append(monster)
+            monster.relative.append(self)
 
     def is_family(self, monster):
         return self.relative.filter(

@@ -33,7 +33,6 @@ Weakpoints.createWeakPoints(mon_id= seltas_Desert.id, cut='Head, Legs, Belly', i
 
 Proficiency.noElement(mon_id= seltas_Desert.id)
 Ailments.createStatus(mon_id= seltas_Desert.id, status="Para", blight="", natural="")
-
 games.inMHGen4(mon_id= seltas_Desert.id, MH4U=True, MHGU=False)
 
 ################## Seltas Queen ##################
@@ -50,8 +49,8 @@ Weakpoints.createWeakPoints(mon_id= seltas_queen.id, cut='Head, Belly', impact='
 
 Proficiency.applyStrenghts(mon_id= seltas_queen.id, fire=False, water=True, thunder=False, ice=False, dragon=False)
 Ailments.createStatus(mon_id= seltas_queen.id, status="Soiled", blight="Severe Waterblight", natural="Stun")
-
 games.inMHGen4(mon_id= seltas_queen.id, MH4U=True, MHGU=True)
+
 
 ################## Desert Seltas Queen ##################
 addWeakness = Weakness()

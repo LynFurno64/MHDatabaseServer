@@ -41,7 +41,6 @@ games.inMHGen4(rathalos_azure.id, True, True)
 games.inMHGen5(rathalos_azure.id, True, False)
 
 rathalos.family(rathalos_azure)
-rathalos_azure.family(rathalos)
 
 #################  Silver Rathalos ##################
 addWeakness = Weakness()
@@ -64,10 +63,7 @@ games.inMHGen4(rathalos_silver.id, True, True)
 games.inMHGen5(rathalos_silver.id, True, True)
 
 rathalos.family(rathalos_silver)
-rathalos_silver.family(rathalos)
-
 rathalos_azure.family(rathalos_silver)
-rathalos_silver.family(rathalos_azure)
 
 
 #################  Dreadking Rathalos ##################
@@ -87,13 +83,8 @@ Ailments.createStatus(mon_id= rathalos_dreadking.id, status="Noxiuos Poison", bl
 games.inMHGen4(rathalos_dreadking.id, False, True)
 
 rathalos.family(rathalos_dreadking)
-rathalos_dreadking.family(rathalos)
-
 rathalos_azure.family(rathalos_dreadking)
-rathalos_dreadking.family(rathalos_azure)
-
 rathalos_silver.family(rathalos_dreadking)
-rathalos_dreadking.family(rathalos_silver)
 
 
 #################  Tigrex ##################

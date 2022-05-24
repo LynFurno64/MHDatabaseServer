@@ -74,6 +74,8 @@ Proficiency.noElement(Glavenus_Acidic.id)
 Ailments.createStatus(mon_id= Glavenus_Acidic.id, status="Defence Down", blight="", natural="Roar (Large)")
 games.inMHGen5(mon_id= Glavenus_Acidic.id, MHWI=True, MHRS=False)
 
+Glavenus.family(Glavenus_Acidic)
+
 ################## Hellblade Glavenus ##################
 addWeakness = Weakness()
 games = Games()
@@ -91,6 +93,9 @@ Proficiency.onlyGoodAt(mon_id= Glavenus_Hellblade.id, element='fire')
 Ailments.createStatus(mon_id= Glavenus_Hellblade.id, status="", blight="Blast blight", natural="Stun, Wind Pressure (low), Roar (Large)")
 
 games.inMHGen4(mon_id= Glavenus_Hellblade.id, MH4U=False, MHGU=True)
+
+Glavenus.family(Glavenus_Hellblade)
+Glavenus_Acidic.family(Glavenus_Hellblade)
 
 
 ################## Anjanath ##################
@@ -129,7 +134,4 @@ games.inMHGen5(Anjanath_Fulgur.id, True, False)
 
 
 Brachydios.family(Brachydios_Raging)
-Glavenus.family(Glavenus_Acidic)
-Glavenus.family(Glavenus_Hellblade)
-Glavenus_Acidic.family(Glavenus_Hellblade)
 Anjanath.family(Anjanath_Fulgur)

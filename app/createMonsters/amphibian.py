@@ -32,8 +32,9 @@ Weakpoints.createWeakPoints(mon_id=Tetsucabra_Drilltusk.id,cut='Head, Front Legs
 
 Proficiency.noElement(mon_id=Tetsucabra_Drilltusk.id)
 Ailments.createStatus(mon_id= Tetsucabra_Drilltusk.id, status="", blight="", natural="Small Roars, Tremors")
-
 games.inMHGen4(mon_id=Tetsucabra_Drilltusk.id,MH4U=False,MHGU=True)
+
+Tetsucabra.family(Tetsucabra_Drilltusk)
 
 
 ##################  Zamtrios ##################
@@ -71,6 +72,3 @@ Proficiency.onlyGoodAt(mon_id=Tetranadon.id,element='water')
 Ailments.createStatus(mon_id= Tetranadon.id, status="", blight="Water Blight", natural="Tremors")
 
 games.inMHGen5(mon_id=Tetranadon.id,MHWI=False,MHRS=True)
-
-
-Tetsucabra.family(Tetsucabra_Drilltusk)

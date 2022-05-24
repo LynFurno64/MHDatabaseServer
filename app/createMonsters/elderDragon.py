@@ -73,8 +73,10 @@ impact='Head, Chest(Charged), Wingarm(Charged), Abdomen, Back, Tail Tip(Charged)
 
 Proficiency.onlyGoodAt(mon_id= narwa.id, element='thunder')
 Ailments.createStatus(mon_id= narwa.id, status="", blight="Thunder blight", natural="Roar (Large)")
-
 games.inMHGen5(mon_id= narwa.id, MHWI=False, MHRS=True)
+
+narwa.family(ibushi)
+
 
 ################## Narwa Allmother ##################
 addWeakness = Weakness()
@@ -91,8 +93,6 @@ impact='Head, Chest(Charged), Wingarm(Charged), Abdomen, Back, Tail Tip(Charged)
 
 Proficiency.onlyGoodAt(mon_id= narwa_allmother.id, element='thunder')
 Ailments.createStatus(mon_id= narwa_allmother.id, status="", blight="Thunder blight", natural="Wind pressure (Large), Roar (Large)")
-
 games.inMHGen5(mon_id= narwa_allmother.id, MHWI=False, MHRS=True)
 
-narwa.family(ibushi)
 narwa.family(narwa_allmother)

@@ -37,6 +37,8 @@ Proficiency.onlyGoodAt(mon_id=Shogun_Ceanataur_Terra.id,element='water')
 Ailments.createStatus(mon_id=Shogun_Ceanataur_Terra.id,status='',blight='',natural='')
 games.inMHOld(mon_id=Shogun_Ceanataur_Terra.id,MHF=True,MHF2=False)
 
+Shogun_Ceanataur.family(Shogun_Ceanataur_Terra)
+
 ##################  Rustrazor Ceanataur ##################
 addWeakness = Weakness()
 games = Games()
@@ -52,6 +54,9 @@ Weakpoints.createWeakPoints(mon_id=Rustrazor_Ceanataur.id,cut='Shell, Right Claw
 Proficiency.onlyGoodAt(mon_id=Rustrazor_Ceanataur.id,element='water')
 Ailments.createStatus(mon_id=Rustrazor_Ceanataur.id, status='Bleeding, Defense Down',blight='Waterblight',natural='')
 games.inMHGen4(mon_id=Rustrazor_Ceanataur.id,MH4U=False,MHGU=True)
+
+Shogun_Ceanataur.family(Rustrazor_Ceanataur)
+Shogun_Ceanataur_Terra.family(Rustrazor_Ceanataur)
 
 ##################  Daimyo Hermitaur ##################
 addWeakness = Weakness()

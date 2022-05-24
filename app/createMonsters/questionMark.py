@@ -32,6 +32,10 @@ Ailments.createStatus(mon_id= shagaru_magala.id, status="", blight="Frenzy virus
 
 games.inMHGen4(mon_id= shagaru_magala.id, MH4U=True, MHGU=True)
 
+gore_magala.family(shagaru_magala)
+shagaru_magala.family(gore_magala)
+
+
             ### Chaotic Gore Magala   ###
 addWeakness = Weakness()
 games = Games()

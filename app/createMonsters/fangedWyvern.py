@@ -39,6 +39,8 @@ games.inMHGen3(mon_id=Zinogre.id,MH3rd=False,MH3U=True)
 games.inMHGen4(mon_id=Zinogre.id,MH4U=True,MHGU=False)
 games.inMHGen5(mon_id=Zinogre.id,MHWI=True,MHRS=False)
 
+Zinogre.family(Zinogre_Stygian)
+
 ################## Thunderlord Zinogre ##################
 addWeakness = Weakness()
 games = Games()
@@ -54,6 +56,9 @@ Weakpoints.createWeakPoints(mon_id=Zinogre_Thunderlord.id,cut='Head, Body, Back,
 Proficiency.onlyGoodAt(mon_id=Zinogre_Thunderlord.id,element='thunder')
 Ailments.createStatus(mon_id=Zinogre_Thunderlord.id, status='Stun',blight='Thunderblight',natural='')
 games.inMHGen4(mon_id=Zinogre_Thunderlord.id,MH4U=False,MHGU=True)
+
+Zinogre.family(Zinogre_Thunderlord)
+Zinogre_Stygian.family(Zinogre_Thunderlord)
 
 ################## Magnamalo ##################
 addWeakness = Weakness()
