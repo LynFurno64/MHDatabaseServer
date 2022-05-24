@@ -96,3 +96,4 @@ Ailments.createStatus(mon_id= narwa_allmother.id, status="", blight="Thunder bli
 games.inMHGen5(mon_id= narwa_allmother.id, MHWI=False, MHRS=True)
 
 narwa.family(narwa_allmother)
+ibushi.family(narwa_allmother)

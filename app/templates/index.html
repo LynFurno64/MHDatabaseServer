@@ -8,20 +8,13 @@
     <table class="table table-hover">
         <tr>
             <td width="256px">
-                <img src="{{url_for('static', filename='Glavenus_2.png')}}">
+                <img src="{{url_for('static', filename= mon.name.replace(' ', '_') + '.png')}}" width=50% height=auto class="img-thumbnail">
             </td>
+           
             <td>
                 <div>
-                    <p>{{ mon.name}}</p>
+                    <h3><a href="{{ url_for('monster', monstername=  mon.name) }}">{{ mon.name}}</a></h3>
                     <p>{{ mon.phylum.category}}</p>
-
-                    <p>{{ mon.familia.count() }} Familia (flowers), 
-                        {{ mon.relative.count() }} Relative (following).</p>
-
-                    <p>Related Monsters are: </p>
-                    {% for x in mon.familia.all() %}
-                    <p>{{ x.name }}</p>
-                    {% endfor %}
                 </div>
             </td>
         </tr>

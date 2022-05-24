@@ -81,14 +81,9 @@ def get_branch(sub_id):
 @app.route('/monsterList')
 def monsterList():
     page = request.args.get('page', 1, type=int)
-    monsters = Monster.query.order_by(Monster.name.asc()).paginate(
+    monsters = Monster.query.order_by(Monster.id).paginate(
         page, app.config['MONS_PER_PAGE'], False
     )
-
-    mons = Monster.query.all()
-    for m in mons:
-
-        picture(m.name, m.variation)
 
     
     next_url = url_for('monsterList', page= monsters.next_num) \
@@ -97,20 +92,19 @@ def monsterList():
         if monsters.has_prev else None
 
     return render_template('index.html', title='Monster List', monsters=monsters.items, next_url=next_url, prev_url=prev_url)
+    
 
 
-def picture(name, num):
-    # get the path/directory
-    folder_dir = "app/static"
-    for images in os.listdir(folder_dir):
- 
-        # check if the image ends with png
-        if (images.endswith(".png")):
-            fullstring = name
-            i = images.replace('.png','')
-            substring = i.replace('_',' ')
+@app.route('/monster/<monstername>')
+def monster(monstername):
+    monster = Monster.query.filter_by(name= monstername).first_or_404()
+    print(monster.name)
+    print(monster.proficiency)
+    return render_template('monster.html', title=monster.name, monster=monster)
 
-            if fullstring.casefold().__eq__(substring.casefold()):
-                print('name', fullstring, ' and s2(', substring, ') are equal.')
+@app.route('/grouping')
+def grouping():
+    return render_template('monster.html', title=monster.name, monster=monster)
+
 
             

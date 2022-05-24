@@ -54,11 +54,11 @@ class Monster(db.Model):
     group = db.Column(db.String(100), db.ForeignKey('phylum.codename'), nullable=False)
     variation = db.Column(db.Integer, db.ForeignKey('subgroup.id'), nullable=False)
 
-    weakpoints = db.relationship('Weakpoints', backref='monster', lazy=True)
-    weakness = db.relationship('Weakness', backref='monster', lazy=True)
-    proficiency = db.relationship('Proficiency', backref='monster', lazy=True)
-    item_weak = db.relationship('Item_weak', backref='monster', lazy=True)
-    ailments = db.relationship('Ailments', backref='monster', lazy=True)
+    weakpoints = db.relationship('Weakpoints', backref='monster', lazy=True, uselist=False)
+    weakness = db.relationship('Weakness', backref='monster', lazy=True, uselist=False)
+    proficiency = db.relationship('Proficiency', backref='monster', lazy=True, uselist=False)
+    item_weak = db.relationship('Item_weak', backref='monster', lazy=True, uselist=False)
+    ailments = db.relationship('Ailments', backref='monster', lazy=True, uselist=False)
     games = db.relationship('Games', backref='monster', lazy=True)
 
     relative = db.relationship(
