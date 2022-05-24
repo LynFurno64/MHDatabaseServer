@@ -28,7 +28,7 @@ games = Games()
 Shogun_Ceanataur_Terra = Monster(name='Terra Shogun Ceanataur',generation=2,group='crab',variation=2)
 Shogun_Ceanataur_Terra.create(Shogun_Ceanataur_Terra)
 
-Item_weak.applyItemWeakness(mon_id=Shogun_Ceanataur_Terra,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)
+Item_weak.applyItemWeakness(mon_id=Shogun_Ceanataur_Terra.id, shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)
 addWeakness.applyWeaknessElement(mon_id=Shogun_Ceanataur_Terra.id,fire=False,water=False,thunder=True,ice=True,dragon=False)
 addWeakness.noWeaknessStatus(mon_id=Shogun_Ceanataur_Terra.id)
 Weakpoints.createWeakPoints(mon_id=Shogun_Ceanataur_Terra.id,cut='Shell, Right Claw, Left Claw',impact='Shell, Right Claw, Left Claw',projectile='Shell, Right Claw, Left Claw')

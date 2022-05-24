@@ -13,7 +13,7 @@ addWeakness.applyWeaknessElement(mon_id=Lagiacrus.id,fire=True,water=False,thund
 addWeakness.noWeaknessStatus(mon_id=Lagiacrus.id)
 Weakpoints.createWeakPoints(mon_id=Lagiacrus.id,cut='Head, Neck, Back, Body, Tail, Foot',impact='Head, Neck, Back, Body, Tail, Foot',projectile='Head, Neck, Back, Body, Tail, Foot')
 
-Proficiency.onlyGoodAt(mon_id=Lagiacrus.id,element='Thunder')
+Proficiency.onlyGoodAt(mon_id=Lagiacrus.id,element='thunder')
 Ailments.createStatus(mon_id=Lagiacrus.id,status='',blight='Thunderblight, Waterblight(When underwater)',natural='')
 games.inMHGen3(mon_id=Lagiacrus.id,MH3rd=False,MH3U=True)
 games.inMHGen4(mon_id=Lagiacrus.id,MH4U=False,MHGU=True)
@@ -39,7 +39,7 @@ games.inMHGen3(mon_id=Lagiacrus_Ivory.id,MH3rd=False,MH3U=True)
 addWeakness = Weakness()
 games = Games()
 
-Lagiacrus_Abyssal = Monster(name='Abyssal Lagiacrus',generation=3,group='fanged',variation=3)
+Lagiacrus_Abyssal = Monster(name='Abyssal Lagiacrus',generation=3,group='water',variation=3)
 Lagiacrus_Abyssal.create(Lagiacrus_Abyssal)
 
 Item_weak.applyItemWeakness(mon_id=Lagiacrus_Abyssal.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=True)
@@ -47,7 +47,7 @@ addWeakness.applyWeaknessElement(mon_id=Lagiacrus_Abyssal.id,fire=False,water=Fa
 addWeakness.noWeaknessStatus(mon_id=Lagiacrus_Abyssal.id)
 Weakpoints.createWeakPoints(mon_id=Lagiacrus_Abyssal.id,cut='Head, Neck, Back, Body, Tail, Foot',impact='Head, Neck, Back, Body, Tail, Foot',projectile='Head, Neck, Back, Body, Tail, Foot')
 
-Proficiency.onlyGoodAt(mon_id=Lagiacrus_Abyssal.id,element='Thunder')
+Proficiency.onlyGoodAt(mon_id=Lagiacrus_Abyssal.id,element='thunder')
 Ailments.createStatus(mon_id=Lagiacrus_Abyssal.id,status='',blight='Thunderblight, Waterblight',natural='')
 games.inMHGen3(mon_id=Lagiacrus_Abyssal.id,MH3rd=False,MH3U=True)
 
@@ -55,7 +55,7 @@ games.inMHGen3(mon_id=Lagiacrus_Abyssal.id,MH3rd=False,MH3U=True)
 addWeakness = Weakness()
 games = Games()
 
-Agnaktor = Monster(name='Agnaktor',generation=3,group='fanged',variation=1)
+Agnaktor = Monster(name='Agnaktor',generation=3,group='water',variation=1)
 Agnaktor.create(Agnaktor)
 
 Item_weak.applyItemWeakness(mon_id=Agnaktor.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=True)
@@ -64,7 +64,7 @@ addWeakness.noWeaknessStatus(mon_id=Agnaktor.id)
 Weakpoints.createWeakPoints(mon_id=Agnaktor.id,cut='Head, Neck, Chest, Body, Front Legs, Back Legs, Fin, Tail',impact='Head, Neck, Chest, Body, Front Legs, Back Legs, Fin, Tail',projectile='Head, Neck, Chest, Body, Front Legs, Back Legs, Fin, Tail')
 
 Proficiency.onlyGoodAt(mon_id=Agnaktor.id,element='fire')
-Ailments.createStatus(mon_id=Agnaktor.id,status='',blight='Fireblight',natural='')
+Ailments.createStatus(mon_id=Agnaktor.id,status='',blight='Fireblight',natural='Roar(L)')
 games.inMHGen3(mon_id=Agnaktor.id,MH3rd=True,MH3U=True)
 games.inMHGen4(mon_id=Agnaktor.id,MH4U=False,MHGU=True)
 
@@ -72,7 +72,7 @@ games.inMHGen4(mon_id=Agnaktor.id,MH4U=False,MHGU=True)
 addWeakness = Weakness()
 games = Games()
 
-Agnaktor_Glacial = Monster(name='Glacial Agnaktor',generation=3,group='fanged',variation=2)
+Agnaktor_Glacial = Monster(name='Glacial Agnaktor',generation=3,group='water',variation=2)
 Agnaktor_Glacial.create(Agnaktor_Glacial)
 
 Item_weak.applyItemWeakness(mon_id=Agnaktor_Glacial.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=True)
@@ -81,5 +81,5 @@ addWeakness.noWeaknessStatus(mon_id=Agnaktor_Glacial.id)
 Weakpoints.createWeakPoints(mon_id=Agnaktor_Glacial.id,cut='Head, Neck, Chest, Body, Front Legs, Back Legs, Fin, Tail',impact='Head, Neck, Chest, Body, Front Legs, Back Legs, Fin, Tail',projectile='Head, Neck, Chest, Body, Front Legs, Back Legs, Fin, Tail')
 
 Proficiency.applyStrenghts(mon_id=Agnaktor_Glacial.id,fire=False,water=True,thunder=False,ice=True,dragon=False)
-Ailments.createStatus(mon_id=Agnaktor_Glacial.id,status='',blight='Iceblight, Waterblight',natural='')
+Ailments.createStatus(mon_id=Agnaktor_Glacial.id,status='',blight='Iceblight, Waterblight',natural='Roar(L)')
 games.inMHGen3(mon_id=Agnaktor_Glacial.id,MH3rd=True,MH3U=True)

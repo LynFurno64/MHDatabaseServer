@@ -14,8 +14,8 @@ addWeakness.applyWeaknessElement(mon_id=Zinogre.id,fire=False,water=True,thunder
 addWeakness.noWeaknessStatus(mon_id=Zinogre.id)
 Weakpoints.createWeakPoints(mon_id=Zinogre.id,cut='Head, Body, Back, Forearms(Shell), Forearms,Back Legs(shell), Back Legs, Tail,Tail End',impact='Head, Body, Back, Forearms(Shell), Forearms,Back Legs(shell), Back Legs, Tail,Tail End',projectile='Head, Body, Back, Forearms(Shell), Forearms,Back Legs(shell), Back Legs, Tail,Tail End')
 
-Proficiency.onlyGoodAt(mon_id=Zinogre.id,element='Thunder')
-Ailments.createStatus(mon_id=Zinogre.ID,status='Paralysis',blight='Thunderblight',natural='')
+Proficiency.onlyGoodAt(mon_id=Zinogre.id,element='thunder')
+Ailments.createStatus(mon_id=Zinogre.id,status='Paralysis',blight='Thunderblight',natural='')
 games.inMHGen3(mon_id=Zinogre.id,MH3rd=True,MH3U=True)
 games.inMHGen4(mon_id=Zinogre.id,MH4U=True,MHGU=True)
 games.inMHGen5(mon_id=Zinogre.id,MHWI=True,MHRS=True)
@@ -51,7 +51,7 @@ addWeakness.applyWeaknessElement(mon_id=Zinogre_Thunderlord.id,fire=False,water=
 addWeakness.noWeaknessStatus(mon_id=Zinogre_Thunderlord.id)
 Weakpoints.createWeakPoints(mon_id=Zinogre_Thunderlord.id,cut='Head, Body, Back, Forearms(Shell), Forearms,Back Legs(shell), Back Legs, Tail,Tail End',impact='Head, Body, Back, Forearms(Shell), Forearms,Back Legs(shell), Back Legs, Tail,Tail End',projectile='Head, Body, Back, Forearms(Shell), Forearms,Back Legs(shell), Back Legs, Tail,Tail End')
 
-Proficiency.onlyGoodAt(mon_id=Zinogre_Thunderlord.id,element='Thunder')
+Proficiency.onlyGoodAt(mon_id=Zinogre_Thunderlord.id,element='thunder')
 Ailments.createStatus(mon_id=Zinogre_Thunderlord.id, status='Stun',blight='Thunderblight',natural='')
 games.inMHGen4(mon_id=Zinogre_Thunderlord.id,MH4U=False,MHGU=True)
 
