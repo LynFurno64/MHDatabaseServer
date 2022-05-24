@@ -85,6 +85,7 @@ class Monster(db.Model):
     def __repr__(self):
         return '<Monster {}>'.format(self.name)
 
+
     def family(self, monster):
         if not self.is_family(monster):
             self.relative.append(monster)

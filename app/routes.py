@@ -5,6 +5,8 @@ from flask import make_response
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 import json
+import os
+from os import listdir
 
 from app.models import Monster, Phylum, Subgroup
 from app.modelSchema import MonsterSchema
@@ -39,10 +41,12 @@ def get_monsters():
     for mon in monsters:
         name = mon.name
         group = mon.phylum.category
-        print("Name: ", name, "\nGroup: ", group)
+        print("Name: ", name, "\nGroup: ", group, "\n Weakpoints: ")
 
     monster_schema = MonsterSchema(many=True)
     output = monster_schema.dump(monsters)
+    print(output)
+
     return jsonify({'monsters': output})
 
 
@@ -81,9 +85,32 @@ def monsterList():
         page, app.config['MONS_PER_PAGE'], False
     )
 
+    mons = Monster.query.all()
+    for m in mons:
+
+        picture(m.name, m.variation)
+
+    
     next_url = url_for('monsterList', page= monsters.next_num) \
         if monsters.has_next else None
     prev_url = url_for('monsterList', page= monsters.prev_num) \
         if monsters.has_prev else None
 
     return render_template('index.html', title='Monster List', monsters=monsters.items, next_url=next_url, prev_url=prev_url)
+
+
+def picture(name, num):
+    # get the path/directory
+    folder_dir = "app/static"
+    for images in os.listdir(folder_dir):
+ 
+        # check if the image ends with png
+        if (images.endswith(".png")):
+            fullstring = name
+            i = images.replace('.png','')
+            substring = i.replace('_',' ')
+
+            if fullstring.__eq__(substring):
+                print('name', fullstring, ' and s2(', substring, ') are equal.')
+
+            
