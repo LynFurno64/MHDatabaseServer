@@ -7,8 +7,8 @@ import json
 import os
 from os import listdir
 
-from app.models import Monster, Phylum, Subgroup
-from app.modelSchema import MonsterSchema
+from app.models import Monster, Phylum, Subgroup, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
+from app.modelSchema import MonsterSchema, Item_weakSchema, WeaknessSchema, WeakpointsSchema, ProficiencySchema, AilmentsSchema, GamesSchema
 
 a = open('app/json/branch.json')
 branch = json.load(a)
@@ -29,7 +29,6 @@ def index():
         if monsters.has_next else None
     prev_url = url_for('monsterList', page= monsters.prev_num) \
         if monsters.has_prev else None
-
     return render_template('index.html', title='Monster List', monsters=monsters.items, next_url=next_url, prev_url=prev_url)
 
 
@@ -38,9 +37,16 @@ def get_monsters():
     monsters = Monster.query.all()
     monster_schema = MonsterSchema(many=True)
     output = monster_schema.dump(monsters)
-    print(output)
     return jsonify({'monsters': output})
 
+@app.route('/app/monsterList/<int:mon_id>', methods=['GET', 'POST'])
+def get_monster(mon_id):
+    monster = Monster.query.filter_by(id= mon_id).first_or_404()
+
+    monster_schema = MonsterSchema()
+    mon = monster_schema.dump(monster)
+
+    return jsonify({'monsters': mon})
 
 @app.route('/app/phylums', methods=['GET'])
 def get_phylums():
@@ -54,17 +60,63 @@ def get_phylum(phylum_id):
     return phylum[0]
 
 
-@app.route('/app/branch', methods=['GET'])
+@app.route('/app/subgroup', methods=['GET'])
 def get_tree():
     return branch
 
-@app.route('/app/branch/<int:sub_id>', methods=['GET'])
+@app.route('/app/subgroup/<int:sub_id>', methods=['GET'])
 def get_branch(sub_id):
     subBranch = [subBranch for subBranch in branch['branch']
                  if subBranch['id'] == sub_id]
     if len(subBranch) == 0:
         abort(404)
     return subBranch[0]
+
+########################### Getters ######################################
+
+@app.route('/app/itemWeakness', methods=['GET', 'POST'])
+def get_itemWeak():
+    item_weak = Item_weak.query.all()
+    item_weak_schema = Item_weakSchema(many=True)
+    output = item_weak_schema.dump(item_weak)
+    return jsonify({'item_weak': output})
+
+
+@app.route('/app/weakness', methods=['GET', 'POST'])
+def get_weakness():
+    weakness = Weakness.query.all()
+    item_weak_schema = WeaknessSchema(many=True)
+    output = item_weak_schema.dump(weakness)
+    return jsonify({'weakness': output})
+
+
+@app.route('/app/weakpoints', methods=['GET', 'POST'])
+def get_weakpoints():
+    weakpoints = Weakpoints.query.all()
+    weakpoints_schema = WeakpointsSchema(many=True)
+    output = weakpoints_schema.dump(weakpoints)
+    return jsonify({'weakpoints': output})
+
+@app.route('/app/strength', methods=['GET', 'POST'])
+def get_strength():
+    strength = Proficiency.query.all()
+    strength_schema = ProficiencySchema(many=True)
+    output = strength_schema.dump(strength)
+    return jsonify({'strength': output})
+
+@app.route('/app/ailments', methods=['GET', 'POST'])
+def get_ailments():
+    ailments = Ailments.query.all()
+    ailments_schema = AilmentsSchema(many=True)
+    output = ailments_schema.dump(ailments)
+    return jsonify({'ailments': output})
+
+@app.route('/app/games', methods=['GET', 'POST'])
+def get_games():
+    games = Games.query.all()
+    games_schema = GamesSchema(many=True)
+    output = games_schema.dump(games)
+    return jsonify({'games': output})
 
 
     ##### Web ####
