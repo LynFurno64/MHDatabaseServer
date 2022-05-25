@@ -10,16 +10,17 @@
                 <h1>{{ monster.name }}
                     <br>
                     <small> Class: {{monster.phylum.category}}</small>
+                    <br>
+                    {% if monster.variation != 1 %}
+                    <small>{{monster.subgroup.division}}</small>
+                    {% endif %}
                 </h1>
                 
                 <h4>Ailments:
                     <small class="text-warning">
-                        <br>
-                        {{monster.ailments.status}}
-                        <br>
-                        {{monster.ailments.blight}}
-                        <br>
-                        {{monster.ailments.natural}}
+                        <br>{{monster.ailments.status}}
+                        <br>{{monster.ailments.blight}}
+                        <br>{{monster.ailments.natural}}
                     </small>
                 </h4>
             </td>
@@ -27,41 +28,49 @@
     </table>
 
     <h3>Summary</h3>
+    {% if monster.proficiency.fire or monster.proficiency.water or  monster.proficiency.thunder or monster.proficiency.ice or  monster.proficiency.dragon %} 
     <table class="table" >
-        <thead class="thead-dark">
-            <tr class="bg-warning"> 
+        <thead>
+            <tr class="bg-danger"> 
                 <th scope="col" >
-                    {% if monster.proficiency.fire or monster.proficiency.water or  monster.proficiency.thunder or monster.proficiency.ice or  monster.proficiency.dragon %} 
                     <h4 class="display-1">Elements:</h4>
-                    {% else %}
-                    <h4 class="display-1">Non Elemental</h4>
-                    {% endif %}
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-danger">
+            <tr class="bg-warning">
                 <td>
                     {% if monster.proficiency.fire %} 
-                    <img src="/static/icon_info/fire.png" width=5% height=auto>{% else %}
+                    <img src="/static/icon_info/fire.png" width=3% height=auto>{% else %}
                     {% endif %}
                     {% if monster.proficiency.water %} 
-                    <img src="/static/icon_info/water.png" width=5% height=auto>{% else %}
+                    <img src="/static/icon_info/water.png" width=3% height=auto>{% else %}
                     {% endif %}
                     {% if monster.proficiency.thunder %}
-                    <img src="/static/icon_info/thunder.png" width=5% height=auto>{% else %}
+                    <img src="/static/icon_info/thunder.png" width=3% height=auto>{% else %}
                     {% endif %}
                     {% if monster.proficiency.ice %} 
-                    <img src="/static/icon_info/ice.png" width=5% height=auto>{% else %}
+                    <img src="/static/icon_info/ice.png" width=3% height=auto>{% else %}
                     {% endif %}
                     {% if monster.proficiency.dragon %} 
-                    <img src="/static/icon_info/dragon.png" width=5% height=auto>
+                    <img src="/static/icon_info/dragon.png" width=3% height=auto>
                     {% else %}
                     {% endif %}
                 </td>
             </tr>
         </tbody>
     </table>
+    {% else %}
+    <table class="table" >
+        <tr class="bg-success"> 
+            <th scope="col" >
+                <h4 class="display-1">Non Elemental</h4>
+            </th>
+        </tr>
+    </table>
+    {% endif %}
+
+    
 
     <table>
         

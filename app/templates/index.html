@@ -2,23 +2,14 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+<form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
     <h1>Monster List</h1>
 
     {% for mon in monsters %}
-    <table class="table table-hover">
-        <tr>
-            <td width="256px">
-                <img src="{{url_for('static', filename= mon.name.replace(' ', '_') + '.png')}}" width=50% height=auto class="img-thumbnail">
-            </td>
-           
-            <td>
-                <div>
-                    <h3><a href="{{ url_for('monster', monstername=  mon.name) }}">{{ mon.name}}</a></h3>
-                    <p>{{ mon.phylum.category}}</p>
-                </div>
-            </td>
-        </tr>
-    </table>
+        {% include '_list.html' %}
     {% endfor %}
 
     <nav aria-label="...">

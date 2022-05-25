@@ -14,7 +14,7 @@ class Subgroup(db.Model):
     monster = db.relationship('Monster', backref='subgroup', lazy=True)
 
     #def __repr__(self):
-        #return '<Subgroup {}>'.format(self.type)
+        #return '<Subgroup {}>'.format(self.division)
 
     def __init__(self, division: str):
         self.division = division
