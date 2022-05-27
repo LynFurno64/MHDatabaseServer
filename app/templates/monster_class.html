@@ -1,12 +1,28 @@
+{% extends "base.html" %}
 
-{% block body %}
-    {% from 'grouping.html' import subgroup with context %}
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div>
+            <a class="nav-link"><h4>Monster Classes</h4></a>
+        </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            {% for x in phylum %}
+            <li class="nav-item">
+                <a class="nav-link" id="{{x.category.replace(' ', '_')}}-tab" data-toggle="tab" href="#{{x.category.replace(' ', '_')}}" role="tab" aria-controls="{{x.category.replace(' ', '_')}}" aria-selected="true">
+                    {{x.category}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
 
-    {% include "grouping.html" %}
-
-    <div class="container">
-        {% for mon in phylum.monster %}
+    <div class="tab-content" id="myTabContent">
+        {% for x in phylum %}
+        <div class="tab-pane fade" id="{{x.category.replace(' ', '_')}}" role="tabpanel" aria-labelledby="{{x.category.replace(' ', '_')}}-tab">
+            {% for mon in x.monster %}
             {% include '_list.html' %}
+            {% endfor %}
+        </div>
         {% endfor %}
     </div>
 {% endblock %}

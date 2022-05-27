@@ -1,0 +1,7 @@
+<ul>{% for gen, items in monsters|groupby("generation") %}
+    <li>{{ gen }}
+      <ul>{% for monster in items %}
+        <li>{{ monster.name }}
+      {% endfor %}</ul>
+    </li>
+  {% endfor %}</ul>

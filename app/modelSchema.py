@@ -6,7 +6,7 @@ from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ai
 class MonsterSchema(ma.SQLAlchemyAutoSchema):
     class Meta: 
         model = Monster
-        #include_relationships = True
+        include_fk = True
         load_instance = True
 
 

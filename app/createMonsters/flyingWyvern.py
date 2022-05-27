@@ -1,4 +1,5 @@
 # Create Monsters from the Flying Wyvern group
+from sqlalchemy import false
 from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
 
 #################  Rathalos ##################
@@ -86,6 +87,21 @@ rathalos.family(rathalos_dreadking)
 rathalos_azure.family(rathalos_dreadking)
 rathalos_silver.family(rathalos_dreadking)
 
+#################  Seregios ##################
+addWeakness = Weakness()
+games = Games() 
+Seregios= Monster(name='Seregios', generation=4, group='flying', variation=1)
+Seregios.create(Seregios)
+
+Item_weak.applyItemWeakness(mon_id= Seregios.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
+addWeakness.applyWeaknessElement(mon_id= Seregios.id, fire=False, water=False, thunder=True, ice=True, dragon=False)
+addWeakness.onlyWeakStatus(mon_id= Seregios.id, status='sleep')
+Weakpoints.createWeakPoints(mon_id= Seregios.id, cut='Neck, Belly, Back Leg', impact='Head, Neck, Belly', projectile='Head, Neck, Belly')
+
+Proficiency.noElement(mon_id= Seregios.id)
+Ailments.createStatus(mon_id= Seregios.id, status="Bleeding", blight="", natural="Roar(S), Wind Pressure (L)")
+games.inMHGen4(Seregios.id, True, True)
+games.inMHGen5(Seregios.id, False, True)
 
 #################  Tigrex ##################
 addWeakness = Weakness()
@@ -94,3 +110,4 @@ games = Games()
 ##################  Molten Tigrex ##################
 addWeakness = Weakness()
 games = Games()
+

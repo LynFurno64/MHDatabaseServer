@@ -62,7 +62,7 @@ Shogun_Ceanataur_Terra.family(Rustrazor_Ceanataur)
 addWeakness = Weakness()
 games = Games()
 
-Hermitaur_Daimyo = Monster(name='Daimyo Hermitaur',generation=4,group='crab',variation=5)
+Hermitaur_Daimyo = Monster(name='Daimyo Hermitaur',generation=4,group='crab',variation=1)
 Hermitaur_Daimyo.create(Hermitaur_Daimyo)
 
 Item_weak.applyItemWeakness(mon_id=Hermitaur_Daimyo.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)

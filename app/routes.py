@@ -1,11 +1,10 @@
 from flask import abort
 from flask import Flask, jsonify
-from flask import make_response
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 import json
-import os
 from os import listdir
+from app.forms import SearchForm
 
 from app.models import Monster, Phylum, Subgroup, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
 from app.modelSchema import MonsterSchema, Item_weakSchema, WeaknessSchema, WeakpointsSchema, ProficiencySchema, AilmentsSchema, GamesSchema
@@ -45,8 +44,11 @@ def get_monster(mon_id):
 
     monster_schema = MonsterSchema()
     mon = monster_schema.dump(monster)
+    print(mon)
+    print(monster)
 
-    return jsonify({'monsters': mon})
+
+    return jsonify(mon)
 
 @app.route('/app/phylums', methods=['GET'])
 def get_phylums():
@@ -121,6 +123,14 @@ def get_games():
 
     ##### Web ####
 
+@app.route('/search', methods=['GET'])
+def search():
+    form = SearchForm()
+    if form.validate_on_submit():
+        find = form.searched.data
+        Monster.query.filter_by(name= find)
+    return render_template('search.html', form=form, find=find)
+
 
 @app.route('/monsterList')
 def monsterList():
@@ -147,23 +157,20 @@ def monster(monstername):
 def grouping():
     phylums = Phylum.query.all()
     subgroups = Subgroup.query.all()
-    return render_template('grouping.html', title='Monster Classes', phylum=phylums, subgroup=subgroups)
+    return render_template('grouping.html', title='Home')
+
+@app.route('/monster_class')
+def monster_class():
+    phylum = Phylum.query.all()
+    return render_template('monster_class.html', title= "Monster Classes", phylum=phylum)
 
 @app.route('/monster_class/<typename>')
-def monster_class(typename):
+def m_class(typename):
     phylum = Phylum.query.filter_by(category= typename).first_or_404()
-    #sub = Subgroup.query.filter_by(division= typename).first_or_404()
-        
-    print(phylum)
-    print("Typename= ", typename)
-    for monster in phylum.monster:
-        print(monster.name)
-    return render_template('monster_class.html', title= phylum.category, phylum=phylum)
+    return render_template('class.html', title= phylum.category, phylum=phylum)
 
 
-@app.route('/test')
-def test():
-    phylum = Phylum.query.all()
-    sub = Subgroup.query.all()
-    
-    return render_template('test.html', phylum=phylum, sub=sub)
+@app.route('/monster_species')
+def monster_species():
+    subgroup = Subgroup.query.all()
+    return render_template('monster_species.html', title= "Monster Species", subgroup=subgroup)    
