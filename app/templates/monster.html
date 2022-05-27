@@ -78,8 +78,8 @@
             </td>
 
             <td>
+                {% if monster.item_weak.flash_bomb or monster.item_weak.pitfall_trap or monster.item_weak.shock_trap or monster.item_weak.sonic_bomb %} 
                 <div class="alert alert-dark" role="alert">
-                    {% if monster.item_weak.flash_bomb or monster.item_weak.pitfall_trap or monster.item_weak.shock_trap or monster.item_weak.sonic_bomb %} 
                     <h4 class="text-danger">Effective Items:   
                         <hr>
                         {% if monster.item_weak.flash_bomb %} 
@@ -95,12 +95,15 @@
                         <img src="/static/icon_other/trap_pitfall.png" width=10% height=auto>{% else %}
                         {% endif %}
                     </h4>
-                    {% else %}
-                    <h4 class="text-dark">Items:</h4>
-                    <hr>
-                    <p>Immune</p>
-                    {% endif %}
+                    
                 </div>
+                {% else %}
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="text-dark">Items:</h4>
+                        <hr><p>Immune</p>
+                </div>
+                {% endif %}
+
             </td>
 
             <td>
@@ -148,23 +151,6 @@
         </tr>
     </table>
 
-        
-    {% if monster.relative.count() == 0 %} 
-    {% else %}
-    <div class="alert alert-secondary" role="alert">
-        <h4 class="alert-heading">Related Monsters are:</h4>
-        <hr>
-        <ul class="nav nav-pills nav-fill">
-            {% for x in monster.relative.all() %}
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('monster', monstername=  x.name) }}"> {{ x.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
-
-
     <div class="alert alert-danger" role="alert">
         <table class="table table-bordered">
             <h4 class="text-danger">Weakpoints:</h4>
@@ -190,8 +176,21 @@
             </tbody>
         </table>      
     </div>
-    
 
-
+        
+    {% if monster.relative.count() == 0 %} 
+    {% else %}
+    <div class="alert alert-secondary" role="alert">
+        <h4 class="alert-heading">Related Monsters are:</h4>
+        <hr>
+        <ul class="nav nav-pills nav-fill">
+            {% for x in monster.relative.all() %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('monster', monstername=  x.name) }}"> {{ x.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 {% endblock %}
 
