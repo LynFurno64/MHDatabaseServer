@@ -45,7 +45,7 @@ games = Games()
 Valstrax_Crimson= Monster(name='Crimson Glow Valstrax', generation=5, group='elder', variation=4)
 Valstrax_Crimson.create(Valstrax_Crimson)
 
-Item_weak.applyItemWeakness(mon_id= Valstrax_Crimson.id, shock_trap=True, pitfall_trap=True, flash_bomb=True, sonic_bomb=False)
+Item_weak.applyItemWeakness(mon_id= Valstrax_Crimson.id, shock_trap=False, pitfall_trap=False, flash_bomb=True, sonic_bomb=False)
 addWeakness.applyWeaknessElement(mon_id= Valstrax_Crimson.id, fire=True, water=True, thunder=True, ice=True, dragon=False)
 addWeakness.applyWeaknessStatus(mon_id= Valstrax_Crimson.id, poison=False, sleep=True, para=False, blast=False)
 Weakpoints.createWeakPoints(mon_id= Valstrax_Crimson.id, cut='Head, Neck, Wing Arm, Tail', impact='Head, Wing Arm, Wing', projectile='Wing Arm')

@@ -150,7 +150,8 @@ def monsterList():
 def monster(monstername):
     monster = Monster.query.filter_by(name= monstername).first_or_404()
     print(monster.name)
-    print(monster.subgroup.division)
+    print(monster.weakness)
+
     return render_template('monster.html', title=monster.name, monster=monster)
 
 @app.route('/grouping')

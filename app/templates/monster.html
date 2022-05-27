@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
 {% block app_content %}
+
+    <style>
+        table
+        {
+            table-layout: fixed;
+            width: 100px;
+        }
+    </style>
+
+
     <table class="table table-hover">
         <tr>
             <td width="256px">
@@ -9,127 +19,179 @@
             <td>
                 <h1>{{ monster.name }}
                     <br>
-                    <small> Class: {{monster.phylum.category}}</small>
+                    <small class="text-dark">Class: {{monster.phylum.category}}</small>
                     <br>
                     {% if monster.variation != 1 %}
-                    <small>{{monster.subgroup.division}}</small>
+                    <small class="text-danger">{{monster.subgroup.division}}</small>
                     {% endif %}
                 </h1>
                 
                 <h4>Ailments:
-                    <small class="text-warning">
+                    <small class="text-darks"><strong>
+                        {% if monster.ailments.status != "" %}
                         <br>{{monster.ailments.status}}
+                        {% endif %}
+
+                        {% if monster.ailments.blight != "" %}
                         <br>{{monster.ailments.blight}}
+                        {% endif %}
+
+                        {% if monster.ailments.natural != "" %}
                         <br>{{monster.ailments.natural}}
+                        {% endif %}</strong>
+
                     </small>
                 </h4>
             </td>
         </tr>
     </table>
-    
 
-    <h3>Summary</h3>
-    {% if monster.proficiency.fire or monster.proficiency.water or  monster.proficiency.thunder or monster.proficiency.ice or  monster.proficiency.dragon %} 
-    <table class="table" >
-        <thead>
-            <tr class="bg-danger"> 
-                <th scope="col" >
-                    <h4 class="display-1">Elements:</h4>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-warning">
-                <td>
+    <table class="table table-hover">
+        <tr>
+            <td>
+                {% if monster.proficiency.fire or monster.proficiency.water or  monster.proficiency.thunder or monster.proficiency.ice or  monster.proficiency.dragon %} 
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading">Element:</h4>
+                    <hr>
                     {% if monster.proficiency.fire %} 
-                    <img src="/static/icon_info/fire.png" width=3% height=auto>{% else %}
+                    <img src="/static/icon_info/fire.png" width=10% height=auto>{% else %}
                     {% endif %}
                     {% if monster.proficiency.water %} 
-                    <img src="/static/icon_info/water.png" width=3% height=auto>{% else %}
+                    <img src="/static/icon_info/water.png" width=10% height=auto>{% else %}
                     {% endif %}
                     {% if monster.proficiency.thunder %}
-                    <img src="/static/icon_info/thunder.png" width=3% height=auto>{% else %}
+                    <img src="/static/icon_info/thunder.png" width=10% height=auto>{% else %}
                     {% endif %}
                     {% if monster.proficiency.ice %} 
-                    <img src="/static/icon_info/ice.png" width=3% height=auto>{% else %}
+                    <img src="/static/icon_info/ice.png" width=10% height=auto>{% else %}
                     {% endif %}
                     {% if monster.proficiency.dragon %} 
-                    <img src="/static/icon_info/dragon.png" width=3% height=auto>
-                    {% else %}
+                    <img src="/static/icon_info/dragon.png" width=10% height=auto>{% else %}
                     {% endif %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    {% else %}
-    <table class="table" >
-        <tr class="bg-success"> 
-            <th scope="col" >
-                <h4 class="display-1">Non Elemental</h4>
-            </th>
+                </div>
+                {% else %}
+                <div class="alert alert-secondary" role="alert">
+                    <h4 class="alert-heading">Non Elemental</h4>
+                    <hr>
+                </div>
+                {% endif %}
+            </td>
+
+            <td>
+                <div class="alert alert-dark" role="alert">
+                    {% if monster.item_weak.flash_bomb or monster.item_weak.pitfall_trap or monster.item_weak.shock_trap or monster.item_weak.sonic_bomb %} 
+                    <h4 class="text-danger">Effective Items:   
+                        <hr>
+                        {% if monster.item_weak.flash_bomb %} 
+                        <img src="/static/icon_other/bomb_flash.png" width=10% height=auto>{% else %}
+                        {% endif %}
+                        {% if monster.item_weak.sonic_bomb %} 
+                        <img src="/static/icon_other/Bomb_sonic.png" width=10% height=auto>{% else %}
+                        {% endif %}
+                        {% if monster.item_weak.shock_trap %}
+                        <img src="/static/icon_other/trap_shock.png" width=10% height=auto>{% else %}
+                        {% endif %}
+                        {% if monster.item_weak.pitfall_trap %} 
+                        <img src="/static/icon_other/trap_pitfall.png" width=10% height=auto>{% else %}
+                        {% endif %}
+                    </h4>
+                    {% else %}
+                    <h4 class="text-dark">Items:</h4>
+                    <hr>
+                    <p>Immune</p>
+                    {% endif %}
+                </div>
+            </td>
+
+            <td>
+                <div class="alert alert-primary" role="alert">
+                    <h4 class="text-danger">Weakness:</h4>
+                    <hr>
+                    {% if monster.weakness.dragon %}
+                    <img src="/static/icon_info/Dragon.png" width=10% height=auto>
+                    {% endif %}
+ 
+                    {% if monster.weakness.fire %}
+                    <img src="/static/icon_info/Fire.png" width=10% height=auto> 
+                    {% endif %}
+
+                    {% if monster.weakness.ice %} 
+                    <img src="/static/icon_info/Ice.png" width=10% height=auto>
+                    {% endif %}
+
+                    {% if monster.weakness.thunder %} 
+                    <img src="/static/icon_info/Thunder.png" width=10% height=auto>
+                    {% endif %}
+
+                    {% if monster.weakness.water %} 
+                    <img src="/static/icon_info/Water.png" width=10% height=auto>
+                    {% endif %}
+
+                    {% if monster.weakness.para %}
+                    <img src="/static/icon_info/Paralysis.png" width=10% height=auto>
+                    {% endif %}
+ 
+                    {% if monster.weakness.sleep %} 
+                    <img src="/static/icon_info/Sleep.png" width=10% height=auto>
+                    {% endif %}
+
+                    {% if monster.weakness.poison %}
+                    <img src="/static/icon_info/Poison.png" width=10% height=auto>
+                    {% endif %}
+
+                    {% if monster.weakness.blast %}   
+                    <img src="/static/icon_info/Blastblight.png" width=10% height=auto>  
+                    {% endif %}
+                
+                </div>
+            </td>
         </tr>
     </table>
-    {% endif %}
 
-    
-
-    <table>
-        
-    </table>
-    
         
     {% if monster.relative.count() == 0 %} 
     {% else %}
-    <h5 class="text-center">Related Monsters are:</h5> 
-    <nav class="nav nav-pills nav-justified">
-        {% for x in monster.relative.all() %}
-        <li class="nav-item" >
-            <a class="nav-link active" href="{{ url_for('monster', monstername=  x.name) }}"> {{ x.name }}</a>
-        </li>
-        {% endfor %}
-    </nav>
+    <div class="alert alert-secondary" role="alert">
+        <h4 class="alert-heading">Related Monsters are:</h4>
+        <hr>
+        <ul class="nav nav-pills nav-fill">
+            {% for x in monster.relative.all() %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('monster', monstername=  x.name) }}"> {{ x.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
     {% endif %}
-    <br>
 
-    <h3 class="text-danger">Damage</h3>
-    <table class="table table-bordered">
-        <h4 class="text-danger">Weakpoints:</h4>
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col" class="text-center">Area</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr >
-              <th scope="row" width="256px"><img src="/static/icon_other/cut.png" width=20% height=auto> (Cut)</th>
-              <td ><p class="text-center" >{{monster.weakpoints.cut}}</p></td>
-            </tr>
-            <tr>
-              <th scope="row" width="256px"><img src="/static/icon_other/impact.png" width=20% height=auto> (Impact)</th>
-              <td><p class="text-center">{{monster.weakpoints.impact}}</p></td>
-            </tr>
-            <tr>
-              <th scope="row" width="256px"><img src="/static/icon_other/gun.png" width=20% height=auto> (Projectile)</th>
-              <td> <p class="text-center">{{monster.weakpoints.projectile}}</p></td>
-            </tr>
-        </tbody>
-    </table>
 
-    <table class="table table-bordered">
-        <h4 class="text-danger">Weakness:</h4>
-    </table>
+    <div class="alert alert-danger" role="alert">
+        <table class="table table-bordered">
+            <h4 class="text-danger">Weakpoints:</h4>
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col" class="text-center">Area</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr >
+                  <th scope="row" width="256px"><img src="/static/icon_other/cut.png" width=10% height=auto> (Cut)</th>
+                  <td ><p class="text-center" >{{monster.weakpoints.cut}}</p></td>
+                </tr>
+                <tr>
+                  <th scope="row" width="256px"><img src="/static/icon_other/impact.png" width=10% height=auto> (Impact)</th>
+                  <td><p class="text-center">{{monster.weakpoints.impact}}</p></td>
+                </tr>
+                <tr>
+                  <th scope="row" width="256px"><img src="/static/icon_other/gun.png" width=10% height=auto> (Projectile)</th>
+                  <td> <p class="text-center">{{monster.weakpoints.projectile}}</p></td>
+                </tr>
+            </tbody>
+        </table>      
+    </div>
+    
 
-    <table class="table table-bordered">
-        <h4 class="text-danger">Trap:</h4>
-    </table>
 
-    <table class="table table-bordered">
-        <tr>
-            <td width="256px">
-                <img src="{{url_for('static', filename= monster.name.replace(' ', '_') + '.png')}}" class="img-thumbnail">
-            </td>
-        </tr>
-    </table>   
 {% endblock %}
 
