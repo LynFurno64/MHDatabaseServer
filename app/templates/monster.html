@@ -4,7 +4,7 @@
     <table class="table table-hover">
         <tr>
             <td width="256px">
-                <img src="{{url_for('static', filename= monster.name.replace(' ', '_') + '.png')}}" width=100% height=auto>
+                <img src="/static/icon_monsters/{{monster.name.replace(' ', '_') + '.png'}}" width=100% height=auto>
             </td>
             <td>
                 <h1>{{ monster.name }}
@@ -26,6 +26,7 @@
             </td>
         </tr>
     </table>
+    
 
     <h3>Summary</h3>
     {% if monster.proficiency.fire or monster.proficiency.water or  monster.proficiency.thunder or monster.proficiency.ice or  monster.proficiency.dragon %} 

@@ -162,15 +162,22 @@ def grouping():
 @app.route('/monster_class')
 def monster_class():
     phylum = Phylum.query.all()
+    for x in phylum:
+        y = x.category.replace(' ', '_')
+        print(y)
     return render_template('monster_class.html', title= "Monster Classes", phylum=phylum)
-
-@app.route('/monster_class/<typename>')
-def m_class(typename):
-    phylum = Phylum.query.filter_by(category= typename).first_or_404()
-    return render_template('class.html', title= phylum.category, phylum=phylum)
 
 
 @app.route('/monster_species')
 def monster_species():
     subgroup = Subgroup.query.all()
-    return render_template('monster_species.html', title= "Monster Species", subgroup=subgroup)    
+
+    page = request.args.get('page', 1, type=int)
+    subgroup = Subgroup.query.order_by(Subgroup.id).paginate(
+        page, app.config['MONS_PER_PAGE'], False
+    )
+    next_url = url_for('monster_species', page= subgroup.next_num) \
+        if subgroup.has_next else None
+    prev_url = url_for('monster_species', page= subgroup.prev_num) \
+        if subgroup.has_prev else None
+    return render_template('monster_species.html', title= "Monster Species", subgroup=subgroup.items, next_url=next_url, prev_url=prev_url)    
