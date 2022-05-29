@@ -38,6 +38,16 @@ class ItemWeakForm(FlaskForm):
     flash_bomb= BooleanField('Flash Bombs')
     sonic_bomb= BooleanField('Sonic Bombs')
 
+class GamesForm(FlaskForm):
+    MHF = BooleanField('Freedom')
+    MHFU = BooleanField('Freedom Unite')
+    MH3rd = BooleanField('Portable 3rd')
+    MH3U = BooleanField('3 Ultimate')
+    MH4U = BooleanField('4 Ultimate')
+    MHGU = BooleanField('Generation Ultimate')
+    MHWI = BooleanField('World Iceborune')
+    MHRS = BooleanField('Rise Sunbreak')
+
 
 class MonsterForm(FlaskForm):
     monstername = StringField('Name', validators=[DataRequired()])
@@ -56,15 +66,6 @@ class MonsterForm(FlaskForm):
     elemental_weakness = FormField(ElementForm) 
     status_weakness = FormField(StatusForm)
     weakpoints = FormField(WeakpointForm)
+    games = FormField(GamesForm)
     submit = SubmitField('Add Creature')
         #age_range = IntegerRangeField(default='(0,100)', blank=True, validators=[RangeMinValueValidator(1), RangeMaxValueValidator(100)])
-
-class LanguageForm(FlaskForm):
-    language = SelectMultipleField('Programming Language', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')])
-    status = StringField('Status Ailment', validators=[DataRequired()])
-    dynamic_select = SelectField("Choose an option", choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')], validate_choice=False)
-
-    radio = RadioField('Programming Language', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')])
-    item_weakness = FormField(ItemWeakForm)
-
-    help = SubmitField('Add')

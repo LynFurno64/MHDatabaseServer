@@ -14,34 +14,52 @@
     <table class="table table-hover">
         <tr>
             <td width="256px">
+                <div class="alert alert-info" role="alert">
                 <img src="/static/icon_monsters/{{monster.name.replace(' ', '_') + '.png'}}" width=100% height=auto>
+                </div>
             </td>
             <td>
-                <h1>{{ monster.name }}
-                    <br>
-                    <small class="text-dark">Class: {{monster.phylum.category}}</small>
-                    <br>
-                    {% if monster.variation != 1 %}
-                    <small class="text-danger">{{monster.subgroup.division}}</small>
-                    {% endif %}
-                </h1>
+                <h1>{{ monster.name }} <br><small class="text-dark">Class: {{monster.phylum.category}}</small><br></h1>
+                {% if monster.variation != 1 %}
+                    <h4 class="text-danger">{{monster.subgroup.division}}</n4>
+                {% endif %}
                 <h4>Genration: {{monster.generation}}</h4>
                 <h4>Ailments:
                     <small class="text-darks"><strong>
                         {% if monster.ailments.status != "" %}
                         <br>{{monster.ailments.status}}
                         {% endif %}
-
                         {% if monster.ailments.blight != "" %}
                         <br>{{monster.ailments.blight}}
                         {% endif %}
-
                         {% if monster.ailments.natural != "" %}
                         <br>{{monster.ailments.natural}}
                         {% endif %}</strong>
-
                     </small>
                 </h4>
+            </td>
+            <td>
+                <div class="alert alert-secondary" role="alert">
+                    <h4 class="alert-heading">Games In:</h4>
+                    <ul class="nav nav-pills">
+                        {% for x in monster.egames %}
+                        <li class="nav-item">
+                          <a class="nav-link">{{ x.videogames.gamename }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% if monster.relative.count() == 0 %} 
+                {% else %}
+                <div class="alert alert-secondary" role="alert">
+                    <h4 class="alert-heading">Related Monsters are:</h4>
+                    <nav class="nav">
+                        {% for x in monster.relative.all() %}
+                        <a class="nav-link" href="{{ url_for('monster', monstername=  x.name) }}"> {{ x.name }}</a>
+                        {% endfor %}
+                    </nav>
+                </div>
+                {% endif %}
             </td>
         </tr>
     </table>
@@ -175,32 +193,5 @@
             </tbody>
         </table>      
     </div>
-
-    <div class="alert alert-secondary" role="alert">
-        <h4 class="alert-heading">Games In:</h4>
-        <hr>
-        <ul class="nav nav-pills">
-            {% for x in monster.egames %}
-            <li class="nav-item">
-              <a class="nav-link">{{ x.videogames.gamename }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    {% if monster.relative.count() == 0 %} 
-    {% else %}
-    <div class="alert alert-secondary" role="alert">
-        <h4 class="alert-heading">Related Monsters are:</h4>
-        <hr>
-        <ul class="nav nav-pills nav-fill">
-            {% for x in monster.relative.all() %}
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('monster', monstername=  x.name) }}"> {{ x.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
 {% endblock %}
 

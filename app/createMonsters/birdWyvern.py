@@ -14,7 +14,7 @@ addWeakness.noWeaknessStatus(mon_id=Velocidrome.id)
 Weakpoints.createWeakPoints(mon_id=Velocidrome.id,cut='Head, Body',impact='Head, Body',projectile='Head, Body')
 
 Proficiency.noElement(mon_id=Velocidrome.id)
-Ailments.createStatus(mon_id=Velocidrome.id, status='none', blight='none', natural='none')
+Ailments.createStatus(mon_id=Velocidrome.id, status='', blight='', natural='')
 
 Egames.putInGames(Velocidrome.id, ['MHF', 'MHFU', 'MH4U', 'MHGU'])
 

@@ -6,7 +6,7 @@ import json
 from os import listdir
 from app.forms import SearchForm, MonsterForm
 
-from app.models import Monster, Phylum, Subgroup, Item_weak, Weakness, Weakpoints, Proficiency, Ailments
+from app.models import Monster, Phylum, Subgroup, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 from app.modelSchema import MonsterSchema, Item_weakSchema, WeaknessSchema, WeakpointsSchema, ProficiencySchema, AilmentsSchema
 
 a = open('app/json/branch.json')
@@ -207,6 +207,26 @@ def register():
         db.session.add(weakpoint)
         db.session.add(ailments)
         db.session.commit()
+
+        list = []
+        if form.games.MHF.data:
+            list.append('MHF')
+        if form.games.MHFU.data:
+            list.append('MHFU')
+        if form.games.MH3rd.data:
+            list.append('MH3rd')
+        if form.games.MH3U.data:
+            list.append('MH3U')
+        if form.games.MH4U.data:
+            list.append('MH4U')
+        if form.games.MHGU.data:
+            list.append('MHGU')
+        if form.games.MHWI.data:
+            list.append('MHWI')
+        if form.games.MHRS.data:
+            list.append('MHRS')
+
+        Egames.putInGames(monster.id,  list)
 
         flash('Congratulations, you added a new creature!')
         return redirect(url_for('index'))
