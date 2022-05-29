@@ -5,10 +5,13 @@ from flask_marshmallow import Marshmallow
 from config import Config
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
+from flask_wtf.csrf import CSRFProtect
+
 
 app = Flask(__name__)
 
 app.config.from_object(Config)
+csrf = CSRFProtect(app)
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 migrate = Migrate(app, db)

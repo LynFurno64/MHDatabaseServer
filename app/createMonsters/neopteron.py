@@ -1,10 +1,9 @@
 # Create Monsters from the Neopteron group
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 
 
 ################## Seltas ##################
 addWeakness = Weakness()
-games = Games()
 
 seltas = Monster(name='Seltas', generation=4, group='bug', variation=1)
 seltas.create(seltas)
@@ -17,11 +16,10 @@ Weakpoints.createWeakPoints(mon_id= seltas.id, cut='Head, Legs, Torso', impact='
 Proficiency.noElement(mon_id= seltas.id)
 Ailments.createStatus(mon_id= seltas.id, status="Defence Down", blight="", natural="")
 
-games.inMHGen4(mon_id= seltas.id, MH4U=True, MHGU=True)
+Egames.putInGames(seltas.id, ['MH4U', 'MHGU'])
 
 ################## Desert Seltas ##################
 addWeakness = Weakness()
-games = Games()
 
 seltas_Desert = Monster(name='Desert Seltas', generation=4, group='bug', variation=2)
 seltas_Desert.create(seltas_Desert)
@@ -33,13 +31,13 @@ Weakpoints.createWeakPoints(mon_id= seltas_Desert.id, cut='Head, Legs, Belly', i
 
 Proficiency.noElement(mon_id= seltas_Desert.id)
 Ailments.createStatus(mon_id= seltas_Desert.id, status="Para", blight="", natural="")
-games.inMHGen4(mon_id= seltas_Desert.id, MH4U=True, MHGU=False)
+
+Egames.inGame(seltas_Desert.id, 'MH4U')
 
 seltas_Desert.family(seltas)
 
 ################## Seltas Queen ##################
 addWeakness = Weakness()
-games = Games()
 
 seltas_queen = Monster(name='Seltas Queen', generation=4, group='bug', variation=1)
 seltas_queen.create(seltas_queen)
@@ -51,14 +49,14 @@ Weakpoints.createWeakPoints(mon_id= seltas_queen.id, cut='Head, Belly', impact='
 
 Proficiency.applyStrenghts(mon_id= seltas_queen.id, fire=False, water=True, thunder=False, ice=False, dragon=False)
 Ailments.createStatus(mon_id= seltas_queen.id, status="Soiled", blight="Severe Waterblight", natural="Stun")
-games.inMHGen4(mon_id= seltas_queen.id, MH4U=True, MHGU=True)
+
+Egames.putInGames(seltas_queen.id, ['MH4U', 'MHGU'])
 
 seltas_queen.family(seltas)
 seltas_queen.family(seltas_Desert)
 
 ################## Desert Seltas Queen ##################
 addWeakness = Weakness()
-games = Games()
 
 seltas_queen_Desert = Monster(name='Desert Seltas Queen', generation=4, group='bug', variation=2)
 seltas_queen_Desert.create(seltas_queen_Desert)
@@ -71,7 +69,8 @@ Weakpoints.createWeakPoints(mon_id= seltas_queen_Desert.id, cut='Head', impact='
 Proficiency.applyStrenghts(mon_id= seltas_queen_Desert.id, fire=False, water=True, thunder=False, ice=False, dragon=False)
 Ailments.createStatus(mon_id= seltas_queen_Desert.id, status="Soiled", blight="", natural="Stun, Tremor")
 
-games.inMHGen4(mon_id= seltas_queen_Desert.id, MH4U=True, MHGU=False)
+Egames.inGame(seltas_queen_Desert.id, 'MH4U')
+
 
 seltas_queen_Desert.family(seltas)
 seltas_queen_Desert.family(seltas_Desert)
@@ -79,7 +78,6 @@ seltas_queen_Desert.family(seltas_queen)
 
 ################## Ahtal-Ka ##################
 addWeakness = Weakness()
-games = Games()
 
 ahtal_ka = Monster(name='Ahtal-Ka', generation=4, group='bug', variation=1)
 ahtal_ka.create(ahtal_ka)
@@ -91,4 +89,5 @@ Weakpoints.createWeakPoints(mon_id= ahtal_ka.id, cut='Head, Claws, Arms, Legs', 
 
 Proficiency.noElement(mon_id= ahtal_ka.id)
 Ailments.createStatus(mon_id= ahtal_ka.id, status="Defence Down", blight="", natural="Webbed")
-games.inMHGen4(mon_id= ahtal_ka.id, MH4U=False, MHGU=True)
+
+Egames.inGame(ahtal_ka.id, 'MHGU')

@@ -1,7 +1,7 @@
 # Fill the database with necessary data
 import sqlite3
 from app import app, db
-from app.models import Subgroup, Monster, Phylum
+from app.models import Subgroup, Phylum, Videogames
 from flask import g
 import json
 
@@ -44,12 +44,25 @@ def fillPhylums():
         Phylum.create(category, codename)
     f.close()
 
+def fillVidya():
+    # Opening JSON file
+    f = open('app/json/games.json')
+    # returns JSON object as a dictionary
+    games = json.load(f)
+    for game in games['games']:
+        gamename = game['gamename']
+        shortname = game['shortname']
+        Videogames.create(gamename, shortname)
+    f.close()
+
 
 with app.app_context():
     db.create_all()
     cur = get_db().cursor()
     print("Subgroup has:\n ", query_db('select * from subgroup'))
     print("Phylum has:\n ", query_db('select * from phylum'))
+    print("Videogames has:\n ", query_db('select * from videogames'))
+
 
     # If list is empty
     if not query_db('select * from subgroup'):
@@ -59,14 +72,23 @@ with app.app_context():
             if user[1] is None:
                 fillSubgroup()
 
-    #db.drop_all()
 
+    # Phylum table
     if not query_db('select * from phylum'):
         fillPhylums()
     else:
         for user in query_db('select * from phylum'):
             if user[1] is None:
                 fillPhylums()
+
+    
+    # Videogames table
+    if not query_db('select * from videogames'):
+        fillVidya()
+    else:
+        for user in query_db('select * from videogames'):
+            if user[1] is None:
+                fillVidya()
 
     print("Finished\n Now Starting addMonster.py...")
 

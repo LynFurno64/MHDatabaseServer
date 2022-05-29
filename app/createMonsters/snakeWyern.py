@@ -1,11 +1,9 @@
 # Create Monsters from the Snake Wyvern group
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 
 
 ################## Najarala ##################
 addWeakness = Weakness()
-games = Games()
-
 najarala= Monster(name='Najarala', generation=4, group='snake', variation=1)
 najarala.create(najarala)
 
@@ -16,14 +14,11 @@ Weakpoints.createWeakPoints(mon_id= najarala.id, cut='Head, Tail, Back Legs, R.O
 
 Proficiency.noElement(mon_id= najarala.id)
 Ailments.createStatus(mon_id= najarala.id, status="Para", blight="", natural="Roar (Large), Stun")
-
-games.inMHGen4(mon_id= najarala.id, MH4U=True, MHGU=True)
-
+Egames.putInGames(najarala.id,  ['MH4U', 'MHGU'])
 
 
 ################## Tidal Najarala ##################
 addWeakness = Weakness()
-games = Games()
 
 najarala_tidal= Monster(name='Tidal Najarala', generation=4, group='snake', variation=2)
 najarala_tidal.create(najarala_tidal)
@@ -36,7 +31,8 @@ Weakpoints.createWeakPoints(mon_id= najarala_tidal.id, cut='Head, Tail, Back Leg
 Proficiency.applyStrenghts(mon_id= najarala_tidal.id, fire=False, water=True, thunder=False, ice=False, dragon=False)
 Ailments.createStatus(mon_id= najarala_tidal.id, status="Para", blight="", natural="Roar (Large), Stun")
 
-games.inMHGen4(mon_id= najarala_tidal.id, MH4U=True, MHGU=False)
+Egames.putInGames(najarala_tidal.id,  ['MH4U'])
+
 
 najarala.family(najarala_tidal) # T.Najarala is subspecies of Najarala
 najarala_tidal.family(najarala)

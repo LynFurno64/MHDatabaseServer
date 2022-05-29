@@ -1,10 +1,9 @@
 # Create Monsters from the Carapaceon Phylum
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 
 
 ##################  Shogun Ceanataur ##################
 addWeakness = Weakness()
-games = Games()
 
 Shogun_Ceanataur = Monster(name='Shogun Ceanataur',generation=2,group='crab',variation=1)
 Shogun_Ceanataur.create(Shogun_Ceanataur)
@@ -16,14 +15,12 @@ Weakpoints.createWeakPoints(mon_id=Shogun_Ceanataur.id,cut='Shell, Right Claw, L
 
 Proficiency.onlyGoodAt(mon_id=Shogun_Ceanataur.id,element='water')
 Ailments.createStatus(mon_id=Shogun_Ceanataur.id,status='poison, Bleeding',blight='Waterblight',natural='Stabbed')
-games.inMHOld(mon_id=Shogun_Ceanataur.id,MHF=True,MHF2=True)
-games.inMHGen4(mon_id=Shogun_Ceanataur.id,MH4U=False,MHGU=True)
-games.inMHGen5(mon_id=Shogun_Ceanataur.id,MHWI=False,MHRS=True)
+
+Egames.putInGames(Shogun_Ceanataur.id,  ['MHFU', 'MHGU', 'MHRS'])
 
 
 ##################  Terra Shogun Ceanataur ##################
 addWeakness = Weakness()
-games = Games()
 
 Shogun_Ceanataur_Terra = Monster(name='Terra Shogun Ceanataur',generation=2,group='crab',variation=2)
 Shogun_Ceanataur_Terra.create(Shogun_Ceanataur_Terra)
@@ -35,13 +32,13 @@ Weakpoints.createWeakPoints(mon_id=Shogun_Ceanataur_Terra.id,cut='Shell, Right C
 
 Proficiency.onlyGoodAt(mon_id=Shogun_Ceanataur_Terra.id,element='water')
 Ailments.createStatus(mon_id=Shogun_Ceanataur_Terra.id,status='',blight='',natural='')
-games.inMHOld(mon_id=Shogun_Ceanataur_Terra.id,MHF=True,MHF2=False)
+
+Egames.putInGames(Shogun_Ceanataur_Terra.id,  ['MHFU'])
 
 Shogun_Ceanataur.family(Shogun_Ceanataur_Terra)
 
 ##################  Rustrazor Ceanataur ##################
 addWeakness = Weakness()
-games = Games()
 
 Rustrazor_Ceanataur = Monster(name='Rustrazor Ceanataur',generation=4,group='crab',variation=5)
 Rustrazor_Ceanataur.create(Rustrazor_Ceanataur)
@@ -53,16 +50,16 @@ Weakpoints.createWeakPoints(mon_id=Rustrazor_Ceanataur.id,cut='Shell, Right Claw
 
 Proficiency.onlyGoodAt(mon_id=Rustrazor_Ceanataur.id,element='water')
 Ailments.createStatus(mon_id=Rustrazor_Ceanataur.id, status='Bleeding, Defense Down',blight='Waterblight',natural='')
-games.inMHGen4(mon_id=Rustrazor_Ceanataur.id,MH4U=False,MHGU=True)
+
+Egames.putInGames(Rustrazor_Ceanataur.id,  ['MHGU'])
 
 Shogun_Ceanataur.family(Rustrazor_Ceanataur)
 Shogun_Ceanataur_Terra.family(Rustrazor_Ceanataur)
 
 ##################  Daimyo Hermitaur ##################
 addWeakness = Weakness()
-games = Games()
 
-Hermitaur_Daimyo = Monster(name='Daimyo Hermitaur',generation=4,group='crab',variation=5)
+Hermitaur_Daimyo = Monster(name='Daimyo Hermitaur',generation=4,group='crab',variation=1)
 Hermitaur_Daimyo.create(Hermitaur_Daimyo)
 
 Item_weak.applyItemWeakness(mon_id=Hermitaur_Daimyo.id,shock_trap=True,pitfall_trap=True,flash_bomb=True,sonic_bomb=False)
@@ -72,4 +69,5 @@ Weakpoints.createWeakPoints(mon_id=Hermitaur_Daimyo.id,cut='Shell, Right Claw, L
 
 Proficiency.onlyGoodAt(mon_id=Hermitaur_Daimyo.id,element='water')
 Ailments.createStatus(mon_id=Hermitaur_Daimyo.id, status='Poison',blight='Waterblight',natural='')
-games.inMHGen4(mon_id=Hermitaur_Daimyo.id,MH4U=False,MHGU=True)
+
+Egames.putInGames(Hermitaur_Daimyo.id,  ['MHFU', 'MHGU'])

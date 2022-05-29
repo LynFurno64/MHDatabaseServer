@@ -1,0 +1,44 @@
+{
+    "games": [
+        {
+            "id": 1,
+            "gamename": "Freedom",
+            "shortname": "MHF"
+        },
+        {
+            "id": 2,
+            "gamename": "Freedom Unite",
+            "shortname": "MHFU"
+        },
+        {
+            "id": 3,
+            "gamename": "Portable 3rd",
+            "shortname": "MH3rd"
+        },
+        {
+            "id": 4,
+            "gamename": "3 Ultimate",
+            "shortname": "MH3U"
+        },
+        {
+            "id": 5,
+            "gamename": "4 Ultimate",
+            "shortname": "MH4U"
+        },
+        {
+            "id": 6,
+            "gamename": "Generation Ultimate",
+            "shortname": "MHGU"
+        },
+        {
+            "id": 7,
+            "gamename": "World Icebourne",
+            "shortname": "MHWI"
+        },
+        {
+            "id": 8,
+            "gamename": "Rise Sunbreak",
+            "shortname": "MHRS"
+        }
+    ]
+}

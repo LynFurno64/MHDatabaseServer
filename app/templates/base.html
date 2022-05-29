@@ -15,17 +15,25 @@
 
 
 {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Monster Catalog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- Navbar content -->
+        <a class="navbar-brand" href="{{ url_for('index') }}">Monster Catalog</a>
 
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" href="{{ url_for('monsterList') }}">Monster Lists</a>
-                <a class="nav-item nav-link" href="{{ url_for('grouping') }}">Monster Classes</a>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('monsterList') }}">Monster Lists<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link"  href="{{ url_for('monster_class') }}">Monster Classes<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link"  href="{{ url_for('monster_species') }}">Species<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link"  href="{{ url_for('register') }}">Add New Creature<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
         </div>
     </nav>
 {% endblock %}
@@ -50,6 +58,7 @@
         {% endwith %}
 
         {# application content needs to be provided in the app_content block #}
+        
         {% block app_content %}{% endblock %}
     </div>
 {% endblock %}
