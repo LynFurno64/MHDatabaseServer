@@ -1,0 +1,30 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-180e2bf517c-7010af16012c7aae": {
+			"provider": "sqlite",
+			"driver": "sqlite_jdbc",
+			"name": "monData.db",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "/Users/chealexander/Developer/finalProject/MHDatabaseServer/monData.db",
+				"url": "jdbc:sqlite:/Users/chealexander/Developer/finalProject/MHDatabaseServer/monData.db",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}

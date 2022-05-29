@@ -1,0 +1,12 @@
+
+{% block body %}
+    {% from 'grouping.html' import subgroup with context %}
+
+    {% include "grouping.html" %}
+
+    <div class="container">
+        {% for mon in phylum.monster %}
+            {% include '_list.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}
