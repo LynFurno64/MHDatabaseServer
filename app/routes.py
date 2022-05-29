@@ -4,10 +4,10 @@ from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 import json
 from os import listdir
-from app.forms import SearchForm
+from app.forms import SearchForm, MonsterForm
 
-from app.models import Monster, Phylum, Subgroup, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
-from app.modelSchema import MonsterSchema, Item_weakSchema, WeaknessSchema, WeakpointsSchema, ProficiencySchema, AilmentsSchema, GamesSchema
+from app.models import Monster, Phylum, Subgroup, Item_weak, Weakness, Weakpoints, Proficiency, Ailments
+from app.modelSchema import MonsterSchema, Item_weakSchema, WeaknessSchema, WeakpointsSchema, ProficiencySchema, AilmentsSchema
 
 a = open('app/json/branch.json')
 branch = json.load(a)
@@ -113,13 +113,6 @@ def get_ailments():
     output = ailments_schema.dump(ailments)
     return jsonify({'ailments': output})
 
-@app.route('/app/games', methods=['GET', 'POST'])
-def get_games():
-    games = Games.query.all()
-    games_schema = GamesSchema(many=True)
-    output = games_schema.dump(games)
-    return jsonify({'games': output})
-
 
     ##### Web ####
 
@@ -181,4 +174,41 @@ def monster_species():
         if subgroup.has_next else None
     prev_url = url_for('monster_species', page= subgroup.prev_num) \
         if subgroup.has_prev else None
-    return render_template('monster_species.html', title= "Monster Species", subgroup=subgroup.items, next_url=next_url, prev_url=prev_url)    
+    return render_template('monster_species.html', title= "Monster Species", subgroup=subgroup.items, next_url=next_url, prev_url=prev_url)   
+
+
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = MonsterForm()
+    print(form.validate_on_submit())
+    if form.validate_on_submit():
+        monster = Monster(name= form.monstername.data, generation= form.generation.data, group= form.group.data, variation= form.variation.data)
+        db.session.add(monster)
+        db.session.commit()
+
+        #print(form.item_weakness.shock_trap.data)
+
+        item_weak = Item_weak(mon_id= monster.id, shock_trap= form.item_weakness.shock_trap.data , pitfall_trap= form.item_weakness.pitfall_trap.data, 
+                           flash_bomb= form.item_weakness.flash_bomb.data, sonic_bomb= form.item_weakness.sonic_bomb.data)
+        
+        proficiency = Proficiency(monster.id, form.element.fire.data, form.element.water.data, form.element.thunder.data, form.element.ice.data, form.element.dragon.data)
+
+        weakness = Weakness()
+        weakness.applyWeaknessElement(monster.id, form.elemental_weakness.fire.data, form.elemental_weakness.water.data, form.elemental_weakness.thunder.data, form.elemental_weakness.ice.data, form.elemental_weakness.dragon.data)
+        weakness.applyWeaknessStatus(monster.id, form.status_weakness.poison.data, form.status_weakness.sleep.data, form.status_weakness.paralysis.data, form.status_weakness.blast.data)
+
+        weakpoint = Weakpoints(mon_id= monster.id, cut= form.weakpoints.cut.data, impact= form.weakpoints.impact.data, projectile= form.weakpoints.projectile.data)
+        ailments = Ailments(mon_id= monster.id, status= form.ailment.status.data, blight= form.ailment.blight.data, natural= form.ailment.natural.data)
+
+        db.session.add(item_weak)
+        db.session.add(proficiency)
+        db.session.add(weakpoint)
+        db.session.add(ailments)
+        db.session.commit()
+
+        flash('Congratulations, you added a new creature!')
+        return redirect(url_for('index'))
+    flash(form.errors)
+    return render_template('register.html', title='Register New Monster', form=form) 

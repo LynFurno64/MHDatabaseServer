@@ -1,9 +1,8 @@
 # Create Monsters from the Leviathan Phylum
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 
 ################## Lagiacrus ##################
 addWeakness = Weakness()
-games = Games()
 
 Lagiacrus = Monster(name='Lagiacrus',generation=3,group='water',variation=1)
 Lagiacrus.create(Lagiacrus)
@@ -15,13 +14,13 @@ Weakpoints.createWeakPoints(mon_id=Lagiacrus.id,cut='Head, Neck, Back, Body, Tai
 
 Proficiency.onlyGoodAt(mon_id=Lagiacrus.id,element='thunder')
 Ailments.createStatus(mon_id=Lagiacrus.id,status='',blight='Thunderblight, Waterblight(When underwater)',natural='')
-games.inMHGen3(mon_id=Lagiacrus.id,MH3rd=False,MH3U=True)
-games.inMHGen4(mon_id=Lagiacrus.id,MH4U=False,MHGU=True)
+
+Egames.putInGames(Lagiacrus.id,  ['MH3U', 'MHGU'])
+
 
 
 ################## Ivory Lagiacrus ##################
 addWeakness = Weakness()
-games = Games()
 
 Lagiacrus_Ivory = Monster(name='Ivory Lagiacrus',generation=3,group='water',variation=2)
 Lagiacrus_Ivory.create(Lagiacrus_Ivory)
@@ -33,13 +32,12 @@ Weakpoints.createWeakPoints(mon_id=Lagiacrus_Ivory.id,cut='Head, Neck, Back, Bod
 
 Proficiency.applyStrenghts(mon_id=Lagiacrus_Ivory.id,fire=False,water=True,thunder=True,ice=False,dragon=False)
 Ailments.createStatus(mon_id=Lagiacrus_Ivory.id,status='',blight='Thunderblight, Waterblight',natural='')
-games.inMHGen3(mon_id=Lagiacrus_Ivory.id,MH3rd=False,MH3U=True)
+Egames.putInGames(Lagiacrus_Ivory.id,  ['MH3U'])
 
 Lagiacrus.family(Lagiacrus_Ivory)
 
 ################## Abyssal Lagiacrus ##################
 addWeakness = Weakness()
-games = Games()
 
 Lagiacrus_Abyssal = Monster(name='Abyssal Lagiacrus',generation=3,group='water',variation=3)
 Lagiacrus_Abyssal.create(Lagiacrus_Abyssal)
@@ -51,14 +49,13 @@ Weakpoints.createWeakPoints(mon_id=Lagiacrus_Abyssal.id,cut='Head, Neck, Back, B
 
 Proficiency.onlyGoodAt(mon_id=Lagiacrus_Abyssal.id,element='thunder')
 Ailments.createStatus(mon_id=Lagiacrus_Abyssal.id,status='',blight='Thunderblight, Waterblight',natural='')
-games.inMHGen3(mon_id=Lagiacrus_Abyssal.id,MH3rd=False,MH3U=True)
+Egames.putInGames(Lagiacrus_Abyssal.id,  ['MH3U'])
 
 Lagiacrus.family(Lagiacrus_Abyssal)
 Lagiacrus_Ivory.family(Lagiacrus_Abyssal)
 
 ##################  Agnaktor ##################
 addWeakness = Weakness()
-games = Games()
 
 Agnaktor = Monster(name='Agnaktor',generation=3,group='water',variation=1)
 Agnaktor.create(Agnaktor)
@@ -70,12 +67,12 @@ Weakpoints.createWeakPoints(mon_id=Agnaktor.id,cut='Head, Neck, Chest, Body, Fro
 
 Proficiency.onlyGoodAt(mon_id=Agnaktor.id,element='fire')
 Ailments.createStatus(mon_id=Agnaktor.id,status='',blight='Fireblight',natural='Roar(L)')
-games.inMHGen3(mon_id=Agnaktor.id,MH3rd=True,MH3U=True)
-games.inMHGen4(mon_id=Agnaktor.id,MH4U=False,MHGU=True)
+
+Egames.putInGames(Agnaktor.id,  ['MH3rd', 'MH3U', 'MHGU'])
+
 
 ################## Glacial Agnaktor ##################
 addWeakness = Weakness()
-games = Games()
 
 Agnaktor_Glacial = Monster(name='Glacial Agnaktor',generation=3,group='water',variation=2)
 Agnaktor_Glacial.create(Agnaktor_Glacial)
@@ -87,6 +84,7 @@ Weakpoints.createWeakPoints(mon_id=Agnaktor_Glacial.id,cut='Head, Neck, Chest, B
 
 Proficiency.applyStrenghts(mon_id=Agnaktor_Glacial.id,fire=False,water=True,thunder=False,ice=True,dragon=False)
 Ailments.createStatus(mon_id=Agnaktor_Glacial.id,status='',blight='Iceblight, Waterblight',natural='Roar(L)')
-games.inMHGen3(mon_id=Agnaktor_Glacial.id,MH3rd=True,MH3U=True)
+Egames.putInGames(Agnaktor_Glacial.id,  ['MH3U'])
+
 
 Agnaktor.family(Agnaktor_Glacial)

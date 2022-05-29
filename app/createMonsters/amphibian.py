@@ -1,10 +1,9 @@
 # Create Monsters from the Amphibian group
 from re import T
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 
 ##################  Tetsucabra ##################
 addWeakness = Weakness()
-games = Games()
 
 Tetsucabra = Monster(name='Tetsucabra',generation=4,group='frog',variation=1)
 Tetsucabra.create(Tetsucabra)
@@ -16,11 +15,12 @@ Weakpoints.createWeakPoints(mon_id=Tetsucabra.id,cut='Head, Front Legs, Hind leg
 
 Proficiency.noElement(mon_id=Tetsucabra.id)
 Ailments.createStatus(mon_id=Tetsucabra.id, status="", blight="", natural="Small Roars, Tremors")
-games.inMHGen4(mon_id=Tetsucabra.id,MH4U=True,MHGU=True)
+
+Egames.putInGames(Tetsucabra.id, ['MH4U', 'MHGU'])
+
 
 ##################  Drilltusk Tetsucabra ##################
 addWeakness = Weakness()
-games = Games()
 
 Tetsucabra_Drilltusk = Monster(name= 'Drilltusk Tetsucabra',generation=4,group='frog',variation=5)
 Tetsucabra_Drilltusk.create(Tetsucabra_Drilltusk)
@@ -32,14 +32,15 @@ Weakpoints.createWeakPoints(mon_id=Tetsucabra_Drilltusk.id,cut='Head, Front Legs
 
 Proficiency.noElement(mon_id=Tetsucabra_Drilltusk.id)
 Ailments.createStatus(mon_id= Tetsucabra_Drilltusk.id, status="", blight="", natural="Small Roars, Tremors")
-games.inMHGen4(mon_id=Tetsucabra_Drilltusk.id,MH4U=False,MHGU=True)
+
+Egames.inGame(Tetsucabra_Drilltusk.id, 'MHGU')
+
 
 Tetsucabra.family(Tetsucabra_Drilltusk)
 
 
 ##################  Zamtrios ##################
 addWeakness = Weakness()
-games = Games()
 
 Zamtrios = Monster(name='Zamtrios',generation=4,group='frog',variation=1)
 Zamtrios.create(Zamtrios)
@@ -52,13 +53,13 @@ Weakpoints.createWeakPoints(mon_id=Zamtrios.id,cut='Head, Fin, Tail, Belly',impa
 Proficiency.applyStrenghts(mon_id=Zamtrios.id, fire=False, water=True, thunder=False, ice=True, dragon=False)
 Ailments.createStatus(mon_id= Zamtrios.id, status="", blight="Ice and Water Blights", natural="Tremors, Large Roars, Snowman")
 
-games.inMHGen4(mon_id=Zamtrios.id,MH4U=True,MHGU=True)
+Egames.putInGames(Zamtrios.id, ['MH4U', 'MHGU'])
+
 
 
 
 ##################  Tetranadon ##################
 addWeakness = Weakness()
-games = Games()
 
 Tetranadon = Monster(name='Tetranadon',generation=5,group='frog',variation=1)
 Tetranadon.create(Tetranadon)
@@ -71,4 +72,5 @@ Weakpoints.createWeakPoints(mon_id=Tetranadon.id,cut='Head, Neck, Torso, Foreleg
 Proficiency.onlyGoodAt(mon_id=Tetranadon.id,element='water')
 Ailments.createStatus(mon_id= Tetranadon.id, status="", blight="Water Blight", natural="Tremors")
 
-games.inMHGen5(mon_id=Tetranadon.id,MHWI=False,MHRS=True)
+Egames.inGame(Tetranadon.id, 'MHRS')
+

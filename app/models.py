@@ -1,3 +1,4 @@
+from array import array
 from app import app, db
 
 familia = db.Table(
@@ -46,6 +47,24 @@ class Phylum(db.Model):
         db.session.add(new)
         db.session.commit()
 
+class Videogames(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    gamename = db.Column(db.String(140), unique=True, nullable=False)
+    shortname = db.Column(db.String(100), index=True, unique=True, nullable=False)
+
+    egames = db.relationship('Egames', backref='videogames', lazy=True)
+
+    def __init__(self, gamename: str, shortname: str):
+        self.gamename = gamename
+        self.shortname = shortname
+
+    @staticmethod
+    def create(gamename, shortname):  # create Vidoegames
+        new = Videogames(gamename, shortname)
+        db.session.add(new)
+        db.session.commit()
+
+
 
 class Monster(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -59,7 +78,8 @@ class Monster(db.Model):
     proficiency = db.relationship('Proficiency', backref='monster', lazy=True, uselist=False)
     item_weak = db.relationship('Item_weak', backref='monster', lazy=True, uselist=False)
     ailments = db.relationship('Ailments', backref='monster', lazy=True, uselist=False)
-    games = db.relationship('Games', backref='monster', lazy=True)
+    egames = db.relationship('Egames', backref='monster', lazy=True)
+
 
     relative = db.relationship(
         'Monster', secondary=familia,
@@ -329,58 +349,25 @@ class Ailments(db.Model):
         db.session.add(new)
         db.session.commit()
 
-
-class Games(db.Model):
+class Egames(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mon_id = db.Column(db.Integer, db.ForeignKey('monster.id'), nullable=False)
-    MHF = db.Column(db.Boolean)
-    MHF2 = db.Column(db.Boolean)
-    MH3rd = db.Column(db.Boolean)
-    MH3U = db.Column(db.Boolean)
-    MH4U = db.Column(db.Boolean)
-    MHGU = db.Column(db.Boolean)
-    MHWI = db.Column(db.Boolean)
-    MHRS = db.Column(db.Boolean)
+    games = db.Column(db.String(100), db.ForeignKey('videogames.shortname'), nullable=False)
+
 
     def __repr__(self):
-        return '<Games {}>'.format(self.MHF)
+        return '<Egames {}>'.format(self.games)
 
-   
-    # Add Monsters that were in Every game
-    def addToAll(mon_id: int):
-        new = Games(mon_id, True, True, True, True, True, True, True, True)
+    # Add Monsters to game
+    def inGame(mid: int,  games: str):
+        new = Egames(mon_id= mid, games= games)
         db.session.add(new)
         db.session.commit()
 
-
-    # Add Monsters that were in MH 1 OR MH 2
-    def inMHOld(self, mon_id: int, MHF: bool, MHF2: bool):
-        self.mon_id = mon_id
-        self.MHF = MHF
-        self.MHF2 = MHF2
-        db.session.add(self)
-        db.session.commit()
-
-    # Add Monsters that were in Gen 3 Games
-    def inMHGen3(self, mon_id: int, MH3rd: bool, MH3U: bool):
-        self.mon_id = mon_id
-        self.MH3rd = MH3rd
-        self.MH3U = MH3U
-        db.session.add(self)
-        db.session.commit()
-
-    # Add Monsters that were in Gen 4 Games
-    def inMHGen4(self, mon_id: int, MH4U: bool, MHGU: bool):
-        self.mon_id = mon_id
-        self.MH4U = MH4U
-        self.MHGU = MHGU
-        db.session.add(self)
-        db.session.commit()
-
-    # Add Monsters that were in Gen 5 Games
-    def inMHGen5(self, mon_id: int,  MHWI: bool, MHRS: bool):
-        self.mon_id = mon_id
-        self.MHWI = MHWI
-        self.MHRS = MHRS
-        db.session.add(self)
-        db.session.commit()
+    # Add Monsters to multiple games
+    def putInGames(mon_id: int,  games: array):
+        for x in games:
+            #self.inGame(mon_id, x)
+            new = Egames(mon_id= mon_id, games= x)
+            db.session.add(new)
+            db.session.commit()

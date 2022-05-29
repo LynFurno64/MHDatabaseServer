@@ -25,7 +25,7 @@
                     <small class="text-danger">{{monster.subgroup.division}}</small>
                     {% endif %}
                 </h1>
-                
+                <h4>Genration: {{monster.generation}}</h4>
                 <h4>Ailments:
                     <small class="text-darks"><strong>
                         {% if monster.ailments.status != "" %}
@@ -103,7 +103,6 @@
                         <hr><p>Immune</p>
                 </div>
                 {% endif %}
-
             </td>
 
             <td>
@@ -177,7 +176,18 @@
         </table>      
     </div>
 
-        
+    <div class="alert alert-secondary" role="alert">
+        <h4 class="alert-heading">Games In:</h4>
+        <hr>
+        <ul class="nav nav-pills">
+            {% for x in monster.egames %}
+            <li class="nav-item">
+              <a class="nav-link">{{ x.videogames.gamename }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
     {% if monster.relative.count() == 0 %} 
     {% else %}
     <div class="alert alert-secondary" role="alert">

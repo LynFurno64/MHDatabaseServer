@@ -1,10 +1,9 @@
 # Create Monsters from the Fanged Beast group
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 
 
 ##################  Arzuros ##################
 addWeakness = Weakness()
-games = Games()
 
 Arzuros =Monster(name='Arzuros',generation=3,group='beast',variation=1)
 Arzuros.create(Arzuros)
@@ -17,14 +16,12 @@ Weakpoints.createWeakPoints(mon_id=Arzuros.id,cut='Head, Upper Half, Forelegs, H
 Proficiency.noElement(mon_id=Arzuros.id)
 Ailments.createStatus(mon_id= Arzuros.id, status="", blight="", natural="")
 
-games.inMHGen3(mon_id=Arzuros.id,MH3rd=True,MH3U=True)
-games.inMHGen4(mon_id=Arzuros.id,MH4U=False,MHGU=True)
-games.inMHGen5(mon_id=Arzuros.id,MHWI=False,MHRS=True)
+Egames.putInGames(Arzuros.id,  ['MH3rd', 'MH3U', 'MHGU', 'MHRS'])
+
 
 
 ##################  Redhelm Arzuro ##################
 addWeakness = Weakness()
-games = Games()
 
 Arzuros_Redhelm = Monster(name='Redhelm Arzuros',generation=4,group='beast',variation=5)
 Arzuros_Redhelm.create(Arzuros_Redhelm)
@@ -36,14 +33,11 @@ Weakpoints.createWeakPoints(mon_id=Arzuros_Redhelm.id,cut='Head, Upper Half, For
 
 Proficiency.noElement(mon_id=Arzuros_Redhelm.id)
 Ailments.createStatus(mon_id= Arzuros_Redhelm.id, status="", blight="", natural="Wind Pressure (s), Roar (s), Tremor")
-
-games.inMHGen4(mon_id=Arzuros_Redhelm.id,MH4U=False,MHGU=True)
-
+Egames.putInGames(Arzuros_Redhelm.id,  ['MHGU'])
 Arzuros.family(Arzuros_Redhelm)
 
 ##################  Gammoth ##################
 addWeakness = Weakness()
-games = Games()
 
 Gammoth = Monster(name='Gammoth',generation=4,group='beast',variation=1)
 Gammoth.create(Gammoth)
@@ -55,12 +49,11 @@ Weakpoints.createWeakPoints(mon_id=Gammoth.id,cut='Head, Trunk, Forelegs, Hind l
 
 Proficiency.onlyGoodAt(mon_id=Gammoth.id,element='ice')
 Ailments.createStatus(mon_id= Gammoth.id, status="", blight="Ice blight", natural="Wind pressure, Roar (small), Snowman, Tremor")
+Egames.putInGames(Gammoth.id,  ['MHGU'])
 
-games.inMHGen4(mon_id=Gammoth.id,MH4U=False,MHGU=True)
 
 ##################  Elderfrost Gammoth ##################
 addWeakness = Weakness()
-games = Games()
 
 Gammoth_Elderfrost = Monster(name='Elderfrost Gammoth',generation=4,group='beast',variation=5)
 Gammoth_Elderfrost.create(Gammoth_Elderfrost)
@@ -72,14 +65,13 @@ Weakpoints.createWeakPoints(mon_id=Gammoth_Elderfrost.id,cut='Head, Trunk, Forel
 
 Proficiency.onlyGoodAt(mon_id=Gammoth_Elderfrost.id,element='ice')
 Ailments.createStatus(mon_id= Gammoth_Elderfrost.id, status="", blight="Ice blight", natural="Wind pressure, Roar (small), Snowman, Tremor")
+Egames.putInGames(Gammoth_Elderfrost.id,  ['MHGU'])
 
-games.inMHGen4(mon_id=Gammoth_Elderfrost.id,MH4U=False,MHGU=True)
 
 Gammoth.family(Gammoth_Elderfrost)
 
 ##################  Goss Harag ##################
 addWeakness = Weakness()
-games = Games()
 
 Goss_Harag = Monster(name='Goss Harag',generation=5,group='beast',variation=1)
 Goss_Harag.create(Goss_Harag)
@@ -91,5 +83,4 @@ Weakpoints.createWeakPoints(mon_id=Goss_Harag.id,cut='Head, Torso, Forelegs, Ice
 
 Proficiency.onlyGoodAt(mon_id=Goss_Harag.id,element='ice')
 Ailments.createStatus(mon_id= Goss_Harag.id, status="", blight="Ice blight", natural="Roar (small)")
-
-games.inMHGen5(mon_id=Goss_Harag.id,MHWI=False,MHRS=True)
+Egames.putInGames(Goss_Harag.id,  ['MHRS'])

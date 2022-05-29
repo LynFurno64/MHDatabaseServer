@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5396b200a7e7
+Revision ID: 5d2f1f2aa3ac
 Revises: 
-Create Date: 2022-05-26 21:59:06.995596
+Create Date: 2022-05-29 01:17:26.897834
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5396b200a7e7'
+revision = '5d2f1f2aa3ac'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,6 +32,14 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_subgroup_division'), 'subgroup', ['division'], unique=True)
+    op.create_table('videogames',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('gamename', sa.String(length=140), nullable=False),
+    sa.Column('shortname', sa.String(length=100), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('gamename')
+    )
+    op.create_index(op.f('ix_videogames_shortname'), 'videogames', ['shortname'], unique=True)
     op.create_table('monster',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
@@ -53,17 +61,11 @@ def upgrade():
     sa.ForeignKeyConstraint(['mon_id'], ['monster.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('games',
+    op.create_table('egames',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('mon_id', sa.Integer(), nullable=False),
-    sa.Column('MHF', sa.Boolean(), nullable=True),
-    sa.Column('MHF2', sa.Boolean(), nullable=True),
-    sa.Column('MH3rd', sa.Boolean(), nullable=True),
-    sa.Column('MH3U', sa.Boolean(), nullable=True),
-    sa.Column('MH4U', sa.Boolean(), nullable=True),
-    sa.Column('MHGU', sa.Boolean(), nullable=True),
-    sa.Column('MHWI', sa.Boolean(), nullable=True),
-    sa.Column('MHRS', sa.Boolean(), nullable=True),
+    sa.Column('games', sa.String(length=100), nullable=False),
+    sa.ForeignKeyConstraint(['games'], ['videogames.shortname'], ),
     sa.ForeignKeyConstraint(['mon_id'], ['monster.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -128,11 +130,13 @@ def downgrade():
     op.drop_table('related')
     op.drop_table('proficiency')
     op.drop_table('item_weak')
-    op.drop_table('games')
+    op.drop_table('egames')
     op.drop_table('ailments')
     op.drop_index(op.f('ix_monster_name'), table_name='monster')
     op.drop_index(op.f('ix_monster_generation'), table_name='monster')
     op.drop_table('monster')
+    op.drop_index(op.f('ix_videogames_shortname'), table_name='videogames')
+    op.drop_table('videogames')
     op.drop_index(op.f('ix_subgroup_division'), table_name='subgroup')
     op.drop_table('subgroup')
     op.drop_index(op.f('ix_phylum_codename'), table_name='phylum')

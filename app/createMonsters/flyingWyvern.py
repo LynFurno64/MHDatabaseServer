@@ -1,10 +1,9 @@
 # Create Monsters from the Flying Wyvern group
 from sqlalchemy import false
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 
 #################  Rathalos ##################
 addWeakness = Weakness()
-games = Games() 
 
 rathalos = Monster("Rathalos", 1, "flying", 1)
 rathalos.create(rathalos)
@@ -17,15 +16,11 @@ Weakpoints.createWeakPoints(mon_id=rathalos.id, cut='Head, Tail', impact='Head, 
 Proficiency.onlyGoodAt(mon_id=rathalos.id, element='fire')
 Ailments.createStatus(mon_id= rathalos.id, status="Poison", blight="Fireblight", natural="Wind Pressure, Roar")
 
-#games.addToAll(mon_id=rathalos.id)
-games.inMHOld(rathalos.id, True, True)
-games.inMHGen3(rathalos.id, True, True)
-games.inMHGen4(rathalos.id, True, True)
-games.inMHGen5(rathalos.id, True, True)
+Egames.putInGames(rathalos.id,  ['MHF', 'MHFU', 'MH3rd', 'MH3U', 'MH4U', 'MHGU', 'MHWI', 'MHRS'])
+
 
 #################  Azure Rathalos ##################
 addWeakness = Weakness()
-games = Games() 
 rathalos_azure = Monster("Azure Rathalos", 1, "flying", 2)
 rathalos_azure.create(rathalos_azure)
 
@@ -36,16 +31,14 @@ Weakpoints.createWeakPoints(mon_id=rathalos_azure.id, cut='Head, Tail', impact='
 
 Proficiency.onlyGoodAt(mon_id=rathalos_azure.id, element='fire')
 Ailments.createStatus(mon_id= rathalos_azure.id, status="Poison", blight="Fireblight", natural="Wind Pressure(L), Roar(L)")
-games.inMHOld(rathalos_azure.id, True, True)
-games.inMHGen3(rathalos_azure.id, False, True)
-games.inMHGen4(rathalos_azure.id, True, True)
-games.inMHGen5(rathalos_azure.id, True, False)
+
+Egames.putInGames(rathalos_azure.id,  ['MHF', 'MHFU', 'MH3U', 'MH4U', 'MHGU', 'MHWI'])
+
 
 rathalos.family(rathalos_azure)
 
 #################  Silver Rathalos ##################
 addWeakness = Weakness()
-games = Games() 
 
 rathalos_silver = Monster("Silver Rathalos", 1, "flying", 3)
 rathalos_silver.create(rathalos_silver)
@@ -58,10 +51,9 @@ projectile='Head (Broken), Tail Tip')
 
 Proficiency.onlyGoodAt(mon_id=rathalos_silver.id, element='fire')
 Ailments.createStatus(mon_id= rathalos_silver.id, status="Poison", blight="Fireblight", natural="Wind Pressure(L), Roar(L), Stun")
-games.inMHOld(rathalos_silver.id, True, True)
-games.inMHGen3(rathalos_silver.id, True, True)
-games.inMHGen4(rathalos_silver.id, True, True)
-games.inMHGen5(rathalos_silver.id, True, True)
+stringList = ['MHF', 'MHFU', 'MH3rd', 'MH3U', 'MH4U', 'MHGU', 'MHWI', 'MHRS']
+for x in stringList:
+    Egames.inGame(rathalos_silver.id, x)
 
 rathalos.family(rathalos_silver)
 rathalos_azure.family(rathalos_silver)
@@ -69,7 +61,6 @@ rathalos_azure.family(rathalos_silver)
 
 #################  Dreadking Rathalos ##################
 addWeakness = Weakness()
-games = Games() 
 
 rathalos_dreadking = Monster("Dreadking Rathalos", 4, "flying", 5)
 rathalos_dreadking.create(rathalos_dreadking)
@@ -81,7 +72,8 @@ Weakpoints.createWeakPoints(mon_id=rathalos_dreadking.id, cut='Head', impact='He
 
 Proficiency.onlyGoodAt(mon_id=rathalos_dreadking.id, element='fire')
 Ailments.createStatus(mon_id= rathalos_dreadking.id, status="Noxiuos Poison", blight="Fireblight", natural="Wind Pressure(L), Roar(L)")
-games.inMHGen4(rathalos_dreadking.id, False, True)
+
+Egames.inGame(rathalos_dreadking.id, "MHGU")
 
 rathalos.family(rathalos_dreadking)
 rathalos_azure.family(rathalos_dreadking)
@@ -89,7 +81,6 @@ rathalos_silver.family(rathalos_dreadking)
 
 #################  Seregios ##################
 addWeakness = Weakness()
-games = Games() 
 Seregios= Monster(name='Seregios', generation=4, group='flying', variation=1)
 Seregios.create(Seregios)
 
@@ -100,14 +91,13 @@ Weakpoints.createWeakPoints(mon_id= Seregios.id, cut='Neck, Belly, Back Leg', im
 
 Proficiency.noElement(mon_id= Seregios.id)
 Ailments.createStatus(mon_id= Seregios.id, status="Bleeding", blight="", natural="Roar(S), Wind Pressure (L)")
-games.inMHGen4(Seregios.id, True, True)
-games.inMHGen5(Seregios.id, False, True)
+
+Egames.putInGames(Seregios.id, ['MH4U', 'MHRS'])
+
 
 #################  Tigrex ##################
 addWeakness = Weakness()
-games = Games() 
  
 ##################  Molten Tigrex ##################
 addWeakness = Weakness()
-games = Games()
 

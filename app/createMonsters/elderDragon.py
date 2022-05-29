@@ -1,32 +1,26 @@
 # Create Monsters from the Elder Dragon group
 from re import T
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 
 ################## Lunastra ##################
 addWeakness = Weakness()
-games = Games()
 
 ################## Teostra ##################
 addWeakness = Weakness()
-games = Games()
 
 
 ################## Amatsu ##################
 addWeakness = Weakness()
-games = Games()
 
 
 ################## Ceadeus ##################
 addWeakness = Weakness()
-games = Games()
 
 ################## Goldbeard Ceadeus ##################
 addWeakness = Weakness()
-games = Games()
 
 ################## Valstrax ##################
 addWeakness = Weakness()
-games = Games()
 Valstrax= Monster(name='Valstrax', generation=4, group='elder', variation=1)
 Valstrax.create(Valstrax)
 
@@ -37,11 +31,11 @@ Weakpoints.createWeakPoints(mon_id= Valstrax.id, cut='Head, Head (Enraged)', imp
 
 Proficiency.onlyGoodAt(mon_id=Valstrax.id, element='dragon')
 Ailments.createStatus(mon_id= Valstrax.id, status="", blight="Dragon blight", natural=" Roar(L)")
-games.inMHGen4(Valstrax.id, False, True)
+
+Egames.putInGames(Valstrax.id,  ['MHGU'])
 
 ################# Crimson Glow Valstrax ##################
 addWeakness = Weakness()
-games = Games()
 Valstrax_Crimson= Monster(name='Crimson Glow Valstrax', generation=5, group='elder', variation=4)
 Valstrax_Crimson.create(Valstrax_Crimson)
 
@@ -52,13 +46,14 @@ Weakpoints.createWeakPoints(mon_id= Valstrax_Crimson.id, cut='Head, Neck, Wing A
 
 Proficiency.onlyGoodAt(mon_id= Valstrax_Crimson.id, element='dragon')
 Ailments.createStatus(mon_id= Valstrax_Crimson.id, status="", blight="Dragon blight", natural=" Roar(L)")
-games.inMHGen5(Valstrax.id, False, True)
+
+Egames.putInGames(Valstrax_Crimson.id,  ['MHRS'])
+
 Valstrax.family(Valstrax_Crimson)
 
 
 ################# Nergigante ##################
 addWeakness = Weakness()
-games = Games()
 Nergigante= Monster(name='Nergigante', generation=5, group='elder', variation=1)
 Nergigante.create(Nergigante)
 
@@ -71,11 +66,10 @@ projectile='Horn (Wounded), Head (White), Forearm (White), Wings (White)')
 
 Proficiency.noElement(mon_id= Nergigante.id)
 Ailments.createStatus(mon_id= Nergigante.id, status="", blight="", natural="Roar(L), Wind Pressure (S)")
-games.inMHGen5(Nergigante.id, True, False)
+Egames.putInGames(Nergigante.id,  ['MHWI'])
 
 ################# Ruiner Nergigante ##################
 addWeakness = Weakness()
-games = Games()
 Nergigante_Ruiner= Monster(name='Ruiner Nergigante', generation=5, group='elder', variation=4)
 Nergigante_Ruiner.create(Nergigante_Ruiner)
 
@@ -88,12 +82,11 @@ projectile='Horn (Wounded), Head [Normal & White], Forearm (White), Wings (White
 
 Proficiency.noElement(mon_id= Nergigante_Ruiner.id)
 Ailments.createStatus(mon_id= Nergigante_Ruiner.id, status="Bleeding", blight="", natural="Roar(L)")
-games.inMHGen5(Nergigante_Ruiner.id, True, False)
+Egames.putInGames(Nergigante_Ruiner.id,  ['MHWI'])
 Nergigante.family(Nergigante_Ruiner)
 
 ################## ibushi ##################
 addWeakness = Weakness()
-games = Games()
 ibushi = Monster(name='Ibushi', generation=5, group='elder', variation=1)
 ibushi.create(ibushi)
 
@@ -105,11 +98,10 @@ Weakpoints.createWeakPoints(mon_id= ibushi.id, cut='Head, Chest, Wingarm, Back, 
 Proficiency.onlyGoodAt(mon_id= ibushi.id, element='dragon')
 Ailments.createStatus(mon_id= ibushi.id, status="", blight="Dragon blight", natural="Wind pressure (Large), Roar (Large)")
 
-games.inMHGen5(mon_id= ibushi.id, MHWI=False, MHRS=True)
+Egames.putInGames(ibushi.id,  ['MHRS'])
 
 ################## Narwa ##################
 addWeakness = Weakness()
-games = Games()
 
 narwa = Monster("Narwa", 5, "elder", 1)
 narwa.create(narwa)
@@ -122,14 +114,13 @@ impact='Head, Chest(Charged), Wingarm(Charged), Abdomen, Back, Tail Tip(Charged)
 
 Proficiency.onlyGoodAt(mon_id= narwa.id, element='thunder')
 Ailments.createStatus(mon_id= narwa.id, status="", blight="Thunder blight", natural="Roar (Large)")
-games.inMHGen5(mon_id= narwa.id, MHWI=False, MHRS=True)
+Egames.putInGames(narwa.id,  ['MHRS'])
 
 narwa.family(ibushi)
 
 
 ################## Narwa Allmother ##################
 addWeakness = Weakness()
-games = Games()
 
 narwa_allmother = Monster("Narwa Allmother", 5, "elder", 4)
 narwa_allmother.create(narwa_allmother)
@@ -142,7 +133,7 @@ impact='Head, Chest(Charged), Wingarm(Charged), Abdomen, Back, Tail Tip(Charged)
 
 Proficiency.onlyGoodAt(mon_id= narwa_allmother.id, element='thunder')
 Ailments.createStatus(mon_id= narwa_allmother.id, status="", blight="Thunder blight", natural="Wind pressure (Large), Roar (Large)")
-games.inMHGen5(mon_id= narwa_allmother.id, MHWI=False, MHRS=True)
+Egames.putInGames(narwa_allmother.id,  ['MHRS'])
 
 narwa.family(narwa_allmother)
 ibushi.family(narwa_allmother)

@@ -1,9 +1,8 @@
 # Create Monsters from the Brute Wyvern group
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Games
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 
 ################## Brachydios ##################
 addWeakness = Weakness()
-games = Games()
 
 Brachydios = Monster(name='Brachydios', generation=3, group='brute', variation=1)
 Brachydios.create(Brachydios)
@@ -15,13 +14,12 @@ Weakpoints.createWeakPoints(mon_id= Brachydios.id, cut='Head, Front Legs', impac
 
 Proficiency.noElement(Brachydios.id)
 Ailments.createStatus(mon_id= Brachydios.id, status="", blight="Blast Blight", natural="Tremors, Large Roars")
-games.inMHGen3(mon_id= Brachydios.id, MH3rd=False, MH3U=True)
-games.inMHGen4(mon_id= Brachydios.id, MH4U=True, MHGU=True)
-games.inMHGen5(mon_id= Brachydios.id, MHWI=True, MHRS=False)
+
+Egames.putInGames(Brachydios.id,  ['MH3U', 'MH4U', 'MHGU', 'MHWI'])
+
 
 ################## Raging Brachydios ##################
 addWeakness = Weakness()
-games = Games()
 
 Brachydios_Raging = Monster(name='Raging Brachydios', generation=4, group='brute', variation=4)
 Brachydios_Raging.create(Brachydios_Raging)
@@ -34,13 +32,12 @@ impact='Head, Head(Red), Forearms, Forearms(Red), Tail, Tail(Red)', projectile='
 
 Proficiency.noElement(Brachydios_Raging.id)
 Ailments.createStatus(mon_id= Brachydios_Raging.id, status="", blight="Blast Blight", natural="Tremors, Roars (Large)")
-games.inMHGen4(mon_id= Brachydios_Raging.id, MH4U=True, MHGU=True)
-games.inMHGen5(mon_id= Brachydios_Raging.id, MHWI=True, MHRS=False)
+
+Egames.putInGames(Brachydios_Raging.id,  ['MH4U', 'MHGU', 'MHWI'])
 
 
 ##################  Glavenus ##################
 addWeakness = Weakness()
-games = Games()
 
 Glavenus= Monster(name='Glavenus', generation=4, group='brute', variation=1)
 Glavenus.create(Glavenus)
@@ -53,13 +50,12 @@ projectile='Head, Horns, Tail(Heated)')
 
 Proficiency.onlyGoodAt(mon_id= Glavenus.id, element='fire')
 Ailments.createStatus(mon_id= Glavenus.id, status="", blight="Fire blight", natural="Roar (Large)")
-games.inMHGen4(mon_id= Glavenus.id, MH4U=False, MHGU=True)
-games.inMHGen5(Glavenus.id, True, False)
+
+Egames.putInGames(Glavenus.id,  ['MHGU', 'MHWI'])
 
 
 ################## Acidic Glavenus ##################
 addWeakness = Weakness()
-games = Games()
 
 Glavenus_Acidic= Monster(name='Acidic Glavenus', generation=5, group='brute', variation=2)
 Glavenus_Acidic.create(Glavenus_Acidic)
@@ -72,13 +68,13 @@ projectile='Head, Throat, Tail(Sharpened)')
 
 Proficiency.noElement(Glavenus_Acidic.id)
 Ailments.createStatus(mon_id= Glavenus_Acidic.id, status="Defence Down", blight="", natural="Roar (Large)")
-games.inMHGen5(mon_id= Glavenus_Acidic.id, MHWI=True, MHRS=False)
+
+Egames.putInGames(Glavenus_Acidic.id,  ['MHWI'])
 
 Glavenus.family(Glavenus_Acidic)
 
 ################## Hellblade Glavenus ##################
 addWeakness = Weakness()
-games = Games()
 
 Glavenus_Hellblade= Monster(name='Hellblade Glavenus', generation=4, group='brute', variation=5)
 Glavenus_Hellblade.create(Glavenus_Hellblade)
@@ -92,7 +88,8 @@ projectile='Throat, Horns(Normal/Heated)')
 Proficiency.onlyGoodAt(mon_id= Glavenus_Hellblade.id, element='fire')
 Ailments.createStatus(mon_id= Glavenus_Hellblade.id, status="", blight="Blast blight", natural="Stun, Wind Pressure (low), Roar (Large)")
 
-games.inMHGen4(mon_id= Glavenus_Hellblade.id, MH4U=False, MHGU=True)
+Egames.putInGames(Glavenus_Hellblade.id,  ['MHGU'])
+
 
 Glavenus.family(Glavenus_Hellblade)
 Glavenus_Acidic.family(Glavenus_Hellblade)
@@ -100,7 +97,6 @@ Glavenus_Acidic.family(Glavenus_Hellblade)
 
 ################## Anjanath ##################
 addWeakness = Weakness()
-games = Games()
 
 Anjanath= Monster(name='Anjanath', generation=5, group='brute', variation=1)
 Anjanath.create(Anjanath)
@@ -113,11 +109,11 @@ Weakpoints.createWeakPoints(mon_id= Anjanath.id, cut='Nose, Head, Wings, Legs, T
 Proficiency.onlyGoodAt(Anjanath.id, 'fire')
 Ailments.createStatus(mon_id= Anjanath.id, status="", blight="Fire blight", natural="Roars (Small), Wind Pressure (Small), Tremors")
 
-games.inMHGen5(Anjanath.id, True, True)
+Egames.putInGames(Anjanath.id,  ['MHWI', 'MHRS'])
+
 
 ################## Fulgur Anjanath ##################
 addWeakness = Weakness()
-games = Games()
 
 Anjanath_Fulgur= Monster(name='Fulgur Anjanath', generation=5, group='brute', variation=2)
 Anjanath_Fulgur.create(Anjanath_Fulgur)
@@ -130,7 +126,7 @@ Weakpoints.createWeakPoints(mon_id= Anjanath_Fulgur.id, cut='Nose, Head, Wings, 
 Proficiency.onlyGoodAt(Anjanath_Fulgur.id, 'thunder')
 Ailments.createStatus(mon_id= Anjanath_Fulgur.id, status="", blight="Thunder blight", natural="Roar (Small), Tremors")
 
-games.inMHGen5(Anjanath_Fulgur.id, True, False)
+Egames.putInGames(Anjanath_Fulgur.id,  ['MHWI'])
 
 
 Brachydios.family(Brachydios_Raging)
