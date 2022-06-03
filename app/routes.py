@@ -77,20 +77,18 @@ def get_branch(sub_id):
 ########################### Getters ######################################
 
 @app.route('/app/itemWeakness', methods=['GET', 'POST'])
-def get_itemWeak():
+def get_itemWeakess():
     item_weak = Item_weak.query.all()
     item_weak_schema = Item_weakSchema(many=True)
     output = item_weak_schema.dump(item_weak)
     return jsonify({'item_weak': output})
 
-
 @app.route('/app/weakness', methods=['GET', 'POST'])
-def get_weakness():
+def get_weaknessess():
     weakness = Weakness.query.all()
     item_weak_schema = WeaknessSchema(many=True)
     output = item_weak_schema.dump(weakness)
     return jsonify({'weakness': output})
-
 
 @app.route('/app/weakpoints', methods=['GET', 'POST'])
 def get_weakpoints():
@@ -100,7 +98,7 @@ def get_weakpoints():
     return jsonify({'weakpoints': output})
 
 @app.route('/app/strength', methods=['GET', 'POST'])
-def get_strength():
+def get_strengths():
     strength = Proficiency.query.all()
     strength_schema = ProficiencySchema(many=True)
     output = strength_schema.dump(strength)
@@ -114,7 +112,48 @@ def get_ailments():
     return jsonify({'ailments': output})
 
 
-    ##### Web ####
+############################### Single JSON ####################################
+@app.route('/app/itemWeakness/<int:mon_id>', methods=['GET', 'POST'])
+def get_itemWeak(mon_id):
+    monster = Item_weak.query.filter_by(mon_id= mon_id).first_or_404()
+
+    data_schema = Item_weakSchema()
+    mon = data_schema.dump(monster)
+    return jsonify(mon)
+
+@app.route('/app/weakness/<int:mon_id>', methods=['GET', 'POST'])
+def get_weakness(mon_id):
+    monster = Weakness.query.filter_by(mon_id= mon_id).first_or_404()
+
+    data_schema = WeaknessSchema()
+    mon = data_schema.dump(monster)
+    return jsonify(mon)
+
+@app.route('/app/weakpoints/<int:mon_id>', methods=['GET', 'POST'])
+def get_weakpoint(mon_id):
+    monster = Weakpoints.query.filter_by(mon_id= mon_id).first_or_404()
+
+    data_schema = WeakpointsSchema()
+    mon = data_schema.dump(monster)
+    return jsonify(mon)
+
+@app.route('/app/strength/<int:mon_id>', methods=['GET', 'POST'])
+def get_strength(mon_id):
+    monster = Proficiency.query.filter_by(mon_id= mon_id).first_or_404()
+
+    strength_schema = ProficiencySchema()
+    mon = strength_schema.dump(monster)
+    return jsonify(mon)
+
+
+@app.route('/app/ailments/<int:mon_id>', methods=['GET', 'POST'])
+def get_ailment(mon_id):
+    monster = Ailments.query.filter_by(mon_id= mon_id).first_or_404()
+    data_schema = Ailments()
+    mon = data_schema.dump(monster)
+    return jsonify(mon)
+
+############################### Web ###############################
 
 @app.route('/search', methods=['GET'])
 def search():
