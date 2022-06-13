@@ -149,7 +149,7 @@ def get_strength(mon_id):
 @app.route('/app/ailments/<int:mon_id>', methods=['GET', 'POST'])
 def get_ailment(mon_id):
     monster = Ailments.query.filter_by(mon_id= mon_id).first_or_404()
-    data_schema = Ailments()
+    data_schema = AilmentsSchema()
     mon = data_schema.dump(monster)
     return jsonify(mon)
 

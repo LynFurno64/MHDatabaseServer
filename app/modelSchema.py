@@ -1,5 +1,5 @@
 from app import ma
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egamesç
 
 # SQLALchemy to JSON serializer
 
