@@ -7,7 +7,7 @@ from os import listdir
 from app.forms import SearchForm, MonsterForm
 
 from app.models import Monster, Phylum, Subgroup, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
-from app.modelSchema import MonsterSchema, Item_weakSchema, WeaknessSchema, WeakpointsSchema, ProficiencySchema, AilmentsSchema
+from app.modelSchema import GamesSchema, MonsterSchema, Item_weakSchema, WeaknessSchema, WeakpointsSchema, ProficiencySchema, AilmentsSchema
 
 a = open('app/json/branch.json')
 branch = json.load(a)
@@ -111,8 +111,26 @@ def get_ailments():
     output = ailments_schema.dump(ailments)
     return jsonify({'ailments': output})
 
+@app.route('/app/games', methods=['GET', 'POST'])
+def get_games():
+    games = Egames.query.all()
+    games_schema = GamesSchema(many=True)
+    output = games_schema.dump(games)
+    return jsonify({'games': output})
+
 
 ############################### Single JSON ####################################
+@app.route('/app/games/<int:mon_id>', methods=['GET', 'POST'])
+def get_mongames(mon_id):
+    monster = Egames.query.filter_by(mon_id= mon_id)
+    games_schema = GamesSchema(many=True)
+
+    mon = games_schema.dump(monster)
+    
+    return jsonify({'games_in': mon})
+    ##jsonify({'allgames': mon})
+
+
 @app.route('/app/itemWeakness/<int:mon_id>', methods=['GET', 'POST'])
 def get_itemWeak(mon_id):
     monster = Item_weak.query.filter_by(mon_id= mon_id).first_or_404()

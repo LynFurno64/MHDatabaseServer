@@ -1,5 +1,5 @@
 from app import ma
-from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egamesç
+from app.models import Monster, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
 
 # SQLALchemy to JSON serializer
 
@@ -38,5 +38,11 @@ class ProficiencySchema(ma.SQLAlchemyAutoSchema):
 class AilmentsSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Ailments
+        include_fk = True
+        load_instance = True
+
+class GamesSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Egames
         include_fk = True
         load_instance = True
