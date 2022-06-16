@@ -7,7 +7,6 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_wtf.csrf import CSRFProtect
 
-
 app = Flask(__name__)
 
 app.config.from_object(Config)

@@ -6,7 +6,7 @@ import json
 from os import listdir
 from app.forms import SearchForm, MonsterForm
 
-from app.models import Monster, Phylum, Subgroup, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames
+from app.models import Monster, Phylum, Subgroup, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames, familia
 from app.modelSchema import GamesSchema, MonsterSchema, Item_weakSchema, WeaknessSchema, WeakpointsSchema, ProficiencySchema, AilmentsSchema
 
 a = open('app/json/branch.json')
@@ -44,10 +44,6 @@ def get_monster(mon_id):
 
     monster_schema = MonsterSchema()
     mon = monster_schema.dump(monster)
-    print(mon)
-    print(monster)
-
-
     return jsonify(mon)
 
 @app.route('/app/phylums', methods=['GET'])
@@ -118,18 +114,33 @@ def get_games():
     output = games_schema.dump(games)
     return jsonify({'games': output})
 
+@app.route('/app/family', methods=['GET', 'POST'])
+def get_families():
+    ##fam = session.query(familia).all()
+
+    
+    ##Session.query(familia)
+
+    ##data_schema = FamilySchema(many=True)
+    ##output = data_schema.dump(fam)
+    return jsonify({'related'})
+
 
 ############################### Single JSON ####################################
+@app.route('/app/family/<int:mon_id>', methods=['GET', 'POST'])
+def get_family(mon_id):
+    monster = Monster.query.filter_by(id= mon_id).first_or_404()
+    relative = monster.relative.all()
+    monster_schema = MonsterSchema(many=True)
+    mon = monster_schema.dump(relative)
+    return jsonify({'relatives': mon})
+
 @app.route('/app/games/<int:mon_id>', methods=['GET', 'POST'])
 def get_mongames(mon_id):
     monster = Egames.query.filter_by(mon_id= mon_id)
     games_schema = GamesSchema(many=True)
-
     mon = games_schema.dump(monster)
-    
     return jsonify({'games_in': mon})
-    ##jsonify({'allgames': mon})
-
 
 @app.route('/app/itemWeakness/<int:mon_id>', methods=['GET', 'POST'])
 def get_itemWeak(mon_id):
@@ -204,11 +215,6 @@ def monster(monstername):
 
     return render_template('monster.html', title=monster.name, monster=monster)
 
-@app.route('/grouping')
-def grouping():
-    phylums = Phylum.query.all()
-    subgroups = Subgroup.query.all()
-    return render_template('grouping.html', title='Home')
 
 @app.route('/monster_class')
 def monster_class():
