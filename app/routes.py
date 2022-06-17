@@ -148,14 +148,9 @@ def monsterList():
         if monsters.has_prev else None
     return render_template('index.html', title='Monster List', monsters=monsters.items, next_url=next_url, prev_url=prev_url)
     
-
-
 @app.route('/monster/<monstername>')
 def monster(monstername):
     monster = Monster.query.filter_by(name= monstername).first_or_404()
-    print(monster.name)
-    print(monster.weakness)
-
     return render_template('monster.html', title=monster.name, monster=monster)
 
 
@@ -166,7 +161,6 @@ def monster_class():
         y = x.category.replace(' ', '_')
         print(y)
     return render_template('monster_class.html', title= "Monster Classes", phylum=phylum)
-
 
 @app.route('/monster_species')
 def monster_species():
@@ -182,9 +176,6 @@ def monster_species():
         if subgroup.has_prev else None
     return render_template('monster_species.html', title= "Monster Species", subgroup=subgroup.items, next_url=next_url, prev_url=prev_url)   
 
-
-
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = MonsterForm()
@@ -193,8 +184,6 @@ def register():
         monster = Monster(name= form.monstername.data, generation= form.generation.data, group= form.group.data, variation= form.variation.data)
         db.session.add(monster)
         db.session.commit()
-
-        #print(form.item_weakness.shock_trap.data)
 
         item_weak = Item_weak(mon_id= monster.id, shock_trap= form.item_weakness.shock_trap.data , pitfall_trap= form.item_weakness.pitfall_trap.data, 
                            flash_bomb= form.item_weakness.flash_bomb.data, sonic_bomb= form.item_weakness.sonic_bomb.data)
@@ -238,3 +227,36 @@ def register():
         return redirect(url_for('index'))
     flash(form.errors)
     return render_template('register.html', title='Register New Monster', form=form) 
+
+@app.route('/related/<monstername>', methods=['GET', 'POST'])
+def related(monstername):
+    print(monstername)
+    monster = Monster.query.filter_by(name= monstername).first_or_404()
+    monsterinGroup = Monster.query.filter_by(group= monster.phylum.codename).all()
+
+    # Filter out family members
+    list = [] 
+    for monFromGroup in monsterinGroup:
+        print(monster, "vs", monFromGroup, ": ", monster.is_family(monFromGroup))
+        if not monster.is_family(monFromGroup):
+            if monster != monFromGroup:
+                list.append(monFromGroup)
+    return render_template('related.html', title='Add Relatives', monster= monster, monlist= list)
+
+@app.route('/related/<mainname>/follow/<subname>')
+def follow(mainname, subname):
+    monsterMain = Monster.query.filter_by(name= mainname).first()
+    monsterSub = Monster.query.filter_by(name= subname).first()
+
+    if monsterSub is None:
+        flash('{} not found.'.format(subname))
+        return redirect(url_for('index'))
+    if monsterSub == monsterMain:
+        flash('Cannot follow same species!')
+        return redirect(url_for('monster', monstername= mainname))
+ 
+    monsterMain.family(monsterSub)
+    db.session.commit()
+    flash('{} and {} are now related!'.format(mainname, subname))
+    return redirect(url_for('monster', monstername= mainname))
+

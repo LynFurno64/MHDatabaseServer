@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <h1>Add Related Monster for {{ monster.name }}</h1>
+    <div class="alert alert-secondary" role="alert">
+        <h3 class="alert-heading">{{ monster.phylum.category }}s:</h3>
+        {% for monstie in monlist %}
+            <nav class="nav">
+                <h4>
+                    <a class="nav-link" href="{{ url_for('follow', mainname= monster.name, subname= monstie.name) }}">{{ monstie.name }}</a>
+                </h4>
+            </nav>
+        {% endfor %}
+
+    </div>
+{% endblock %}
