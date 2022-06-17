@@ -4,11 +4,6 @@ from wtforms.validators import ValidationError, DataRequired
 
 from app.models import Monster
 
-
-class SearchForm(FlaskForm):
-    searched = StringField('Searched', validators=[DataRequired()])
-    submit = SubmitField('Submit')
-
 class ElementForm(FlaskForm):
     fire = BooleanField('Fire')
     water= BooleanField('Water')

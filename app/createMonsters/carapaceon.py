@@ -70,4 +70,4 @@ Weakpoints.createWeakPoints(mon_id=Hermitaur_Daimyo.id,cut='Shell, Right Claw, L
 Proficiency.onlyGoodAt(mon_id=Hermitaur_Daimyo.id,element='water')
 Ailments.createStatus(mon_id=Hermitaur_Daimyo.id, status='Poison',blight='Waterblight',natural='')
 
-Egames.putInGames(Hermitaur_Daimyo.id,  ['MHFU', 'MHGU'])
+Egames.putInGames(Hermitaur_Daimyo.id,  ['MHFU', 'MHGU', 'MHRS'])

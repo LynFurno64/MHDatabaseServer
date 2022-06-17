@@ -3,8 +3,7 @@ from flask import Flask, jsonify
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 import json
-from os import listdir
-from app.forms import SearchForm, MonsterForm
+from app.forms import MonsterForm
 
 from app.models import Monster, Phylum, Subgroup, Item_weak, Weakness, Weakpoints, Proficiency, Ailments, Egames, familia
 from app.modelSchema import GamesSchema, MonsterSchema, Item_weakSchema, WeaknessSchema, WeakpointsSchema, ProficiencySchema, AilmentsSchema
@@ -57,7 +56,6 @@ def get_phylum(phylum_id):
         abort(404)
     return phylum[0]
 
-
 @app.route('/app/subgroup', methods=['GET'])
 def get_tree():
     return branch
@@ -72,58 +70,12 @@ def get_branch(sub_id):
 
 ########################### Getters ######################################
 
-@app.route('/app/itemWeakness', methods=['GET', 'POST'])
-def get_itemWeakess():
-    item_weak = Item_weak.query.all()
-    item_weak_schema = Item_weakSchema(many=True)
-    output = item_weak_schema.dump(item_weak)
-    return jsonify({'item_weak': output})
-
-@app.route('/app/weakness', methods=['GET', 'POST'])
-def get_weaknessess():
-    weakness = Weakness.query.all()
-    item_weak_schema = WeaknessSchema(many=True)
-    output = item_weak_schema.dump(weakness)
-    return jsonify({'weakness': output})
-
-@app.route('/app/weakpoints', methods=['GET', 'POST'])
-def get_weakpoints():
-    weakpoints = Weakpoints.query.all()
-    weakpoints_schema = WeakpointsSchema(many=True)
-    output = weakpoints_schema.dump(weakpoints)
-    return jsonify({'weakpoints': output})
-
-@app.route('/app/strength', methods=['GET', 'POST'])
-def get_strengths():
-    strength = Proficiency.query.all()
-    strength_schema = ProficiencySchema(many=True)
-    output = strength_schema.dump(strength)
-    return jsonify({'strength': output})
-
-@app.route('/app/ailments', methods=['GET', 'POST'])
-def get_ailments():
-    ailments = Ailments.query.all()
-    ailments_schema = AilmentsSchema(many=True)
-    output = ailments_schema.dump(ailments)
-    return jsonify({'ailments': output})
-
 @app.route('/app/games', methods=['GET', 'POST'])
 def get_games():
     games = Egames.query.all()
     games_schema = GamesSchema(many=True)
     output = games_schema.dump(games)
-    return jsonify({'games': output})
-
-@app.route('/app/family', methods=['GET', 'POST'])
-def get_families():
-    ##fam = session.query(familia).all()
-
-    
-    ##Session.query(familia)
-
-    ##data_schema = FamilySchema(many=True)
-    ##output = data_schema.dump(fam)
-    return jsonify({'related'})
+    return jsonify({'gamesList': output})
 
 
 ############################### Single JSON ####################################
@@ -183,15 +135,6 @@ def get_ailment(mon_id):
     return jsonify(mon)
 
 ############################### Web ###############################
-
-@app.route('/search', methods=['GET'])
-def search():
-    form = SearchForm()
-    if form.validate_on_submit():
-        find = form.searched.data
-        Monster.query.filter_by(name= find)
-    return render_template('search.html', form=form, find=find)
-
 
 @app.route('/monsterList')
 def monsterList():

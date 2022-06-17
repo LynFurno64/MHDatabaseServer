@@ -14,9 +14,6 @@ class Subgroup(db.Model):
 
     monster = db.relationship('Monster', backref='subgroup', lazy=True)
 
-    #def __repr__(self):
-        #return '<Subgroup {}>'.format(self.division)
-
     def __init__(self, division: str):
         self.division = division
 
@@ -358,7 +355,7 @@ class Egames(db.Model):
     def __repr__(self):
         return '<Egames {}>'.format(self.games)
 
-    # Add Monsters to game
+    # Add Monsters to a game
     def inGame(mid: int,  games: str):
         new = Egames(mon_id= mid, games= games)
         db.session.add(new)
@@ -367,7 +364,6 @@ class Egames(db.Model):
     # Add Monsters to multiple games
     def putInGames(mon_id: int,  games: array):
         for x in games:
-            #self.inGame(mon_id, x)
             new = Egames(mon_id= mon_id, games= x)
             db.session.add(new)
             db.session.commit()
